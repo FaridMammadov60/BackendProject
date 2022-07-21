@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackEndProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220721205913_InitialProject")]
-    partial class InitialProject
+    [Migration("20220721222916_InitialPro")]
+    partial class InitialPro
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -308,10 +308,15 @@ namespace BackEndProject.Migrations
                     b.Property<string>("Offer")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SliderId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SliderId");
 
                     b.ToTable("SliderContents");
 
@@ -322,6 +327,7 @@ namespace BackEndProject.Migrations
                             Desc = "Explore and immerse in exciting 360 content with Fulldive’s all-in-one virtual reality platform",
                             Name = "Fulldive VR.",
                             Offer = "Save $120 when you buy",
+                            SliderId = 1,
                             Title = "2020 Virtual Reality"
                         },
                         new
@@ -330,6 +336,7 @@ namespace BackEndProject.Migrations
                             Desc = "Explore and immerse in exciting 360 content with Fulldive’s all-in-one virtual reality platform",
                             Name = "Sony Bravia.",
                             Offer = "Save $120 when you buy",
+                            SliderId = 2,
                             Title = "4K HDR Smart TV 43"
                         });
                 });
@@ -339,6 +346,15 @@ namespace BackEndProject.Migrations
                     b.HasOne("BackEndProject.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BackEndProject.Models.SliderContent", b =>
+                {
+                    b.HasOne("BackEndProject.Models.Slider", "Slider")
+                        .WithMany()
+                        .HasForeignKey("SliderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

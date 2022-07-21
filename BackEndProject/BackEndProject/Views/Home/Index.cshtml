@@ -7,29 +7,27 @@
     <!--====== Slider Part Start ======-->
 
     <section class="slider-area slider-active">
-        <div class="single-slider">
+        @foreach (var item in Model.SliderContents)
+       {
+            <div class="single-slider">
             <div class="slider-image">
-            @foreach (var item in Model.Sliders)
-           {              
-                <img src="~/assets/images/@item.ImageUrl" alt="slider">              
-           }           
-            </div> 
-
+                <img src="assets/images/@item.Slider.ImageUrl" alt="slider">
+            </div>
             <div class="slider-content-wrapper">
                 <div class="container-fluid custom-container">
                     <div class="slider-content">
-            @foreach (var item in Model.SliderContents)
-                   {
-                       <h4 data-animation="fadeInDown" data-delay="0.5s" class="sub-title">@item.Offer</h4>
-                        <h1 data-animation="fadeInLeft" data-delay="0.5s" class="main-title "><span>@item.Title </span>@item.Name</h1>
+                        <h4 data-animation="fadeInDown" data-delay="0.5s" class="sub-title">@item.Offer</h4>
+                        <h1 data-animation="fadeInLeft" data-delay="0.5s" class="main-title "><span>@item.Title </span> @item.Name</h1>
                         <p data-animation="fadeInRightBig" data-delay="0.5s">@item.Desc</p>
-                        <a data-animation="zoomIn" data-delay="0.5s" class="main-btn " href="single-product.html">Shop Now</a>                           
-                   }  
-                </div>
-                </div> <!-- container --> 
-                   </div>
-               
-        </div> <!-- single slider -->       
+                        <a data-animation="zoomIn" data-delay="0.5s" class="main-btn " href="single-product.html">Shop Now</a>
+                    </div>
+                </div> <!-- container -->
+            </div>
+        </div> <!-- single slider -->
+           
+       }
+         
+            
     </section>
 
     <!--====== Slider Part Ends ======-->

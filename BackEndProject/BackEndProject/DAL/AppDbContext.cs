@@ -38,15 +38,17 @@ namespace BackEndProject.DAL
               {
                   Id = 1,
                   Name = "Fulldive VR.",
+                  SliderId = 1,
                   Offer = "Save $120 when you buy",
                   Title = "2020 Virtual Reality",
                   Desc = "Explore and immerse in exciting 360 content with Fulldive’s all-in-one virtual reality platform"
-
+                  
               },
               new SliderContent
               {
                   Id = 2,
                   Name = "Sony Bravia.",
+                  SliderId = 2,
                   Offer = "Save $120 when you buy",
                   Title = "4K HDR Smart TV 43",
                   Desc = "Explore and immerse in exciting 360 content with Fulldive’s all-in-one virtual reality platform"

@@ -2,7 +2,7 @@
 
 namespace BackEndProject.Migrations
 {
-    public partial class InitialProject : Migration
+    public partial class InitialPro : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,22 +17,6 @@ namespace BackEndProject.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SliderContents",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    Offer = table.Column<string>(nullable: true),
-                    Title = table.Column<string>(nullable: true),
-                    Desc = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SliderContents", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -75,6 +59,29 @@ namespace BackEndProject.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "SliderContents",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Offer = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
+                    Desc = table.Column<string>(nullable: true),
+                    SliderId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SliderContents", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SliderContents_Sliders_SliderId",
+                        column: x => x.SliderId,
+                        principalTable: "Sliders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "Name" },
@@ -85,15 +92,6 @@ namespace BackEndProject.Migrations
                     { 3, "Sports" },
                     { 4, "Fabric" },
                     { 5, "Leather" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "SliderContents",
-                columns: new[] { "Id", "Desc", "Name", "Offer", "Title" },
-                values: new object[,]
-                {
-                    { 1, "Explore and immerse in exciting 360 content with Fulldive’s all-in-one virtual reality platform", "Fulldive VR.", "Save $120 when you buy", "2020 Virtual Reality" },
-                    { 2, "Explore and immerse in exciting 360 content with Fulldive’s all-in-one virtual reality platform", "Sony Bravia.", "Save $120 when you buy", "4K HDR Smart TV 43" }
                 });
 
             migrationBuilder.InsertData(
@@ -124,10 +122,24 @@ namespace BackEndProject.Migrations
                     { 10, true, 5, 35, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 80.0, "product-10.jpg", "Primitive Leather Premium Shoes", 90.0, "Lorem ipsum dolor sit amet" }
                 });
 
+            migrationBuilder.InsertData(
+                table: "SliderContents",
+                columns: new[] { "Id", "Desc", "Name", "Offer", "SliderId", "Title" },
+                values: new object[,]
+                {
+                    { 1, "Explore and immerse in exciting 360 content with Fulldive’s all-in-one virtual reality platform", "Fulldive VR.", "Save $120 when you buy", 1, "2020 Virtual Reality" },
+                    { 2, "Explore and immerse in exciting 360 content with Fulldive’s all-in-one virtual reality platform", "Sony Bravia.", "Save $120 when you buy", 2, "4K HDR Smart TV 43" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SliderContents_SliderId",
+                table: "SliderContents",
+                column: "SliderId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -139,10 +151,10 @@ namespace BackEndProject.Migrations
                 name: "SliderContents");
 
             migrationBuilder.DropTable(
-                name: "Sliders");
+                name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Sliders");
         }
     }
 }
