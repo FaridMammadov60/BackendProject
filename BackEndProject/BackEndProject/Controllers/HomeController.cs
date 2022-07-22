@@ -1,5 +1,4 @@
 ﻿using BackEndProject.DAL;
-using BackEndProject.Models;
 using BackEndProject.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,11 +17,12 @@ namespace BackEndProject.Controllers
         {
             HomeVM homeVM = new HomeVM();
             //homeVM.Sliders = _context.Sliders.ToList();
-            homeVM.SliderContents= _context.SliderContents.Include(p=>p.Slider).ToList();
+            homeVM.SliderContents = _context.SliderContents.Include(p => p.Slider).ToList();
+            homeVM.Banners = _context.Banners.ToList();
             homeVM.Categories = _context.Categories.ToList();
             homeVM.Products = _context.Products.Include(p => p.Category).ToList();
             return View(homeVM);
         }
-      
+
     }
 }

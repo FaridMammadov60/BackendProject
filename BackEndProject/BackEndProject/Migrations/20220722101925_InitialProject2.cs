@@ -2,10 +2,23 @@
 
 namespace BackEndProject.Migrations
 {
-    public partial class InitialPro : Migration
+    public partial class InitialProject2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Banners",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ImageUrl = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Banners", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
@@ -83,6 +96,15 @@ namespace BackEndProject.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Banners",
+                columns: new[] { "Id", "ImageUrl" },
+                values: new object[,]
+                {
+                    { 1, "banner-1.png" },
+                    { 2, "banner-2.png" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
@@ -144,6 +166,9 @@ namespace BackEndProject.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Banners");
+
             migrationBuilder.DropTable(
                 name: "Products");
 

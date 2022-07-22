@@ -8243,11 +8243,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\farid\\Desktop\\New folder\\BackendProject\\BackEndProject\\BackEndProject\\BackEndProject.csproj",
+      "projectUniqueName": "C:\\Users\\farid\\Desktop\\Lahiye\\BackendProject\\BackEndProject\\BackEndProject\\BackEndProject.csproj",
       "projectName": "BackEndProject",
-      "projectPath": "C:\\Users\\farid\\Desktop\\New folder\\BackendProject\\BackEndProject\\BackEndProject\\BackEndProject.csproj",
+      "projectPath": "C:\\Users\\farid\\Desktop\\Lahiye\\BackendProject\\BackEndProject\\BackEndProject\\BackEndProject.csproj",
       "packagesPath": "C:\\Users\\farid\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\farid\\Desktop\\New folder\\BackendProject\\BackEndProject\\BackEndProject\\obj\\",
+      "outputPath": "C:\\Users\\farid\\Desktop\\Lahiye\\BackendProject\\BackEndProject\\BackEndProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
