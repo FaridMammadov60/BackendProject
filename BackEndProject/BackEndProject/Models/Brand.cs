@@ -12,6 +12,6 @@ namespace BackEndProject.Models
         public Nullable<DateTime> DeleteAt { get; set; }
         public Nullable<DateTime> UpdateAt { get; set; }
 
-        public List<Product> Products { get; set; }
+        //public List<Product> Products { get; set; }
     }
 }

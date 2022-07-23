@@ -19,7 +19,8 @@ namespace BackEndProject.Controllers
             //homeVM.Sliders = _context.Sliders.ToList();
             homeVM.SliderContents = _context.SliderContents.Include(p => p.Slider).ToList();
             homeVM.Banners = _context.Banners.ToList();
-            homeVM.Categories = _context.Categories.ToList();
+            homeVM.Categories = _context.Categories.Take(6).ToList();
+            // homeVM.Categories = _context.Categories.Skip(6).Take(6).ToList();
             homeVM.Products = _context.Products.Include(p => p.Category).ToList();
             return View(homeVM);
         }

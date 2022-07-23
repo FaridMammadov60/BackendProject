@@ -14,6 +14,8 @@ namespace BackEndProject.DAL
         public DbSet<Banner> Banners { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+       // public DbSet<Brand> Brands { get; set; }
+        public DbSet<Bio> Bios { get; set; }
 
 
 
@@ -70,62 +72,191 @@ namespace BackEndProject.DAL
 
              }
          );
-            // modelBuilder.Entity<Category>().HasData(
-            //    new Category
-            //    {
-            //        Id = 1,
-            //        Name = "Mens"
-            //    },
-            //    new Category
-            //    {
-            //        Id = 2,
-            //        Name = "Womens"
-            //    },
-            //     new Category
-            //     {
-            //         Id = 3,
-            //         Name = "Sports"
-            //     },
-            //    new Category
-            //    {
-            //        Id = 4,
-            //        Name = "Fabric"
-            //    },
-            //     new Category
-            //     {
-            //         Id = 5,
-            //         Name = "Leather"
-            //     }
-            //);
-            // modelBuilder.Entity<Product>().HasData(
-            //     new Product
-            //     {
-            //         Id = 1,
-            //         ImageUrl = "product-1.jpg",
-            //         Name = "Primitive Mens Premium Shoes",
-            //         CategoryId = 1,
-            //         Count = 35,
-            //         Price = 80.00,
-            //         DisCountPrice = 70.00,
-            //         Availability = true,
-            //         Title = "Lorem ipsum dolor sit amet",
-            //         Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+            modelBuilder.Entity<Bio>().HasData(
+            new Bio
+            {
+                Id = 1,
+                ImageUrl = "logo.png",
+                Support = "24/7 Support",
+                Location = "Bizim mehle Ordubad, 085 NMR AZE",
+                Phone = "+994 50 671 99 99",
+                Email = "Faridmma@code.edu.az",
+                WorkTime = "Mon-Sat 9:00pm - 5:00pm Sun:Closed",
+                AmerikanExpress = "",
+                MasterCard = "",
+                PayPal = "",
+                Discover = "",
+                Visa = "" ,
+                Google = "https://www.google.com",
+                Instagram = "https://www.instagram.com",
+                Linkedin = "https://www.linkedin.com",
+                Facebook = "https://www.facebook.com"
 
-            //     },
-            //     new Product
-            //     {
-            //         Id = 2,
-            //         ImageUrl = "product-2.jpg",
-            //         Name = "Quickin Womans Premium Shoes",
-            //         CategoryId = 2,
-            //         Count = 35,
-            //         Price = 90.00,
-            //         DisCountPrice = 80.00,
-            //         Availability = true,
-            //         Title = "Lorem ipsum dolor sit amet",
-            //         Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+            }
+        );
+            modelBuilder.Entity<Category>().HasData(
+               new Category
+               {
+                   Id = 1,
+                   Name = "Laptop",
+                   ImageUrl = "category-1.jpg"
+               },
+               new Category
+               {
+                   Id = 2,
+                   Name = "Computer",
+                   ImageUrl = "category-2.jpg"
+               },
+                new Category
+                {
+                    Id = 3,
+                    Name = "Smartphone",
+                    ImageUrl = "category-3.jpg"
+                },
+               new Category
+               {
+                   Id = 4,
+                   Name = "Game Consoles",
+                   ImageUrl = "category-4.jpg"
+               },
+                new Category
+                {
+                    Id = 5,
+                    Name = "Electronic",
+                    ImageUrl = "category-5.jpg"
+                },
+                new Category
+                {
+                    Id = 6,
+                    Name = "TV",
+                    ImageUrl = "category-6.jpg"
+                },
+                new Category
+                {
+                    Id = 7,
+                    Name = "Audio & Video",
+                    ImageUrl = "category-7.jpg"
+                },
+               new Category
+               {
+                   Id = 8,
+                   Name = "Accessories",
+                   ImageUrl = "category-8.jpg"
+               },
+                new Category
+                {
+                    Id = 9,
+                    Name = "Meiset",
+                    ImageUrl = "category-9.jpg"
+                },
+               new Category
+               {
+                   Id = 10,
+                   Name = "Camera",
+                   ImageUrl = "category-10.jpg"
+               },
+                new Category
+                {
+                    Id = 11,
+                    Name = "Cib saati",
+                    ImageUrl = "category-11.jpg"
+                },
+                new Category
+                {
+                    Id = 12,
+                    Name = "AIR drop",
+                    ImageUrl = "category-12.jpg",
+                    ParentId = 8
+                },
+                  new Category
+                  {
+                      Id = 13,
+                      Name = "Hot Categories",
+                      ParentId = 1,
+                  },
+                new Category
+                {
+                    Id = 14,
+                    Name = "OutherWear&Jacket",
+                    ParentId = 1,
+                },
+                new Category
+                {
+                    Id = 15,
+                    Name = "Batteries",
+                    ParentId = 9,
+                },
+                new Category
+                {
+                    Id = 16,
+                    Name = "Chargers",
+                    ParentId = 9,
+                },
+                new Category
+                {
+                    Id = 17,
+                    Name = "Chargers",
+                    ParentId = 9,
+                },
+                new Category
+                {
+                    Id = 18,
+                    Name = "Bags & Cases",
+                    ParentId = 9,
+                },
+                new Category
+                {
+                    Id = 19,
+                    Name = "Electronic Cigarettes",
+                    ParentId = 9
+                }
 
-            //     },
+           );
+            modelBuilder.Entity<Product>().HasData(
+                new Product
+                {
+                    Id = 1,
+                    Name = "Primitive Mens Premium Shoes",
+                    CategoryId = 1,
+                    //BrandId = 1,
+                    StockCount = 35,
+                    Price = 80.00,
+                    DisCountPrice = 70.00,
+                    Title = "Lorem ipsum dolor sit amet",
+                    Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+
+                },
+                new Product
+                {
+                    Id = 2,
+                    Name = "Quickin Womans Premium Shoes",
+                    CategoryId = 2,
+                    //BrandId = 2,
+                    StockCount = 35,
+                    Price = 90.00,
+                    DisCountPrice = 80.00,
+                    Title = "Lorem ipsum dolor sit amet",
+                    Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+
+                }
+                );
+            //modelBuilder.Entity<Brand>().HasData(
+            //  new Brand
+            //  {
+            //      Id = 1,
+            //      Name = "Apple"                  
+            //  },
+            //  new Brand
+            //  {
+            //      Id = 2,
+            //      Name = "Samsung"                  
+            //  },
+            //   new Brand
+            //   {
+            //       Id = 2,
+            //       Name = "Sony"
+            //   }
+            //  );
             //     new Product
             //     {
             //         Id = 3,
