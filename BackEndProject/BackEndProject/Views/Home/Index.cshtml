@@ -67,6 +67,9 @@
             <div class="row category-active">
                  @foreach (var item in Model.Categories)
                    {
+                if(item.Children.Count==0){
+                    continue;
+                }
                 <div class="col-lg-2">                   
                     <div class="single-category text-center">
                         

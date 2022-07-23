@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackEndProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220723151421_InitialNew")]
-    partial class InitialNew
+    [Migration("20220723171244_InitialPro")]
+    partial class InitialPro
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -236,164 +236,177 @@ namespace BackEndProject.Migrations
                         {
                             Id = 1,
                             ImageUrl = "category-1.jpg",
-                            Name = "Laptop"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ImageUrl = "category-2.jpg",
                             Name = "Computer"
                         },
                         new
                         {
-                            Id = 3,
+                            Id = 2,
                             ImageUrl = "category-3.jpg",
-                            Name = "Smartphone"
+                            Name = "SmartPhone"
                         },
                         new
                         {
-                            Id = 4,
+                            Id = 3,
                             ImageUrl = "category-4.jpg",
                             Name = "Game Consoles"
                         },
                         new
                         {
+                            Id = 4,
+                            ImageUrl = "category-2.jpg",
+                            Name = "Electronic"
+                        },
+                        new
+                        {
                             Id = 5,
                             ImageUrl = "category-5.jpg",
-                            Name = "Electronic"
+                            Name = "Accessories"
                         },
                         new
                         {
                             Id = 6,
                             ImageUrl = "category-6.jpg",
-                            Name = "TV"
+                            Name = "Dress"
                         },
                         new
                         {
                             Id = 7,
                             ImageUrl = "category-7.jpg",
-                            Name = "Audio & Video"
+                            Name = "Laptop",
+                            ParentId = 1
                         },
                         new
                         {
                             Id = 8,
                             ImageUrl = "category-8.jpg",
-                            Name = "Accessories"
+                            Name = "DesktopCopmuter",
+                            ParentId = 1
                         },
                         new
                         {
                             Id = 9,
                             ImageUrl = "category-9.jpg",
-                            Name = "Meiset"
+                            Name = "Android",
+                            ParentId = 2
                         },
                         new
                         {
                             Id = 10,
                             ImageUrl = "category-10.jpg",
-                            Name = "Camera"
+                            Name = "IOS",
+                            ParentId = 2
                         },
                         new
                         {
                             Id = 11,
                             ImageUrl = "category-11.jpg",
-                            Name = "Cib saati"
+                            Name = "PS",
+                            ParentId = 3
                         },
                         new
                         {
                             Id = 12,
                             ImageUrl = "category-12.jpg",
-                            Name = "Dress",
-                            ParentId = 8
+                            Name = "XBOX",
+                            ParentId = 3
                         },
                         new
                         {
                             Id = 13,
                             ImageUrl = "category-11.jpg",
-                            Name = "Shoes"
+                            Name = "Camera",
+                            ParentId = 4
                         },
                         new
                         {
                             Id = 14,
                             ImageUrl = "category-12.jpg",
-                            Name = "AIR drop",
-                            ParentId = 8
+                            Name = "Adabter",
+                            ParentId = 5
                         },
                         new
                         {
                             Id = 15,
                             ImageUrl = "category-1.jpg",
-                            Name = "Hot Categories",
-                            ParentId = 1
+                            Name = "Air Drop",
+                            ParentId = 5
                         },
                         new
                         {
                             Id = 16,
                             ImageUrl = "category-1.jpg",
-                            Name = "OutherWear&Jacket",
-                            ParentId = 1
+                            Name = "Jacket",
+                            ParentId = 6
                         },
                         new
                         {
                             Id = 17,
                             ImageUrl = "category-9.jpg",
-                            Name = "Batteries",
-                            ParentId = 9
+                            Name = "Jeans",
+                            ParentId = 6
                         },
                         new
                         {
                             Id = 18,
                             ImageUrl = "category-9.jpg",
-                            Name = "Chargers",
-                            ParentId = 9
+                            Name = "MacBook",
+                            ParentId = 7
                         },
                         new
                         {
                             Id = 19,
                             ImageUrl = "category-9.jpg",
-                            Name = "Video",
-                            ParentId = 6
+                            Name = "Lenova",
+                            ParentId = 7
                         },
                         new
                         {
                             Id = 20,
                             ImageUrl = "category-9.jpg",
-                            Name = "Bags & Cases",
-                            ParentId = 6
+                            Name = "HP",
+                            ParentId = 7
                         },
                         new
                         {
                             Id = 21,
                             ImageUrl = "category-9.jpg",
-                            Name = "MacBook-C",
-                            ParentId = 1
+                            Name = "HP Desktop",
+                            ParentId = 8
                         },
                         new
                         {
                             Id = 22,
                             ImageUrl = "category-9.jpg",
-                            Name = "Lenova-C",
-                            ParentId = 1
+                            Name = "Samsung-C",
+                            ParentId = 9
                         },
                         new
                         {
                             Id = 23,
                             ImageUrl = "category-9.jpg",
-                            Name = "HP-C",
-                            ParentId = 1
+                            Name = "Apple-C",
+                            ParentId = 10
                         },
                         new
                         {
                             Id = 24,
-                            ImageUrl = "category-9.jpg",
-                            Name = "Apple 13Pro",
-                            ParentId = 2
+                            ImageUrl = "category-7.jpg",
+                            Name = "PS4-c",
+                            ParentId = 11
                         },
                         new
                         {
                             Id = 25,
-                            ImageUrl = "category-9.jpg",
-                            Name = "Samsung 22Ultra",
-                            ParentId = 2
+                            ImageUrl = "category-7.jpg",
+                            Name = "XBOX-c",
+                            ParentId = 12
+                        },
+                        new
+                        {
+                            Id = 26,
+                            ImageUrl = "category-7.jpg",
+                            Name = "Adabter Samsung",
+                            ParentId = 14
                         });
                 });
 
@@ -557,7 +570,7 @@ namespace BackEndProject.Migrations
                             DisCountPrice = 80.0,
                             InStock = true,
                             IsFeatured = false,
-                            Name = "Samsung LR",
+                            Name = "Samsung COMP",
                             NewArrivle = false,
                             Price = 90.0,
                             StockCount = 35,
@@ -585,13 +598,13 @@ namespace BackEndProject.Migrations
                         {
                             Id = 4,
                             BestSeller = false,
-                            BrandId = 4,
-                            CategoryId = 1,
+                            BrandId = 2,
+                            CategoryId = 9,
                             Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
                             DisCountPrice = 180.0,
                             InStock = true,
                             IsFeatured = true,
-                            Name = "Test4",
+                            Name = "Samsung s22 ultra",
                             NewArrivle = false,
                             Price = 190.0,
                             StockCount = 35,
@@ -602,13 +615,30 @@ namespace BackEndProject.Migrations
                         {
                             Id = 5,
                             BestSeller = false,
-                            BrandId = 4,
-                            CategoryId = 1,
+                            BrandId = 1,
+                            CategoryId = 10,
                             Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
                             DisCountPrice = 180.0,
                             InStock = true,
                             IsFeatured = true,
-                            Name = "Test5",
+                            Name = "Iphone 13 Pro",
+                            NewArrivle = false,
+                            Price = 190.0,
+                            StockCount = 35,
+                            TaxPrecent = 7.0,
+                            Title = "Lorem ipsum dolor sit amet"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BestSeller = false,
+                            BrandId = 1,
+                            CategoryId = 10,
+                            Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                            DisCountPrice = 180.0,
+                            InStock = true,
+                            IsFeatured = true,
+                            Name = "Iphone 12 Pro",
                             NewArrivle = false,
                             Price = 190.0,
                             StockCount = 35,

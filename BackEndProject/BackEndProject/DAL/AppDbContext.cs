@@ -98,194 +98,182 @@ namespace BackEndProject.DAL
                new Category
                {
                    Id = 1,
-                   Name = "Laptop",
+                   Name = "Computer",
                    ImageUrl = "category-1.jpg"
                },
                new Category
                {
                    Id = 2,
-                   Name = "Computer",
-                   ImageUrl = "category-2.jpg"
+                   Name = "SmartPhone",
+                   ImageUrl = "category-3.jpg"
                },
                 new Category
                 {
                     Id = 3,
-                    Name = "Smartphone",
-                    ImageUrl = "category-3.jpg"
+                    Name = "Game Consoles",
+                    ImageUrl = "category-4.jpg"
                 },
                new Category
                {
                    Id = 4,
-                   Name = "Game Consoles",
-                   ImageUrl = "category-4.jpg"
+                   Name = "Electronic",
+                   ImageUrl = "category-2.jpg"
                },
                 new Category
                 {
                     Id = 5,
-                    Name = "Electronic",
+                    Name = "Accessories",
                     ImageUrl = "category-5.jpg"
                 },
                 new Category
                 {
                     Id = 6,
-                    Name = "TV",
+                    Name = "Dress",
                     ImageUrl = "category-6.jpg"
                 },
                 new Category
                 {
                     Id = 7,
-                    Name = "Audio & Video",
-                    ImageUrl = "category-7.jpg"
+                    Name = "Laptop",
+                    ImageUrl = "category-7.jpg",
+                    ParentId =1
                 },
                new Category
                {
                    Id = 8,
-                   Name = "Accessories",
-                   ImageUrl = "category-8.jpg"
+                   Name = "DesktopCopmuter",
+                   ImageUrl = "category-8.jpg",
+                   ParentId = 1
                },
                 new Category
                 {
                     Id = 9,
-                    Name = "Meiset",
-                    ImageUrl = "category-9.jpg"
+                    Name = "Android",
+                    ImageUrl = "category-9.jpg",
+                    ParentId = 2
                 },
                new Category
                {
                    Id = 10,
-                   Name = "Camera",
-                   ImageUrl = "category-10.jpg"
+                   Name = "IOS",
+                   ImageUrl = "category-10.jpg",
+                   ParentId = 2
                },
                 new Category
                 {
                     Id = 11,
-                    Name = "Cib saati",
-                    ImageUrl = "category-11.jpg"
+                    Name = "PS",
+                    ImageUrl = "category-11.jpg",
+                    ParentId = 3
                 },
                 new Category
                 {
                     Id = 12,
-                    Name = "Dress",
+                    Name = "XBOX",
                     ImageUrl = "category-12.jpg",
-                    ParentId = 8
+                    ParentId = 3
                 },
                 new Category
                 {
                     Id = 13,
-                    Name = "Shoes",
-                    ImageUrl = "category-11.jpg"
+                    Name = "Camera",
+                    ImageUrl = "category-11.jpg",
+                    ParentId = 4
                 },
                 new Category
                 {
                     Id = 14,
-                    Name = "AIR drop",
+                    Name = "Adabter",
                     ImageUrl = "category-12.jpg",
-                    ParentId = 8
+                    ParentId = 5
                 },
                   new Category
                   {
                       Id = 15,
-                      Name = "Hot Categories",
+                      Name = "Air Drop",
                       ImageUrl = "category-1.jpg",
-                      ParentId = 1,
+                      ParentId = 5,
                   },
                 new Category
                 {
                     Id = 16,
-                    Name = "OutherWear&Jacket",
-                    ParentId = 1,
+                    Name = "Jacket",                    
                     ImageUrl = "category-1.jpg",
+                    ParentId = 6
                 },
                 new Category
                 {
                     Id = 17,
-                    Name = "Batteries",
-                    ParentId = 9,
+                    Name = "Jeans",
+                    ParentId = 6,
                     ImageUrl = "category-9.jpg",
-                },
+                },              
                 new Category
                 {
                     Id = 18,
-                    Name = "Chargers",
-                    ParentId = 9,
+                    Name = "MacBook",
+                    ParentId = 7,
                     ImageUrl = "category-9.jpg",
                 },
                 new Category
                 {
                     Id = 19,
-                    Name = "Video",
-                    ParentId = 6,
+                    Name = "Lenova",
+                    ParentId = 7,
                     ImageUrl = "category-9.jpg",
                 },
                 new Category
                 {
                     Id = 20,
-                    Name = "Bags & Cases",
-                    ParentId = 6,
+                    Name = "HP",
+                    ParentId = 7,
                     ImageUrl = "category-9.jpg",
                 },
                 new Category
                 {
                     Id = 21,
-                    Name = "MacBook-C",
-                    ParentId = 1,
+                    Name = "HP Desktop",
+                    ParentId = 8,
                     ImageUrl = "category-9.jpg",
                 },
                 new Category
                 {
                     Id = 22,
-                    Name = "Lenova-C",
-                    ParentId = 1,
+                    Name = "Samsung-C",
+                    ParentId = 9,
                     ImageUrl = "category-9.jpg",
                 },
                 new Category
                 {
                     Id = 23,
-                    Name = "HP-C",
-                    ParentId = 1,
+                    Name = "Apple-C",
+                    ParentId = 10,
                     ImageUrl = "category-9.jpg",
-                },
-                new Category
-                {
-                    Id = 24,
-                    Name = "Apple 13Pro",
-                    ParentId = 3,
-                    ImageUrl = "category-11.jpg",
-                },
-                new Category
-                {
-                    Id = 25,
-                    Name = "Samsung 22Ultra",
-                    ParentId = 3,
-                    ImageUrl = "category-10.jpg",
-                },
+                },                
                  new Category
                  {
-                     Id = 26,
-                     Name = "DesktopComputer",
-                     ParentId = 2,
+                     Id = 24,
+                     Name = "PS4-c",                     
                      ImageUrl = "category-7.jpg",
-                 },
-                 new Category
-                 {
-                     Id = 27,
-                     Name = "PS4",
-                     ParentId = 4,
-                     ImageUrl = "category-7.jpg",
-                 },
-                 new Category
-                 {
-                     Id = 28,
-                     Name = "Electronic TT",
-                     ParentId = 5,
-                     ImageUrl = "category-7.jpg",
+                     ParentId = 11,
                  },
                   new Category
                   {
-                      Id = 29,
-                      Name = "TV Samsung S3",
-                      ParentId = 6,
-                      ImageUrl = "category-2.jpg",
-                  }
+                      Id = 25,
+                      Name = "XBOX-c",
+                      ImageUrl = "category-7.jpg",
+                      ParentId = 12 
+                  },
+                   new Category
+                   {
+                       Id = 26,
+                       Name = "Adabter Samsung",
+                       ImageUrl = "category-7.jpg",
+                       ParentId = 14
+                   }
+
+
+
 
            );
             modelBuilder.Entity<Product>().HasData(
@@ -310,7 +298,7 @@ namespace BackEndProject.DAL
                 new Product
                 {
                     Id = 2,
-                    Name = "Samsung LR",
+                    Name = "Samsung COMP",
                     CategoryId = 1,
                     BrandId = 2,
                     StockCount = 35,
@@ -347,9 +335,9 @@ namespace BackEndProject.DAL
                  new Product
                  {
                      Id = 4,
-                     Name = "Test4",
-                     CategoryId = 1,
-                     BrandId = 4,
+                     Name = "Samsung s22 ultra",
+                     CategoryId = 9,
+                     BrandId = 2,
                      StockCount = 35,
                      Price = 190.00,
                      DisCountPrice = 180.00,
@@ -365,9 +353,27 @@ namespace BackEndProject.DAL
                  new Product
                  {
                      Id = 5,
-                     Name = "Test5",
-                     CategoryId = 1,
-                     BrandId = 4,
+                     Name = "Iphone 13 Pro",
+                     CategoryId = 10,
+                     BrandId = 1,
+                     StockCount = 35,
+                     Price = 190.00,
+                     DisCountPrice = 180.00,
+                     TaxPrecent = 7.00,
+                     InStock = true,
+                     NewArrivle = false,
+                     BestSeller = false,
+                     IsFeatured = true,
+                     Title = "Lorem ipsum dolor sit amet",
+                     Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+
+                 },
+                 new Product
+                 {
+                     Id = 6,
+                     Name = "Iphone 12 Pro",
+                     CategoryId = 10,
+                     BrandId = 1,
                      StockCount = 35,
                      Price = 190.00,
                      DisCountPrice = 180.00,
