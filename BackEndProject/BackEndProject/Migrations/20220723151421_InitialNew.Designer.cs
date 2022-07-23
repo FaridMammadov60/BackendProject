@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackEndProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220723083347_InitialProject3")]
-    partial class InitialProject3
+    [Migration("20220723151421_InitialNew")]
+    partial class InitialNew
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -154,6 +154,52 @@ namespace BackEndProject.Migrations
                         });
                 });
 
+            modelBuilder.Entity("BackEndProject.Models.Brand", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("CreateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeleteAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Brands");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Apple"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Samsung"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Lenova"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "HP"
+                        });
+                });
+
             modelBuilder.Entity("BackEndProject.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -256,50 +302,98 @@ namespace BackEndProject.Migrations
                         {
                             Id = 12,
                             ImageUrl = "category-12.jpg",
-                            Name = "AIR drop",
+                            Name = "Dress",
                             ParentId = 8
                         },
                         new
                         {
                             Id = 13,
+                            ImageUrl = "category-11.jpg",
+                            Name = "Shoes"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ImageUrl = "category-12.jpg",
+                            Name = "AIR drop",
+                            ParentId = 8
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ImageUrl = "category-1.jpg",
                             Name = "Hot Categories",
                             ParentId = 1
                         },
                         new
                         {
-                            Id = 14,
+                            Id = 16,
+                            ImageUrl = "category-1.jpg",
                             Name = "OutherWear&Jacket",
                             ParentId = 1
                         },
                         new
                         {
-                            Id = 15,
+                            Id = 17,
+                            ImageUrl = "category-9.jpg",
                             Name = "Batteries",
                             ParentId = 9
                         },
                         new
                         {
-                            Id = 16,
-                            Name = "Chargers",
-                            ParentId = 9
-                        },
-                        new
-                        {
-                            Id = 17,
-                            Name = "Chargers",
-                            ParentId = 9
-                        },
-                        new
-                        {
                             Id = 18,
-                            Name = "Bags & Cases",
+                            ImageUrl = "category-9.jpg",
+                            Name = "Chargers",
                             ParentId = 9
                         },
                         new
                         {
                             Id = 19,
-                            Name = "Electronic Cigarettes",
-                            ParentId = 9
+                            ImageUrl = "category-9.jpg",
+                            Name = "Video",
+                            ParentId = 6
+                        },
+                        new
+                        {
+                            Id = 20,
+                            ImageUrl = "category-9.jpg",
+                            Name = "Bags & Cases",
+                            ParentId = 6
+                        },
+                        new
+                        {
+                            Id = 21,
+                            ImageUrl = "category-9.jpg",
+                            Name = "MacBook-C",
+                            ParentId = 1
+                        },
+                        new
+                        {
+                            Id = 22,
+                            ImageUrl = "category-9.jpg",
+                            Name = "Lenova-C",
+                            ParentId = 1
+                        },
+                        new
+                        {
+                            Id = 23,
+                            ImageUrl = "category-9.jpg",
+                            Name = "HP-C",
+                            ParentId = 1
+                        },
+                        new
+                        {
+                            Id = 24,
+                            ImageUrl = "category-9.jpg",
+                            Name = "Apple 13Pro",
+                            ParentId = 2
+                        },
+                        new
+                        {
+                            Id = 25,
+                            ImageUrl = "category-9.jpg",
+                            Name = "Samsung 22Ultra",
+                            ParentId = 2
                         });
                 });
 
@@ -382,6 +476,9 @@ namespace BackEndProject.Migrations
                     b.Property<bool>("BestSeller")
                         .HasColumnType("bit");
 
+                    b.Property<int>("BrandId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -426,6 +523,8 @@ namespace BackEndProject.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BrandId");
+
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
@@ -435,32 +534,85 @@ namespace BackEndProject.Migrations
                         {
                             Id = 1,
                             BestSeller = false,
+                            BrandId = 1,
                             CategoryId = 1,
                             Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
-                            DisCountPrice = 70.0,
-                            InStock = false,
+                            DisCountPrice = 170.0,
+                            InStock = true,
                             IsFeatured = false,
-                            Name = "Primitive Mens Premium Shoes",
-                            NewArrivle = false,
-                            Price = 80.0,
+                            Name = "MacBook Pro 6",
+                            NewArrivle = true,
+                            Price = 180.0,
                             StockCount = 35,
-                            TaxPrecent = 0.0,
+                            TaxPrecent = 5.0,
                             Title = "Lorem ipsum dolor sit amet"
                         },
                         new
                         {
                             Id = 2,
-                            BestSeller = false,
-                            CategoryId = 2,
+                            BestSeller = true,
+                            BrandId = 2,
+                            CategoryId = 1,
                             Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
                             DisCountPrice = 80.0,
-                            InStock = false,
+                            InStock = true,
                             IsFeatured = false,
-                            Name = "Quickin Womans Premium Shoes",
+                            Name = "Samsung LR",
                             NewArrivle = false,
                             Price = 90.0,
                             StockCount = 35,
-                            TaxPrecent = 0.0,
+                            TaxPrecent = 5.0,
+                            Title = "Lorem ipsum dolor sit amet"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BestSeller = false,
+                            BrandId = 3,
+                            CategoryId = 1,
+                            Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                            DisCountPrice = 180.0,
+                            InStock = true,
+                            IsFeatured = true,
+                            Name = "Lenova Thinkpad",
+                            NewArrivle = false,
+                            Price = 190.0,
+                            StockCount = 35,
+                            TaxPrecent = 7.0,
+                            Title = "Lorem ipsum dolor sit amet"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BestSeller = false,
+                            BrandId = 4,
+                            CategoryId = 1,
+                            Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                            DisCountPrice = 180.0,
+                            InStock = true,
+                            IsFeatured = true,
+                            Name = "Test4",
+                            NewArrivle = false,
+                            Price = 190.0,
+                            StockCount = 35,
+                            TaxPrecent = 7.0,
+                            Title = "Lorem ipsum dolor sit amet"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            BestSeller = false,
+                            BrandId = 4,
+                            CategoryId = 1,
+                            Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                            DisCountPrice = 180.0,
+                            InStock = true,
+                            IsFeatured = true,
+                            Name = "Test5",
+                            NewArrivle = false,
+                            Price = 190.0,
+                            StockCount = 35,
+                            TaxPrecent = 7.0,
                             Title = "Lorem ipsum dolor sit amet"
                         });
                 });
@@ -485,7 +637,128 @@ namespace BackEndProject.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductImage");
+                    b.ToTable("ProductImages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ImageUrl = "product-1.jpg",
+                            IsMain = false,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ImageUrl = "product-2.jpg",
+                            IsMain = false,
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ImageUrl = "product-3.jpg",
+                            IsMain = false,
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ImageUrl = "product-4.jpg",
+                            IsMain = false,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ImageUrl = "product-5.jpg",
+                            IsMain = false,
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ImageUrl = "product-6.jpg",
+                            IsMain = false,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ImageUrl = "product-7.jpg",
+                            IsMain = false,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ImageUrl = "product-8.jpg",
+                            IsMain = false,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ImageUrl = "product-9.jpg",
+                            IsMain = false,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ImageUrl = "product-10.jpg",
+                            IsMain = false,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ImageUrl = "product-11.jpg",
+                            IsMain = false,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ImageUrl = "product-12.jpg",
+                            IsMain = false,
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ImageUrl = "product-13.jpg",
+                            IsMain = false,
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ImageUrl = "product-14.jpg",
+                            IsMain = false,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ImageUrl = "product-15.jpg",
+                            IsMain = false,
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ImageUrl = "product-16.jpg",
+                            IsMain = false,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ImageUrl = "product-17.jpg",
+                            IsMain = false,
+                            ProductId = 1
+                        });
                 });
 
             modelBuilder.Entity("BackEndProject.Models.ProductTag", b =>
@@ -658,6 +931,12 @@ namespace BackEndProject.Migrations
 
             modelBuilder.Entity("BackEndProject.Models.Product", b =>
                 {
+                    b.HasOne("BackEndProject.Models.Brand", "Brand")
+                        .WithMany("Products")
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("BackEndProject.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")

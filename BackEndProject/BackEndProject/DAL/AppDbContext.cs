@@ -14,9 +14,9 @@ namespace BackEndProject.DAL
         public DbSet<Banner> Banners { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
-       // public DbSet<Brand> Brands { get; set; }
+        public DbSet<Brand> Brands { get; set; }
         public DbSet<Bio> Bios { get; set; }
-
+        public DbSet<ProductImage> ProductImages { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -164,64 +164,145 @@ namespace BackEndProject.DAL
                 new Category
                 {
                     Id = 12,
+                    Name = "Dress",
+                    ImageUrl = "category-12.jpg",
+                    ParentId = 8
+                },
+                new Category
+                {
+                    Id = 13,
+                    Name = "Shoes",
+                    ImageUrl = "category-11.jpg"
+                },
+                new Category
+                {
+                    Id = 14,
                     Name = "AIR drop",
                     ImageUrl = "category-12.jpg",
                     ParentId = 8
                 },
                   new Category
                   {
-                      Id = 13,
+                      Id = 15,
                       Name = "Hot Categories",
+                      ImageUrl = "category-1.jpg",
                       ParentId = 1,
                   },
                 new Category
                 {
-                    Id = 14,
+                    Id = 16,
                     Name = "OutherWear&Jacket",
                     ParentId = 1,
-                },
-                new Category
-                {
-                    Id = 15,
-                    Name = "Batteries",
-                    ParentId = 9,
-                },
-                new Category
-                {
-                    Id = 16,
-                    Name = "Chargers",
-                    ParentId = 9,
+                    ImageUrl = "category-1.jpg",
                 },
                 new Category
                 {
                     Id = 17,
-                    Name = "Chargers",
+                    Name = "Batteries",
                     ParentId = 9,
+                    ImageUrl = "category-9.jpg",
                 },
                 new Category
                 {
                     Id = 18,
-                    Name = "Bags & Cases",
+                    Name = "Chargers",
                     ParentId = 9,
+                    ImageUrl = "category-9.jpg",
                 },
                 new Category
                 {
                     Id = 19,
-                    Name = "Electronic Cigarettes",
-                    ParentId = 9
-                }
+                    Name = "Video",
+                    ParentId = 6,
+                    ImageUrl = "category-9.jpg",
+                },
+                new Category
+                {
+                    Id = 20,
+                    Name = "Bags & Cases",
+                    ParentId = 6,
+                    ImageUrl = "category-9.jpg",
+                },
+                new Category
+                {
+                    Id = 21,
+                    Name = "MacBook-C",
+                    ParentId = 1,
+                    ImageUrl = "category-9.jpg",
+                },
+                new Category
+                {
+                    Id = 22,
+                    Name = "Lenova-C",
+                    ParentId = 1,
+                    ImageUrl = "category-9.jpg",
+                },
+                new Category
+                {
+                    Id = 23,
+                    Name = "HP-C",
+                    ParentId = 1,
+                    ImageUrl = "category-9.jpg",
+                },
+                new Category
+                {
+                    Id = 24,
+                    Name = "Apple 13Pro",
+                    ParentId = 3,
+                    ImageUrl = "category-11.jpg",
+                },
+                new Category
+                {
+                    Id = 25,
+                    Name = "Samsung 22Ultra",
+                    ParentId = 3,
+                    ImageUrl = "category-10.jpg",
+                },
+                 new Category
+                 {
+                     Id = 26,
+                     Name = "DesktopComputer",
+                     ParentId = 2,
+                     ImageUrl = "category-7.jpg",
+                 },
+                 new Category
+                 {
+                     Id = 27,
+                     Name = "PS4",
+                     ParentId = 4,
+                     ImageUrl = "category-7.jpg",
+                 },
+                 new Category
+                 {
+                     Id = 28,
+                     Name = "Electronic TT",
+                     ParentId = 5,
+                     ImageUrl = "category-7.jpg",
+                 },
+                  new Category
+                  {
+                      Id = 29,
+                      Name = "TV Samsung S3",
+                      ParentId = 6,
+                      ImageUrl = "category-2.jpg",
+                  }
 
            );
             modelBuilder.Entity<Product>().HasData(
                 new Product
                 {
                     Id = 1,
-                    Name = "Primitive Mens Premium Shoes",
+                    Name = "MacBook Pro 6",
                     CategoryId = 1,
-                    //BrandId = 1,
+                    BrandId = 1,
                     StockCount = 35,
-                    Price = 80.00,
-                    DisCountPrice = 70.00,
+                    Price = 180.00,
+                    DisCountPrice = 170.00,
+                    TaxPrecent = 5.00,
+                    InStock = true,
+                    NewArrivle = true,
+                    BestSeller = false,
+                    IsFeatured = false,
                     Title = "Lorem ipsum dolor sit amet",
                     Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
 
@@ -229,34 +310,203 @@ namespace BackEndProject.DAL
                 new Product
                 {
                     Id = 2,
-                    Name = "Quickin Womans Premium Shoes",
-                    CategoryId = 2,
-                    //BrandId = 2,
+                    Name = "Samsung LR",
+                    CategoryId = 1,
+                    BrandId = 2,
                     StockCount = 35,
                     Price = 90.00,
                     DisCountPrice = 80.00,
+                    TaxPrecent = 5.00,
+                    InStock = true,
+                    NewArrivle = false,
+                    BestSeller = true,
+                    IsFeatured = false,
                     Title = "Lorem ipsum dolor sit amet",
                     Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
 
-                }
+                },
+                 new Product
+                 {
+                     Id = 3,
+                     Name = "Lenova Thinkpad",
+                     CategoryId = 1,
+                     BrandId = 3,
+                     StockCount = 35,
+                     Price = 190.00,
+                     DisCountPrice = 180.00,
+                     TaxPrecent = 7.00,
+                     InStock = true,
+                     NewArrivle = false,
+                     BestSeller = false,
+                     IsFeatured = true,
+                     Title = "Lorem ipsum dolor sit amet",
+                     Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+
+                 }
+                 ,
+                 new Product
+                 {
+                     Id = 4,
+                     Name = "Test4",
+                     CategoryId = 1,
+                     BrandId = 4,
+                     StockCount = 35,
+                     Price = 190.00,
+                     DisCountPrice = 180.00,
+                     TaxPrecent = 7.00,
+                     InStock = true,
+                     NewArrivle = false,
+                     BestSeller = false,
+                     IsFeatured = true,
+                     Title = "Lorem ipsum dolor sit amet",
+                     Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+
+                 },
+                 new Product
+                 {
+                     Id = 5,
+                     Name = "Test5",
+                     CategoryId = 1,
+                     BrandId = 4,
+                     StockCount = 35,
+                     Price = 190.00,
+                     DisCountPrice = 180.00,
+                     TaxPrecent = 7.00,
+                     InStock = true,
+                     NewArrivle = false,
+                     BestSeller = false,
+                     IsFeatured = true,
+                     Title = "Lorem ipsum dolor sit amet",
+                     Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+
+                 }
                 );
-            //modelBuilder.Entity<Brand>().HasData(
-            //  new Brand
-            //  {
-            //      Id = 1,
-            //      Name = "Apple"                  
-            //  },
-            //  new Brand
-            //  {
-            //      Id = 2,
-            //      Name = "Samsung"                  
-            //  },
-            //   new Brand
-            //   {
-            //       Id = 2,
-            //       Name = "Sony"
-            //   }
-            //  );
+            modelBuilder.Entity<Brand>().HasData(
+              new Brand
+              {
+                  Id = 1,
+                  Name = "Apple"
+              },
+              new Brand
+              {
+                  Id = 2,
+                  Name = "Samsung"
+              },
+               new Brand
+               {
+                   Id = 3,
+                   Name = "Lenova"
+               },
+               new Brand
+               {
+                   Id = 4,
+                   Name = "HP"
+               }
+              );
+            modelBuilder.Entity<ProductImage>().HasData(
+             new ProductImage
+             {
+                 Id = 1,
+                 ImageUrl = "product-1.jpg",
+                 ProductId = 1
+             },
+             new ProductImage
+             {
+                 Id = 2,
+                 ImageUrl = "product-2.jpg",
+                 ProductId = 2
+             },
+              new ProductImage
+              {
+                  Id = 3,
+                  ImageUrl = "product-3.jpg",
+                  ProductId = 3
+              },
+              new ProductImage
+              {
+                  Id = 4,
+                  ImageUrl = "product-4.jpg",
+                  ProductId = 4
+              },
+              new ProductImage
+              {
+                  Id = 5,
+                  ImageUrl = "product-5.jpg",
+                  ProductId = 5
+              },
+             new ProductImage
+             {
+                 Id = 6,
+                 ImageUrl = "product-6.jpg",
+                 ProductId = 4
+             },
+              new ProductImage
+              {
+                  Id = 7,
+                  ImageUrl = "product-7.jpg",
+                  ProductId = 1
+              },
+              new ProductImage
+              {
+                  Id = 8,
+                  ImageUrl = "product-8.jpg",
+                  ProductId = 4
+              }, 
+              new ProductImage
+              {
+                  Id = 9,
+                  ImageUrl = "product-9.jpg",
+                  ProductId = 4
+              },
+               new ProductImage
+               {
+                   Id = 10,
+                   ImageUrl = "product-10.jpg",
+                   ProductId = 1
+               },
+               new ProductImage
+               {
+                   Id = 11,
+                   ImageUrl = "product-11.jpg",
+                   ProductId = 1
+               },
+             new ProductImage
+             {
+                 Id = 12,
+                 ImageUrl = "product-12.jpg",
+                 ProductId = 2
+             },
+              new ProductImage
+              {
+                  Id = 13,
+                  ImageUrl = "product-13.jpg",
+                  ProductId = 3
+              },
+              new ProductImage
+              {
+                  Id = 14,
+                  ImageUrl = "product-14.jpg",
+                  ProductId = 4
+              },
+              new ProductImage
+              {
+                  Id = 15,
+                  ImageUrl = "product-15.jpg",
+                  ProductId = 5
+              },
+             new ProductImage
+             {
+                 Id = 16,
+                 ImageUrl = "product-16.jpg",
+                 ProductId = 4
+             },
+              new ProductImage
+              {
+                  Id = 17,
+                  ImageUrl = "product-17.jpg",
+                  ProductId = 1
+              }
+             );
             //     new Product
             //     {
             //         Id = 3,

@@ -71,24 +71,29 @@
                     <div class="single-category text-center">
                         
                         <a target="_blank" href="shop-left-sidebar.html">
-                            <img src="~/assets/images/category-11.jpg" alt="category">
-                            <p>Laptop</p>
+                            <img src="~/assets/images/@item.ImageUrl" alt="category">
+                            <p>@item.Name</p>
                         </a>
                     </div> <!-- single category -->
                     <div class="single-category text-center">
                         <a target="_blank" href="shop-left-sidebar.html">
-                            <img src="~/assets/images/category-12.jpg" alt="category">
-                            <p>Computer</p>
+                            @foreach (var child in item.Children)
+                           {
+                                <img src="~/assets/images/@child.ImageUrl"  alt="category">
+                                <p>@child.Name</p>
+                                break;
+                            }                           
+                            
                         </a>
                     </div> <!-- single category -->
                 </div>
-                   }
-                              
+                   }                              
             </div> <!-- row -->
         </div> <!-- container -->
     </section>
 
     <!--====== Category Part Ends ======-->
+
 
     <!--====== Product Part Start ======-->
 
@@ -147,8 +152,8 @@
                                 <div class="single-product mt-30">
                                     <div class="product-image">
                                         <a href="single-product.html">
-                                            <img class="first-image" src="~/assets/images/product/product-10.jpg" alt="product">
-                                            <img class="second-image" src="~/assets/images/product/product-11.jpg" alt="product">
+                                            <img class="first-image" src="~/assets/images/product/product-3.jpg" alt="product">
+                                            <img class="second-image" src="~/assets/images/product/product-4.jpg" alt="product">
                                         </a>
                                         <ul class="product-meta">
                                             <li><a href="#"><i class="icon ion-bag"></i></a></li>
