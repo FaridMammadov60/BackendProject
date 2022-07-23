@@ -86,7 +86,7 @@ namespace BackEndProject.DAL
                 MasterCard = "",
                 PayPal = "",
                 Discover = "",
-                Visa = "" ,
+                Visa = "",
                 Google = "https://www.google.com",
                 Instagram = "https://www.instagram.com",
                 Linkedin = "https://www.linkedin.com",
@@ -136,7 +136,7 @@ namespace BackEndProject.DAL
                     Id = 7,
                     Name = "Laptop",
                     ImageUrl = "category-7.jpg",
-                    ParentId =1
+                    ParentId = 1
                 },
                new Category
                {
@@ -197,7 +197,7 @@ namespace BackEndProject.DAL
                 new Category
                 {
                     Id = 16,
-                    Name = "Jacket",                    
+                    Name = "Jacket",
                     ImageUrl = "category-1.jpg",
                     ParentId = 6
                 },
@@ -207,7 +207,7 @@ namespace BackEndProject.DAL
                     Name = "Jeans",
                     ParentId = 6,
                     ImageUrl = "category-9.jpg",
-                },              
+                },
                 new Category
                 {
                     Id = 18,
@@ -249,11 +249,11 @@ namespace BackEndProject.DAL
                     Name = "Apple-C",
                     ParentId = 10,
                     ImageUrl = "category-9.jpg",
-                },                
+                },
                  new Category
                  {
                      Id = 24,
-                     Name = "PS4-c",                     
+                     Name = "PS4-c",
                      ImageUrl = "category-7.jpg",
                      ParentId = 11,
                  },
@@ -262,7 +262,7 @@ namespace BackEndProject.DAL
                       Id = 25,
                       Name = "XBOX-c",
                       ImageUrl = "category-7.jpg",
-                      ParentId = 12 
+                      ParentId = 12
                   },
                    new Category
                    {
@@ -306,7 +306,7 @@ namespace BackEndProject.DAL
                     DisCountPrice = 80.00,
                     TaxPrecent = 5.00,
                     InStock = true,
-                    NewArrivle = false,
+                    NewArrivle = true,
                     BestSeller = true,
                     IsFeatured = false,
                     Title = "Lorem ipsum dolor sit amet",
@@ -324,7 +324,7 @@ namespace BackEndProject.DAL
                      DisCountPrice = 180.00,
                      TaxPrecent = 7.00,
                      InStock = true,
-                     NewArrivle = false,
+                     NewArrivle = true,
                      BestSeller = false,
                      IsFeatured = true,
                      Title = "Lorem ipsum dolor sit amet",
@@ -343,7 +343,7 @@ namespace BackEndProject.DAL
                      DisCountPrice = 180.00,
                      TaxPrecent = 7.00,
                      InStock = true,
-                     NewArrivle = false,
+                     NewArrivle = true,
                      BestSeller = false,
                      IsFeatured = true,
                      Title = "Lorem ipsum dolor sit amet",
@@ -361,9 +361,9 @@ namespace BackEndProject.DAL
                      DisCountPrice = 180.00,
                      TaxPrecent = 7.00,
                      InStock = true,
-                     NewArrivle = false,
+                     NewArrivle = true,
                      BestSeller = false,
-                     IsFeatured = true,
+                     IsFeatured = false,
                      Title = "Lorem ipsum dolor sit amet",
                      Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
 
@@ -379,13 +379,85 @@ namespace BackEndProject.DAL
                      DisCountPrice = 180.00,
                      TaxPrecent = 7.00,
                      InStock = true,
-                     NewArrivle = false,
+                     NewArrivle = true,
                      BestSeller = false,
                      IsFeatured = true,
                      Title = "Lorem ipsum dolor sit amet",
                      Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
 
-                 }
+                 },
+                  new Product
+                  {
+                      Id = 7,
+                      Name = "Iphone 12",
+                      CategoryId = 10,
+                      BrandId = 1,
+                      StockCount = 35,
+                      Price = 190.00,
+                      DisCountPrice = 180.00,
+                      TaxPrecent = 7.00,
+                      InStock = true,
+                      NewArrivle = true,
+                      BestSeller = false,
+                      IsFeatured = false,
+                      Title = "Lorem ipsum dolor sit amet",
+                      Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+
+                  },
+                  new Product
+                  {
+                      Id = 8,
+                      Name = "Iphone 11 Pro",
+                      CategoryId = 10,
+                      BrandId = 1,
+                      StockCount = 35,
+                      Price = 190.00,
+                      DisCountPrice = 180.00,
+                      TaxPrecent = 7.00,
+                      InStock = true,
+                      NewArrivle = true,
+                      BestSeller = false,
+                      IsFeatured = false,
+                      Title = "Lorem ipsum dolor sit amet",
+                      Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+
+                  },
+                  new Product
+                  {
+                      Id = 9,
+                      Name = "Iphone 11 ProMax",
+                      CategoryId = 10,
+                      BrandId = 1,
+                      StockCount = 35,
+                      Price = 190.00,
+                      DisCountPrice = 180.00,
+                      TaxPrecent = 7.00,
+                      InStock = true,
+                      NewArrivle = true,
+                      BestSeller = false,
+                      IsFeatured = false,
+                      Title = "Lorem ipsum dolor sit amet",
+                      Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+
+                  },
+                  new Product
+                  {
+                      Id = 10,
+                      Name = "Iphone 12 ProMax",
+                      CategoryId = 10,
+                      BrandId = 1,
+                      StockCount = 35,
+                      Price = 190.00,
+                      DisCountPrice = 180.00,
+                      TaxPrecent = 7.00,
+                      InStock = true,
+                      NewArrivle = true,
+                      BestSeller = false,
+                      IsFeatured = false,
+                      Title = "Lorem ipsum dolor sit amet",
+                      Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+
+                  }
                 );
             modelBuilder.Entity<Brand>().HasData(
               new Brand
@@ -450,19 +522,19 @@ namespace BackEndProject.DAL
               {
                   Id = 7,
                   ImageUrl = "product-7.jpg",
-                  ProductId = 1
+                  ProductId = 6
               },
               new ProductImage
               {
                   Id = 8,
                   ImageUrl = "product-8.jpg",
-                  ProductId = 4
-              }, 
+                  ProductId = 1
+              },
               new ProductImage
               {
                   Id = 9,
                   ImageUrl = "product-9.jpg",
-                  ProductId = 4
+                  ProductId = 5
               },
                new ProductImage
                {
@@ -474,7 +546,7 @@ namespace BackEndProject.DAL
                {
                    Id = 11,
                    ImageUrl = "product-11.jpg",
-                   ProductId = 1
+                   ProductId = 2
                },
              new ProductImage
              {
@@ -486,31 +558,31 @@ namespace BackEndProject.DAL
               {
                   Id = 13,
                   ImageUrl = "product-13.jpg",
-                  ProductId = 3
+                  ProductId = 6
               },
               new ProductImage
               {
                   Id = 14,
                   ImageUrl = "product-14.jpg",
-                  ProductId = 4
+                  ProductId = 7
               },
               new ProductImage
               {
                   Id = 15,
                   ImageUrl = "product-15.jpg",
-                  ProductId = 5
+                  ProductId = 8
               },
              new ProductImage
              {
                  Id = 16,
                  ImageUrl = "product-16.jpg",
-                 ProductId = 4
+                 ProductId = 9
              },
               new ProductImage
               {
                   Id = 17,
                   ImageUrl = "product-17.jpg",
-                  ProductId = 1
+                  ProductId = 10
               }
              );
             //     new Product

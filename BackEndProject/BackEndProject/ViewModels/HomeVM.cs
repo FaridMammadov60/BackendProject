@@ -11,6 +11,7 @@ namespace BackEndProject.ViewModels
         public List<Category> Categories { get; set; }
         public List<Product> Products { get; set; }
         public List<Product> Brands { get; set; }
+        public List<ProductImage> ProductImages { get; set; }
 
     }
 }

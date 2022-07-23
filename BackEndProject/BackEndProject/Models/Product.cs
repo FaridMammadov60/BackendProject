@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BackEndProject.Models
 {
@@ -29,9 +27,8 @@ namespace BackEndProject.Models
         public int BrandId { get; set; }
         public Brand Brand { get; set; }
 
-        public List<ProductImage> ProductImages { get; set; }
-        [NotMapped]
-        public IFormFile Photo { get; set; }
+        public List<ProductImage> ProductImage { get; set; }
+
         public List<ProductTag> ProductTags { get; set; }
         public List<OrderItem> OrderItems { get; set; }
 

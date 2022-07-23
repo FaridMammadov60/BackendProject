@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BackEndProject.Migrations
 {
-    public partial class InitialPro : Migration
+    public partial class Initialproject : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -390,8 +390,8 @@ namespace BackEndProject.Migrations
                 values: new object[,]
                 {
                     { 1, false, 1, 1, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 170.0, true, false, "MacBook Pro 6", true, 180.0, 35, 5.0, "Lorem ipsum dolor sit amet", null },
-                    { 2, true, 2, 1, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 80.0, true, false, "Samsung COMP", false, 90.0, 35, 5.0, "Lorem ipsum dolor sit amet", null },
-                    { 3, false, 3, 1, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, true, "Lenova Thinkpad", false, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null }
+                    { 2, true, 2, 1, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 80.0, true, false, "Samsung COMP", true, 90.0, 35, 5.0, "Lorem ipsum dolor sit amet", null },
+                    { 3, false, 3, 1, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, true, "Lenova Thinkpad", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null }
                 });
 
             migrationBuilder.InsertData(
@@ -411,12 +411,12 @@ namespace BackEndProject.Migrations
                     { 18, null, null, "category-9.jpg", "MacBook", 7, null },
                     { 24, null, null, "category-7.jpg", "PS4-c", 11, null },
                     { 23, null, null, "category-9.jpg", "Apple-C", 10, null },
-                    { 22, null, null, "category-9.jpg", "Samsung-C", 9, null },
                     { 25, null, null, "category-7.jpg", "XBOX-c", 12, null },
-                    { 26, null, null, "category-7.jpg", "Adabter Samsung", 14, null },
-                    { 21, null, null, "category-9.jpg", "HP Desktop", 8, null },
+                    { 22, null, null, "category-9.jpg", "Samsung-C", 9, null },
                     { 20, null, null, "category-9.jpg", "HP", 7, null },
-                    { 19, null, null, "category-9.jpg", "Lenova", 7, null }
+                    { 19, null, null, "category-9.jpg", "Lenova", 7, null },
+                    { 21, null, null, "category-9.jpg", "HP Desktop", 8, null },
+                    { 26, null, null, "category-7.jpg", "Adabter Samsung", 14, null }
                 });
 
             migrationBuilder.InsertData(
@@ -424,15 +424,13 @@ namespace BackEndProject.Migrations
                 columns: new[] { "Id", "ImageUrl", "IsMain", "ProductId" },
                 values: new object[,]
                 {
-                    { 10, "product-10.jpg", false, 1 },
-                    { 11, "product-11.jpg", false, 1 },
-                    { 17, "product-17.jpg", false, 1 },
+                    { 12, "product-12.jpg", false, 2 },
+                    { 3, "product-3.jpg", false, 3 },
                     { 2, "product-2.jpg", false, 2 },
                     { 1, "product-1.jpg", false, 1 },
-                    { 3, "product-3.jpg", false, 3 },
-                    { 13, "product-13.jpg", false, 3 },
-                    { 7, "product-7.jpg", false, 1 },
-                    { 12, "product-12.jpg", false, 2 }
+                    { 10, "product-10.jpg", false, 1 },
+                    { 11, "product-11.jpg", false, 2 },
+                    { 8, "product-8.jpg", false, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -440,9 +438,13 @@ namespace BackEndProject.Migrations
                 columns: new[] { "Id", "BestSeller", "BrandId", "CategoryId", "CreateAt", "DeleteAt", "Desc", "DisCountPrice", "InStock", "IsFeatured", "Name", "NewArrivle", "Price", "StockCount", "TaxPrecent", "Title", "UpdateAt" },
                 values: new object[,]
                 {
-                    { 4, false, 2, 9, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, true, "Samsung s22 ultra", false, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null },
-                    { 5, false, 1, 10, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, true, "Iphone 13 Pro", false, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null },
-                    { 6, false, 1, 10, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, true, "Iphone 12 Pro", false, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null }
+                    { 4, false, 2, 9, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, true, "Samsung s22 ultra", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null },
+                    { 5, false, 1, 10, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, false, "Iphone 13 Pro", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null },
+                    { 6, false, 1, 10, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, true, "Iphone 12 Pro", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null },
+                    { 7, false, 1, 10, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, false, "Iphone 12", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null },
+                    { 8, false, 1, 10, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, false, "Iphone 11 Pro", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null },
+                    { 9, false, 1, 10, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, false, "Iphone 11 ProMax", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null },
+                    { 10, false, 1, 10, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, false, "Iphone 12 ProMax", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null }
                 });
 
             migrationBuilder.InsertData(
@@ -452,12 +454,14 @@ namespace BackEndProject.Migrations
                 {
                     { 4, "product-4.jpg", false, 4 },
                     { 6, "product-6.jpg", false, 4 },
-                    { 8, "product-8.jpg", false, 4 },
-                    { 9, "product-9.jpg", false, 4 },
-                    { 14, "product-14.jpg", false, 4 },
-                    { 16, "product-16.jpg", false, 4 },
                     { 5, "product-5.jpg", false, 5 },
-                    { 15, "product-15.jpg", false, 5 }
+                    { 9, "product-9.jpg", false, 5 },
+                    { 7, "product-7.jpg", false, 6 },
+                    { 13, "product-13.jpg", false, 6 },
+                    { 14, "product-14.jpg", false, 7 },
+                    { 15, "product-15.jpg", false, 8 },
+                    { 16, "product-16.jpg", false, 9 },
+                    { 17, "product-17.jpg", false, 10 }
                 });
 
             migrationBuilder.CreateIndex(

@@ -569,7 +569,7 @@ namespace BackEndProject.Migrations
                             InStock = true,
                             IsFeatured = false,
                             Name = "Samsung COMP",
-                            NewArrivle = false,
+                            NewArrivle = true,
                             Price = 90.0,
                             StockCount = 35,
                             TaxPrecent = 5.0,
@@ -586,7 +586,7 @@ namespace BackEndProject.Migrations
                             InStock = true,
                             IsFeatured = true,
                             Name = "Lenova Thinkpad",
-                            NewArrivle = false,
+                            NewArrivle = true,
                             Price = 190.0,
                             StockCount = 35,
                             TaxPrecent = 7.0,
@@ -603,7 +603,7 @@ namespace BackEndProject.Migrations
                             InStock = true,
                             IsFeatured = true,
                             Name = "Samsung s22 ultra",
-                            NewArrivle = false,
+                            NewArrivle = true,
                             Price = 190.0,
                             StockCount = 35,
                             TaxPrecent = 7.0,
@@ -618,9 +618,9 @@ namespace BackEndProject.Migrations
                             Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
                             DisCountPrice = 180.0,
                             InStock = true,
-                            IsFeatured = true,
+                            IsFeatured = false,
                             Name = "Iphone 13 Pro",
-                            NewArrivle = false,
+                            NewArrivle = true,
                             Price = 190.0,
                             StockCount = 35,
                             TaxPrecent = 7.0,
@@ -637,7 +637,75 @@ namespace BackEndProject.Migrations
                             InStock = true,
                             IsFeatured = true,
                             Name = "Iphone 12 Pro",
-                            NewArrivle = false,
+                            NewArrivle = true,
+                            Price = 190.0,
+                            StockCount = 35,
+                            TaxPrecent = 7.0,
+                            Title = "Lorem ipsum dolor sit amet"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            BestSeller = false,
+                            BrandId = 1,
+                            CategoryId = 10,
+                            Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                            DisCountPrice = 180.0,
+                            InStock = true,
+                            IsFeatured = false,
+                            Name = "Iphone 12",
+                            NewArrivle = true,
+                            Price = 190.0,
+                            StockCount = 35,
+                            TaxPrecent = 7.0,
+                            Title = "Lorem ipsum dolor sit amet"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            BestSeller = false,
+                            BrandId = 1,
+                            CategoryId = 10,
+                            Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                            DisCountPrice = 180.0,
+                            InStock = true,
+                            IsFeatured = false,
+                            Name = "Iphone 11 Pro",
+                            NewArrivle = true,
+                            Price = 190.0,
+                            StockCount = 35,
+                            TaxPrecent = 7.0,
+                            Title = "Lorem ipsum dolor sit amet"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            BestSeller = false,
+                            BrandId = 1,
+                            CategoryId = 10,
+                            Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                            DisCountPrice = 180.0,
+                            InStock = true,
+                            IsFeatured = false,
+                            Name = "Iphone 11 ProMax",
+                            NewArrivle = true,
+                            Price = 190.0,
+                            StockCount = 35,
+                            TaxPrecent = 7.0,
+                            Title = "Lorem ipsum dolor sit amet"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            BestSeller = false,
+                            BrandId = 1,
+                            CategoryId = 10,
+                            Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                            DisCountPrice = 180.0,
+                            InStock = true,
+                            IsFeatured = false,
+                            Name = "Iphone 12 ProMax",
+                            NewArrivle = true,
                             Price = 190.0,
                             StockCount = 35,
                             TaxPrecent = 7.0,
@@ -715,21 +783,21 @@ namespace BackEndProject.Migrations
                             Id = 7,
                             ImageUrl = "product-7.jpg",
                             IsMain = false,
-                            ProductId = 1
+                            ProductId = 6
                         },
                         new
                         {
                             Id = 8,
                             ImageUrl = "product-8.jpg",
                             IsMain = false,
-                            ProductId = 4
+                            ProductId = 1
                         },
                         new
                         {
                             Id = 9,
                             ImageUrl = "product-9.jpg",
                             IsMain = false,
-                            ProductId = 4
+                            ProductId = 5
                         },
                         new
                         {
@@ -743,7 +811,7 @@ namespace BackEndProject.Migrations
                             Id = 11,
                             ImageUrl = "product-11.jpg",
                             IsMain = false,
-                            ProductId = 1
+                            ProductId = 2
                         },
                         new
                         {
@@ -757,35 +825,35 @@ namespace BackEndProject.Migrations
                             Id = 13,
                             ImageUrl = "product-13.jpg",
                             IsMain = false,
-                            ProductId = 3
+                            ProductId = 6
                         },
                         new
                         {
                             Id = 14,
                             ImageUrl = "product-14.jpg",
                             IsMain = false,
-                            ProductId = 4
+                            ProductId = 7
                         },
                         new
                         {
                             Id = 15,
                             ImageUrl = "product-15.jpg",
                             IsMain = false,
-                            ProductId = 5
+                            ProductId = 8
                         },
                         new
                         {
                             Id = 16,
                             ImageUrl = "product-16.jpg",
                             IsMain = false,
-                            ProductId = 4
+                            ProductId = 9
                         },
                         new
                         {
                             Id = 17,
                             ImageUrl = "product-17.jpg",
                             IsMain = false,
-                            ProductId = 1
+                            ProductId = 10
                         });
                 });
 
@@ -975,7 +1043,7 @@ namespace BackEndProject.Migrations
             modelBuilder.Entity("BackEndProject.Models.ProductImage", b =>
                 {
                     b.HasOne("BackEndProject.Models.Product", "Product")
-                        .WithMany("ProductImages")
+                        .WithMany("ProductImage")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
