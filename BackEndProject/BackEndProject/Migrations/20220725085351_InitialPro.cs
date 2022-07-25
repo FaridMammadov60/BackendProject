@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BackEndProject.Migrations
 {
-    public partial class Initialproject : Migration
+    public partial class InitialPro : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -352,9 +352,7 @@ namespace BackEndProject.Migrations
                     { 1, null, null, "category-1.jpg", "Computer", null, null },
                     { 2, null, null, "category-3.jpg", "SmartPhone", null, null },
                     { 3, null, null, "category-4.jpg", "Game Consoles", null, null },
-                    { 4, null, null, "category-2.jpg", "Electronic", null, null },
-                    { 5, null, null, "category-5.jpg", "Accessories", null, null },
-                    { 6, null, null, "category-6.jpg", "Dress", null, null }
+                    { 4, null, null, "category-2.jpg", "Electronic", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -371,27 +369,15 @@ namespace BackEndProject.Migrations
                 columns: new[] { "Id", "CreateAt", "DeleteAt", "ImageUrl", "Name", "ParentId", "UpdateAt" },
                 values: new object[,]
                 {
-                    { 7, null, null, "category-7.jpg", "Laptop", 1, null },
-                    { 8, null, null, "category-8.jpg", "DesktopCopmuter", 1, null },
-                    { 9, null, null, "category-9.jpg", "Android", 2, null },
-                    { 10, null, null, "category-10.jpg", "IOS", 2, null },
-                    { 11, null, null, "category-11.jpg", "PS", 3, null },
-                    { 12, null, null, "category-12.jpg", "XBOX", 3, null },
-                    { 13, null, null, "category-11.jpg", "Camera", 4, null },
-                    { 14, null, null, "category-12.jpg", "Adabter", 5, null },
-                    { 15, null, null, "category-1.jpg", "Air Drop", 5, null },
-                    { 16, null, null, "category-1.jpg", "Jacket", 6, null },
-                    { 17, null, null, "category-9.jpg", "Jeans", 6, null }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Products",
-                columns: new[] { "Id", "BestSeller", "BrandId", "CategoryId", "CreateAt", "DeleteAt", "Desc", "DisCountPrice", "InStock", "IsFeatured", "Name", "NewArrivle", "Price", "StockCount", "TaxPrecent", "Title", "UpdateAt" },
-                values: new object[,]
-                {
-                    { 1, false, 1, 1, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 170.0, true, false, "MacBook Pro 6", true, 180.0, 35, 5.0, "Lorem ipsum dolor sit amet", null },
-                    { 2, true, 2, 1, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 80.0, true, false, "Samsung COMP", true, 90.0, 35, 5.0, "Lorem ipsum dolor sit amet", null },
-                    { 3, false, 3, 1, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, true, "Lenova Thinkpad", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null }
+                    { 5, null, null, "category-7.jpg", "Laptop", 1, null },
+                    { 6, null, null, "category-8.jpg", "DesktopCopmuter", 1, null },
+                    { 7, null, null, "category-9.jpg", "Android", 2, null },
+                    { 8, null, null, "category-10.jpg", "IOS", 2, null },
+                    { 9, null, null, "category-11.jpg", "PS", 3, null },
+                    { 10, null, null, "category-12.jpg", "XBOX", 3, null },
+                    { 11, null, null, "category-11.jpg", "Camera", 4, null },
+                    { 12, null, null, "category-12.jpg", "Adabter", 4, null },
+                    { 13, null, null, "category-9.jpg", "Air Drop", 4, null }
                 });
 
             migrationBuilder.InsertData(
@@ -408,29 +394,29 @@ namespace BackEndProject.Migrations
                 columns: new[] { "Id", "CreateAt", "DeleteAt", "ImageUrl", "Name", "ParentId", "UpdateAt" },
                 values: new object[,]
                 {
-                    { 18, null, null, "category-9.jpg", "MacBook", 7, null },
-                    { 24, null, null, "category-7.jpg", "PS4-c", 11, null },
-                    { 23, null, null, "category-9.jpg", "Apple-C", 10, null },
-                    { 25, null, null, "category-7.jpg", "XBOX-c", 12, null },
-                    { 22, null, null, "category-9.jpg", "Samsung-C", 9, null },
-                    { 20, null, null, "category-9.jpg", "HP", 7, null },
-                    { 19, null, null, "category-9.jpg", "Lenova", 7, null },
-                    { 21, null, null, "category-9.jpg", "HP Desktop", 8, null },
-                    { 26, null, null, "category-7.jpg", "Adabter Samsung", 14, null }
+                    { 14, null, null, "category-1.jpg", "MacBook", 5, null },
+                    { 15, null, null, "category-1.jpg", "Lenova", 5, null },
+                    { 16, null, null, "category-9.jpg", "Samsung c-comp", 5, null },
+                    { 17, null, null, "category-9.jpg", "HP Desktop", 6, null },
+                    { 18, null, null, "category-9.jpg", "Samsung-C", 7, null },
+                    { 19, null, null, "category-9.jpg", "Apple-C", 8, null },
+                    { 20, null, null, "category-7.jpg", "PS4-c", 9, null },
+                    { 21, null, null, "category-7.jpg", "XBOX-c", 10, null },
+                    { 22, null, null, "category-7.jpg", "Adabter Samsung", 12, null }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "BestSeller", "BrandId", "CategoryId", "CreateAt", "DeleteAt", "Desc", "DisCountPrice", "InStock", "IsFeatured", "Name", "NewArrivle", "Price", "StockCount", "TaxPrecent", "Title", "UpdateAt" },
+                values: new object[] { 5, false, 1, 10, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, false, "Iphone 13 Pro", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null });
 
             migrationBuilder.InsertData(
                 table: "ProductImages",
                 columns: new[] { "Id", "ImageUrl", "IsMain", "ProductId" },
                 values: new object[,]
                 {
-                    { 12, "product-12.jpg", false, 2 },
-                    { 3, "product-3.jpg", false, 3 },
-                    { 2, "product-2.jpg", false, 2 },
-                    { 1, "product-1.jpg", false, 1 },
-                    { 10, "product-10.jpg", false, 1 },
-                    { 11, "product-11.jpg", false, 2 },
-                    { 8, "product-8.jpg", false, 1 }
+                    { 5, "product-5.jpg", true, 5 },
+                    { 9, "product-9.jpg", false, 5 }
                 });
 
             migrationBuilder.InsertData(
@@ -438,13 +424,18 @@ namespace BackEndProject.Migrations
                 columns: new[] { "Id", "BestSeller", "BrandId", "CategoryId", "CreateAt", "DeleteAt", "Desc", "DisCountPrice", "InStock", "IsFeatured", "Name", "NewArrivle", "Price", "StockCount", "TaxPrecent", "Title", "UpdateAt" },
                 values: new object[,]
                 {
-                    { 4, false, 2, 9, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, true, "Samsung s22 ultra", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null },
-                    { 5, false, 1, 10, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, false, "Iphone 13 Pro", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null },
-                    { 6, false, 1, 10, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, true, "Iphone 12 Pro", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null },
-                    { 7, false, 1, 10, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, false, "Iphone 12", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null },
-                    { 8, false, 1, 10, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, false, "Iphone 11 Pro", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null },
-                    { 9, false, 1, 10, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, false, "Iphone 11 ProMax", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null },
-                    { 10, false, 1, 10, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, false, "Iphone 12 ProMax", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null }
+                    { 1, true, 1, 14, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 170.0, true, false, "MacBook Pro 6", true, 180.0, 35, 5.0, "Lorem ipsum dolor sit amet", null },
+                    { 3, true, 3, 15, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, true, "Lenova Thinkpad", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null },
+                    { 11, true, 3, 15, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 580.0, true, true, "Lenova THINKPAD x", false, 690.0, 35, 8.0, "Lorem ipsum dolor sit amet", null },
+                    { 12, true, 3, 15, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 580.0, true, true, "Lenova IDPAD", false, 690.0, 35, 8.0, "Lorem ipsum dolor sit amet", null },
+                    { 13, true, 3, 15, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 580.0, true, true, "Lenova YOGA", false, 690.0, 35, 8.0, "Lorem ipsum dolor sit amet", null },
+                    { 2, true, 2, 16, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 80.0, true, true, "Samsung COMP", true, 90.0, 35, 5.0, "Lorem ipsum dolor sit amet", null },
+                    { 4, false, 2, 18, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, true, "Samsung s22 ultra", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null },
+                    { 6, false, 1, 19, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, true, "Iphone 12 Pro", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null },
+                    { 7, false, 1, 19, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, false, "Iphone 12", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null },
+                    { 8, false, 1, 19, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, false, "Iphone 11 Pro", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null },
+                    { 9, false, 1, 19, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, false, "Iphone 11 ProMax", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null },
+                    { 10, true, 1, 19, null, null, "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid", 180.0, true, true, "Iphone 12 ProMax", true, 190.0, 35, 7.0, "Lorem ipsum dolor sit amet", null }
                 });
 
             migrationBuilder.InsertData(
@@ -452,10 +443,15 @@ namespace BackEndProject.Migrations
                 columns: new[] { "Id", "ImageUrl", "IsMain", "ProductId" },
                 values: new object[,]
                 {
-                    { 4, "product-4.jpg", false, 4 },
+                    { 1, "product-1.jpg", true, 1 },
+                    { 8, "product-8.jpg", false, 1 },
+                    { 10, "product-10.jpg", false, 1 },
+                    { 3, "product-3.jpg", true, 3 },
+                    { 2, "product-2.jpg", true, 2 },
+                    { 11, "product-11.jpg", false, 2 },
+                    { 12, "product-12.jpg", false, 2 },
+                    { 4, "product-4.jpg", true, 4 },
                     { 6, "product-6.jpg", false, 4 },
-                    { 5, "product-5.jpg", false, 5 },
-                    { 9, "product-9.jpg", false, 5 },
                     { 7, "product-7.jpg", false, 6 },
                     { 13, "product-13.jpg", false, 6 },
                     { 14, "product-14.jpg", false, 7 },

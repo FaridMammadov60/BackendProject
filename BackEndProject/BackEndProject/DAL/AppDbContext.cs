@@ -118,192 +118,144 @@ namespace BackEndProject.DAL
                    Id = 4,
                    Name = "Electronic",
                    ImageUrl = "category-2.jpg"
-               },
+               },                            
                 new Category
                 {
                     Id = 5,
-                    Name = "Accessories",
-                    ImageUrl = "category-5.jpg"
-                },
-                new Category
-                {
-                    Id = 6,
-                    Name = "Dress",
-                    ImageUrl = "category-6.jpg"
-                },
-                new Category
-                {
-                    Id = 7,
                     Name = "Laptop",
                     ImageUrl = "category-7.jpg",
                     ParentId = 1
                 },
                new Category
                {
-                   Id = 8,
+                   Id = 6,
                    Name = "DesktopCopmuter",
                    ImageUrl = "category-8.jpg",
                    ParentId = 1
                },
                 new Category
                 {
-                    Id = 9,
+                    Id = 7,
                     Name = "Android",
                     ImageUrl = "category-9.jpg",
                     ParentId = 2
                 },
                new Category
                {
-                   Id = 10,
+                   Id = 8,
                    Name = "IOS",
                    ImageUrl = "category-10.jpg",
                    ParentId = 2
                },
                 new Category
                 {
-                    Id = 11,
+                    Id = 9,
                     Name = "PS",
                     ImageUrl = "category-11.jpg",
                     ParentId = 3
                 },
                 new Category
                 {
-                    Id = 12,
+                    Id = 10,
                     Name = "XBOX",
                     ImageUrl = "category-12.jpg",
                     ParentId = 3
                 },
                 new Category
                 {
-                    Id = 13,
+                    Id = 11,
                     Name = "Camera",
                     ImageUrl = "category-11.jpg",
                     ParentId = 4
                 },
                 new Category
                 {
-                    Id = 14,
+                    Id = 12,
                     Name = "Adabter",
                     ImageUrl = "category-12.jpg",
-                    ParentId = 5
+                    ParentId = 4
                 },
                   new Category
                   {
-                      Id = 15,
+                      Id = 13,
                       Name = "Air Drop",
-                      ImageUrl = "category-1.jpg",
-                      ParentId = 5,
-                  },
+                      ImageUrl = "category-9.jpg",
+                      ParentId = 4
+                  }, 
+                new Category
+                {
+                    Id = 14,
+                    Name = "MacBook",
+                    ParentId = 5,
+                    ImageUrl = "category-1.jpg",
+                },
+                new Category
+                {
+                    Id = 15,
+                    Name = "Lenova",
+                    ParentId = 5,
+                    ImageUrl = "category-1.jpg",
+                },
                 new Category
                 {
                     Id = 16,
-                    Name = "Jacket",
-                    ImageUrl = "category-1.jpg",
-                    ParentId = 6
+                    Name = "Samsung c-comp",
+                    ParentId = 5,
+                    ImageUrl = "category-9.jpg",
                 },
                 new Category
                 {
                     Id = 17,
-                    Name = "Jeans",
+                    Name = "HP Desktop",
                     ParentId = 6,
                     ImageUrl = "category-9.jpg",
                 },
                 new Category
                 {
                     Id = 18,
-                    Name = "MacBook",
+                    Name = "Samsung-C",
                     ParentId = 7,
                     ImageUrl = "category-9.jpg",
                 },
                 new Category
                 {
                     Id = 19,
-                    Name = "Lenova",
-                    ParentId = 7,
-                    ImageUrl = "category-9.jpg",
-                },
-                new Category
-                {
-                    Id = 20,
-                    Name = "HP",
-                    ParentId = 7,
-                    ImageUrl = "category-9.jpg",
-                },
-                new Category
-                {
-                    Id = 21,
-                    Name = "HP Desktop",
-                    ParentId = 8,
-                    ImageUrl = "category-9.jpg",
-                },
-                new Category
-                {
-                    Id = 22,
-                    Name = "Samsung-C",
-                    ParentId = 9,
-                    ImageUrl = "category-9.jpg",
-                },
-                new Category
-                {
-                    Id = 23,
                     Name = "Apple-C",
-                    ParentId = 10,
+                    ParentId = 8,
                     ImageUrl = "category-9.jpg",
                 },
                  new Category
                  {
-                     Id = 24,
+                     Id = 20,
                      Name = "PS4-c",
                      ImageUrl = "category-7.jpg",
-                     ParentId = 11,
+                     ParentId = 9,
                  },
                   new Category
                   {
-                      Id = 25,
+                      Id = 21,
                       Name = "XBOX-c",
                       ImageUrl = "category-7.jpg",
-                      ParentId = 12
+                      ParentId = 10
                   },
                    new Category
                    {
-                       Id = 26,
+                       Id = 22,
                        Name = "Adabter Samsung",
                        ImageUrl = "category-7.jpg",
-                       ParentId = 14
+                       ParentId = 12
                    }
-
-
-
-
            );
             modelBuilder.Entity<Product>().HasData(
                 new Product
                 {
                     Id = 1,
                     Name = "MacBook Pro 6",
-                    CategoryId = 1,
+                    CategoryId = 14,
                     BrandId = 1,
                     StockCount = 35,
                     Price = 180.00,
                     DisCountPrice = 170.00,
-                    TaxPrecent = 5.00,
-                    InStock = true,
-                    NewArrivle = true,
-                    BestSeller = false,
-                    IsFeatured = false,
-                    Title = "Lorem ipsum dolor sit amet",
-                    Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
-
-                },
-                new Product
-                {
-                    Id = 2,
-                    Name = "Samsung COMP",
-                    CategoryId = 1,
-                    BrandId = 2,
-                    StockCount = 35,
-                    Price = 90.00,
-                    DisCountPrice = 80.00,
                     TaxPrecent = 5.00,
                     InStock = true,
                     NewArrivle = true,
@@ -313,11 +265,29 @@ namespace BackEndProject.DAL
                     Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
 
                 },
+                new Product
+                {
+                    Id = 2,
+                    Name = "Samsung COMP",
+                    CategoryId = 16,
+                    BrandId = 2,
+                    StockCount = 35,
+                    Price = 90.00,
+                    DisCountPrice = 80.00,
+                    TaxPrecent = 5.00,
+                    InStock = true,
+                    NewArrivle = true,
+                    BestSeller = true,
+                    IsFeatured = true,
+                    Title = "Lorem ipsum dolor sit amet",
+                    Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+
+                },
                  new Product
                  {
                      Id = 3,
                      Name = "Lenova Thinkpad",
-                     CategoryId = 1,
+                     CategoryId = 15,
                      BrandId = 3,
                      StockCount = 35,
                      Price = 190.00,
@@ -325,7 +295,7 @@ namespace BackEndProject.DAL
                      TaxPrecent = 7.00,
                      InStock = true,
                      NewArrivle = true,
-                     BestSeller = false,
+                     BestSeller = true,
                      IsFeatured = true,
                      Title = "Lorem ipsum dolor sit amet",
                      Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
@@ -336,7 +306,7 @@ namespace BackEndProject.DAL
                  {
                      Id = 4,
                      Name = "Samsung s22 ultra",
-                     CategoryId = 9,
+                     CategoryId = 18,
                      BrandId = 2,
                      StockCount = 35,
                      Price = 190.00,
@@ -372,7 +342,7 @@ namespace BackEndProject.DAL
                  {
                      Id = 6,
                      Name = "Iphone 12 Pro",
-                     CategoryId = 10,
+                     CategoryId = 19,
                      BrandId = 1,
                      StockCount = 35,
                      Price = 190.00,
@@ -390,7 +360,7 @@ namespace BackEndProject.DAL
                   {
                       Id = 7,
                       Name = "Iphone 12",
-                      CategoryId = 10,
+                      CategoryId = 19,
                       BrandId = 1,
                       StockCount = 35,
                       Price = 190.00,
@@ -408,7 +378,7 @@ namespace BackEndProject.DAL
                   {
                       Id = 8,
                       Name = "Iphone 11 Pro",
-                      CategoryId = 10,
+                      CategoryId = 19,
                       BrandId = 1,
                       StockCount = 35,
                       Price = 190.00,
@@ -426,7 +396,7 @@ namespace BackEndProject.DAL
                   {
                       Id = 9,
                       Name = "Iphone 11 ProMax",
-                      CategoryId = 10,
+                      CategoryId = 19,
                       BrandId = 1,
                       StockCount = 35,
                       Price = 190.00,
@@ -444,7 +414,7 @@ namespace BackEndProject.DAL
                   {
                       Id = 10,
                       Name = "Iphone 12 ProMax",
-                      CategoryId = 10,
+                      CategoryId = 19,
                       BrandId = 1,
                       StockCount = 35,
                       Price = 190.00,
@@ -452,12 +422,102 @@ namespace BackEndProject.DAL
                       TaxPrecent = 7.00,
                       InStock = true,
                       NewArrivle = true,
-                      BestSeller = false,
-                      IsFeatured = false,
+                      BestSeller = true,
+                      IsFeatured = true,
                       Title = "Lorem ipsum dolor sit amet",
                       Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
 
-                  }
+                  },
+                  new Product
+                  {
+                      Id = 11,
+                      Name = "Lenova THINKPAD x",
+                      CategoryId = 15,
+                      BrandId = 3,
+                      StockCount = 35,
+                      Price = 690.00,
+                      DisCountPrice = 580.00,
+                      TaxPrecent = 8.00,
+                      InStock = true,
+                      NewArrivle = false,
+                      BestSeller = true,
+                      IsFeatured = true,
+                      Title = "Lorem ipsum dolor sit amet",
+                      Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+
+                  },
+                  new Product
+                  {
+                      Id = 12,
+                      Name = "Lenova IDPAD",
+                      CategoryId = 15,
+                      BrandId = 3,
+                      StockCount = 35,
+                      Price = 690.00,
+                      DisCountPrice = 580.00,
+                      TaxPrecent = 8.00,
+                      InStock = true,
+                      NewArrivle = false,
+                      BestSeller = true,
+                      IsFeatured = true,
+                      Title = "Lorem ipsum dolor sit amet",
+                      Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+
+                  },
+                  new Product
+                  {
+                      Id = 13,
+                      Name = "Lenova YOGA",
+                      CategoryId = 15,
+                      BrandId = 3,
+                      StockCount = 35,
+                      Price = 690.00,
+                      DisCountPrice = 580.00,
+                      TaxPrecent = 8.00,
+                      InStock = true,
+                      NewArrivle = false,
+                      BestSeller = true,
+                      IsFeatured = true,
+                      Title = "Lorem ipsum dolor sit amet",
+                      Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+
+                  },
+                    new Product
+                    {
+                        Id = 14,
+                        Name = "Lenova YOGA x",
+                        CategoryId = 15,
+                        BrandId = 3,
+                        StockCount = 35,
+                        Price = 690.00,
+                        DisCountPrice = 580.00,
+                        TaxPrecent = 8.00,
+                        InStock = true,
+                        NewArrivle = false,
+                        BestSeller = true,
+                        IsFeatured = true,
+                        Title = "Lorem ipsum dolor sit amet",
+                        Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+
+                    },
+                     new Product
+                     {
+                         Id = 15,
+                         Name = "Lenova YOGA x",
+                         CategoryId = 15,
+                         BrandId = 3,
+                         StockCount = 35,
+                         Price = 690.00,
+                         DisCountPrice = 580.00,
+                         TaxPrecent = 8.00,
+                         InStock = true,
+                         NewArrivle = false,
+                         BestSeller = true,
+                         IsFeatured = true,
+                         Title = "Lorem ipsum dolor sit amet",
+                         Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+
+                     }
                 );
             modelBuilder.Entity<Brand>().HasData(
               new Brand
@@ -486,103 +546,108 @@ namespace BackEndProject.DAL
              {
                  Id = 1,
                  ImageUrl = "product-1.jpg",
+                 IsMain = true,
                  ProductId = 1
              },
              new ProductImage
              {
                  Id = 2,
                  ImageUrl = "product-2.jpg",
+                 IsMain = true,
                  ProductId = 2
              },
               new ProductImage
               {
                   Id = 3,
                   ImageUrl = "product-3.jpg",
+                  IsMain = true,
                   ProductId = 3
               },
               new ProductImage
               {
                   Id = 4,
                   ImageUrl = "product-4.jpg",
+                  IsMain = true,
                   ProductId = 4
               },
               new ProductImage
               {
                   Id = 5,
                   ImageUrl = "product-5.jpg",
+                  IsMain = true,
                   ProductId = 5
               },
              new ProductImage
              {
                  Id = 6,
                  ImageUrl = "product-6.jpg",
-                 ProductId = 4
+                 ProductId = 6
              },
               new ProductImage
               {
                   Id = 7,
                   ImageUrl = "product-7.jpg",
-                  ProductId = 6
+                  ProductId = 7
               },
               new ProductImage
               {
                   Id = 8,
                   ImageUrl = "product-8.jpg",
-                  ProductId = 1
+                  ProductId = 8
               },
               new ProductImage
               {
                   Id = 9,
                   ImageUrl = "product-9.jpg",
-                  ProductId = 5
+                  ProductId = 9
               },
                new ProductImage
                {
                    Id = 10,
                    ImageUrl = "product-10.jpg",
-                   ProductId = 1
+                   ProductId = 10
                },
                new ProductImage
                {
                    Id = 11,
                    ImageUrl = "product-11.jpg",
-                   ProductId = 2
+                   ProductId = 11
                },
              new ProductImage
              {
                  Id = 12,
                  ImageUrl = "product-12.jpg",
-                 ProductId = 2
+                 ProductId = 12
              },
               new ProductImage
               {
                   Id = 13,
                   ImageUrl = "product-13.jpg",
-                  ProductId = 6
+                  ProductId = 13
               },
               new ProductImage
               {
                   Id = 14,
                   ImageUrl = "product-14.jpg",
-                  ProductId = 7
+                  ProductId = 14
               },
               new ProductImage
               {
                   Id = 15,
                   ImageUrl = "product-15.jpg",
-                  ProductId = 8
+                  ProductId = 15
               },
              new ProductImage
              {
                  Id = 16,
                  ImageUrl = "product-16.jpg",
-                 ProductId = 9
+                 ProductId = 15
              },
               new ProductImage
               {
                   Id = 17,
                   ImageUrl = "product-17.jpg",
-                  ProductId = 10
+                  ProductId = 15
               }
              );
             //     new Product
