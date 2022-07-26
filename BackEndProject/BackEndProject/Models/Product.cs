@@ -26,12 +26,10 @@ namespace BackEndProject.Models
         public Category Category { get; set; }
         public int BrandId { get; set; }
         public Brand Brand { get; set; }
-
         public List<ProductImage> ProductImage { get; set; }
-
         public List<ProductTag> ProductTags { get; set; }
         public List<OrderItem> OrderItems { get; set; }
-
         public List<BasketItem> BasketItems { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

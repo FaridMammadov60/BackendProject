@@ -250,3 +250,11 @@ C:\Users\farid\Desktop\New folder\BackendProject\BackEndProject\BackEndProject\o
 C:\Users\farid\Desktop\New folder\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\BackEndProject.genruntimeconfig.cache
 C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Header\Default.cshtml.g.cs
 C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Footer\Default.cshtml.g.cs
+C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\SearchPartial.cshtml.g.cs
+C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Shared\_AdminLayout.cshtml.g.cs
+C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\_ViewStart.cshtml.g.cs
+C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\_ViewImports.cshtml.g.cs
+C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Dashboard\Index.cshtml.g.cs
+C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Brand\Detail.cshtml.g.cs
+C:\Users\farid\Desktop\Lahiye\BackEndProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Brand\Index.cshtml.g.cs
+C:\Users\farid\Desktop\Lahiye\BackEndProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Brand\Delete.cshtml.g.cs

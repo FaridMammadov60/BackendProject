@@ -25,8 +25,7 @@
             </div>
         </div> <!-- single slider -->
            
-       }
-         
+       }         
             
     </section>
 
@@ -124,13 +123,62 @@
                         <div class="row product-active">
                             @foreach (var item in Model.Products)
                            {
-                                 @if (item.NewArrivle==true)
+                                 @if (item.NewArrivle)
                                         {
-                                             <div class="col-lg-2">
-                                <div class="single-product mt-30">
-                                    <div class="product-image">
+                               <div class="col-lg-2">
+                                  <div class="single-product mt-30">
+                                    <div class="product-image">                                      
+                                        
+                                        @foreach (var shekil in item.ProductImage)
+                                        {                                           
+                                           if (item.ProductImage.Count==1)
+                                            {
+                                             <a href="single-product.html">
+                                                <img class="first-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
+                                                </a>
+                                                break;
+                                            }
+                                            <a href="single-product.html">
+                                                @if (ShekilCount==0)
+                                                {
+                                                    <img class="first-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
+                                                    ShekilCount++;
+                                                    continue;
+                                                }
+                                                @if (ShekilCount>=1)
+                                                {
+                                                    <img class="second-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
+                                                    ShekilCount = 0;
+                                                    break;
+                                                }                                                
+                                             </a>
+                                                                                   
+                                            }                                       
+                                        <ul class="product-meta">
+                                            <li><a href="#"><i class="icon ion-bag"></i></a></li>
+                                            <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
+                                            <li><a href="#"><i class="icon ion-android-options"></i></a></li>
+                                            <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
+                                        </ul>
+                                        <span class="discount-product">@item.TaxPrecent%</span>
+                                    </div>
+                                    <div class="product-content">
+                                        <ul class="product-rating">
+                                          <li class="rating-on"><i class="fas fa-star"></i></li>
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <h4 class="product-title"><a href="single-product.html">@item.Name</a></h4>
+                                        <div class="product-price">
+                                            <span class="price-sale">€@item.Price</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- single product -->
 
-                                      
+                                  <div class="single-product mt-30">
+                                    <div class="product-image">                                      
                                         
                                         @foreach (var shekil in item.ProductImage)
                                         {
@@ -178,27 +226,108 @@
                                         </div>
                                     </div>
                                 </div> <!-- single product -->
-
-                                <div class="single-product mt-30">
-                                    <div class="product-image">
-                                         @foreach (var shekil in item.ProductImage)
-                                        {
-                                            <a href="single-product.html">
-                                                <img class="first-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
-                                                <img class="second-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
-                                            </a>
-                                            break;
+                              </div>
                                         }
+                              
+                           }
+                           </div> <!-- row -->
+                    </div> <!-- product items -->
+                </div>
+                <div class="tab-pane fade" id="bestseller" role="tabpanel" aria-labelledby="bestseller-tab">
+                    <div class="product-items">
+                        <div class="row product-active">
+                            @foreach (var item in Model.Products)
+                           {
+                                 @if (item.BestSeller==true)
+                                        {
+                                             <div class="col-lg-2">
+                                <div class="single-product mt-30">
+                                    <div class="product-image">                                      
+                                        
+                                        @foreach (var shekil in item.ProductImage)
+                                        {
+                                            if (item.ProductImage.Count==1)
+                                            {
+                                             <a href="single-product.html">
+                                                <img class="first-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
+                                                </a>
+                                                break;
+                                            }
+                                            <a href="single-product.html">
+                                                @if (ShekilCount==0)
+                                                {
+                                                    <img class="first-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
+                                                    ShekilCount++;
+                                                    continue;
+                                                }
+                                                @if (ShekilCount>=1)
+                                                {
+                                                    <img class="second-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
+                                                    ShekilCount = 0;
+                                                    break;
+                                                }                                                
+                                            </a>                                          
+                                        }                                       
                                         <ul class="product-meta">
                                             <li><a href="#"><i class="icon ion-bag"></i></a></li>
                                             <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
                                             <li><a href="#"><i class="icon ion-android-options"></i></a></li>
                                             <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
                                         </ul>
-                                         <span class="discount-product">@item.TaxPrecent%</span>
+                                        <span class="discount-product">@item.TaxPrecent%</span>
                                     </div>
                                     <div class="product-content">
                                         <ul class="product-rating">
+                                          <li class="rating-on"><i class="fas fa-star"></i></li>
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <h4 class="product-title"><a href="single-product.html">@item.Name</a></h4>
+                                        <div class="product-price">
+                                            <span class="price-sale">€@item.Price</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- single product -->
+
+                                  <div class="single-product mt-30">
+                                    <div class="product-image">                                      
+                                        
+                                        @foreach (var shekil in item.ProductImage)
+                                        {
+                                            if (item.ProductImage.Count==1)
+                                            {
+                                             <a href="single-product.html">
+                                                <img class="first-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
+                                                </a>
+                                                break;
+                                            }
+                                            <a href="single-product.html">
+                                                @if (ShekilCount==0)
+                                                {
+                                                    <img class="first-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
+                                                    ShekilCount++;
+                                                    continue;
+                                                }
+                                                @if (ShekilCount>=1)
+                                                {
+                                                    <img class="second-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
+                                                    ShekilCount = 0;
+                                                    break;
+                                                }                                                
+                                            </a>                                          
+                                        }                                       
+                                        <ul class="product-meta">
+                                            <li><a href="#"><i class="icon ion-bag"></i></a></li>
+                                            <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
+                                            <li><a href="#"><i class="icon ion-android-options"></i></a></li>
+                                            <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
+                                        </ul>
+                                        <span class="discount-product">@item.TaxPrecent%</span>
+                                    </div>
+                                    <div class="product-content">
+                                                                               <ul class="product-rating">
                                           <li class="rating-on"><i class="fas fa-star"></i></li>
                                             <li class="rating-on"><i class="fas fa-star"></i></li>
                                             <li class="rating-on"><i class="fas fa-star"></i></li>
@@ -218,117 +347,66 @@
                            </div> <!-- row -->
                     </div> <!-- product items -->
                 </div>
-                <div class="tab-pane fade" id="bestseller" role="tabpanel" aria-labelledby="bestseller-tab">
-                    <div class="product-items">
-                        <div class="row product-active">
-                            @foreach (var item in Model.Products)
-                           {
-                                 @if (item.BestSeller==true)
-                                        {
-                                             <div class="col-lg-2">
-                                <div class="single-product mt-30">
-                                    <div class="product-image">
-
-                                      
-                                        
-                                        @foreach (var shekil in item.ProductImage)
-                                        {
-                                            if (item.ProductImage.Count==1)
-                                            {
-                                             <a href="single-product.html">
-                                                <img class="first-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
-                                                </a>
-                                                break;
-                                            }
-                                            <a href="single-product.html">
-                                                @if (ShekilCount==0)
-                                                {
-                                                    <img class="first-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
-                                                    ShekilCount++;
-                                                    continue;
-                                                }
-                                                @if (ShekilCount>=1)
-                                                {
-                                                    <img class="second-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
-                                                    ShekilCount = 0;
-                                                    break;
-                                                }                                                
-                                            </a>                                          
-                                        }                                       
-                                        <ul class="product-meta">
-                                            <li><a href="#"><i class="icon ion-bag"></i></a></li>
-                                            <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
-                                            <li><a href="#"><i class="icon ion-android-options"></i></a></li>
-                                            <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
-                                        </ul>
-                                        <span class="discount-product">@item.TaxPrecent%</span>
-                                    </div>
-                                    <div class="product-content">
-                                                                               <ul class="product-rating">
-                                          <li class="rating-on"><i class="fas fa-star"></i></li>
-                                            <li class="rating-on"><i class="fas fa-star"></i></li>
-                                            <li class="rating-on"><i class="fas fa-star"></i></li>
-                                            <li class="rating-on"><i class="fas fa-star"></i></li>
-                                            <li class="rating-on"><i class="fas fa-star"></i></li>
-                                        </ul>
-                                        <h4 class="product-title"><a href="single-product.html">@item.Name</a></h4>
-                                        <div class="product-price">
-                                            <span class="price-sale">€@item.Price</span>
-                                        </div>
-                                    </div>
-                                </div> <!-- single product -->
-
-                                <div class="single-product mt-30">
-                                    <div class="product-image">
-                                         @foreach (var shekil in item.ProductImage)
-                                        {
-                                            <a href="single-product.html">
-                                                <img class="first-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
-                                                <img class="second-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
-                                            </a>
-                                            break;
-                                        }
-                                        <ul class="product-meta">
-                                            <li><a href="#"><i class="icon ion-bag"></i></a></li>
-                                            <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
-                                            <li><a href="#"><i class="icon ion-android-options"></i></a></li>
-                                            <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
-                                        </ul>
-                                         <span class="discount-product">@item.TaxPrecent%</span>
-                                    </div>
-                                    <div class="product-content">
-                                        <ul class="product-rating">
-                                          <li class="rating-on"><i class="fas fa-star"></i></li>
-                                            <li class="rating-on"><i class="fas fa-star"></i></li>
-                                            <li class="rating-on"><i class="fas fa-star"></i></li>
-                                            <li class="rating-on"><i class="fas fa-star"></i></li>
-                                            <li class="rating-on"><i class="fas fa-star"></i></li>
-                                        </ul>
-                                        <h4 class="product-title"><a href="single-product.html">@item.Name</a></h4>
-                                        <div class="product-price">
-                                            <span class="price-sale">€@item.Price</span>
-                                        </div>
-                                    </div>
-                                </div> <!-- single product -->
-                            </div>
-                                        }
-                              
-                           }
-                        </div> <!-- row -->
-                    </div> <!-- product items -->
-                </div>
                 <div class="tab-pane fade" id="featured" role="tabpanel" aria-labelledby="featured-tab">
                     <div class="product-items">
                         <div class="row product-active">
-                         @foreach (var item in Model.Products)
+                            @foreach (var item in Model.Products)
                            {
                                  @if (item.IsFeatured==true)
                                         {
                                              <div class="col-lg-2">
                                 <div class="single-product mt-30">
-                                    <div class="product-image">
+                                    <div class="product-image">                                      
+                                        
+                                        @foreach (var shekil in item.ProductImage)
+                                        {
+                                            if (item.ProductImage.Count==1)
+                                            {
+                                             <a href="single-product.html">
+                                                <img class="first-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
+                                                </a>
+                                                break;
+                                            }
+                                            <a href="single-product.html">
+                                                @if (ShekilCount==0)
+                                                {
+                                                    <img class="first-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
+                                                    ShekilCount++;
+                                                    continue;
+                                                }
+                                                @if (ShekilCount>=1)
+                                                {
+                                                    <img class="second-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
+                                                    ShekilCount = 0;
+                                                    break;
+                                                }                                                
+                                            </a>                                          
+                                        }                                       
+                                        <ul class="product-meta">
+                                            <li><a href="#"><i class="icon ion-bag"></i></a></li>
+                                            <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
+                                            <li><a href="#"><i class="icon ion-android-options"></i></a></li>
+                                            <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
+                                        </ul>
+                                        <span class="discount-product">@item.TaxPrecent%</span>
+                                    </div>
+                                    <div class="product-content">
+                                        <ul class="product-rating">
+                                          <li class="rating-on"><i class="fas fa-star"></i></li>
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                            <li class="rating-on"><i class="fas fa-star"></i></li>
+                                        </ul>
+                                        <h4 class="product-title"><a href="single-product.html">@item.Name</a></h4>
+                                        <div class="product-price">
+                                            <span class="price-sale">€@item.Price</span>
+                                        </div>
+                                    </div>
+                                </div> <!-- single product -->
 
-                                      
+                                  <div class="single-product mt-30">
+                                    <div class="product-image">                                      
                                         
                                         @foreach (var shekil in item.ProductImage)
                                         {
@@ -376,44 +454,11 @@
                                         </div>
                                     </div>
                                 </div> <!-- single product -->
-
-                                <div class="single-product mt-30">
-                                    <div class="product-image">
-                                         @foreach (var shekil in item.ProductImage)
-                                        {
-                                            <a href="single-product.html">
-                                                <img class="first-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
-                                                <img class="second-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
-                                            </a>
-                                            break;
-                                        }
-                                        <ul class="product-meta">
-                                            <li><a href="#"><i class="icon ion-bag"></i></a></li>
-                                            <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
-                                            <li><a href="#"><i class="icon ion-android-options"></i></a></li>
-                                            <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
-                                        </ul>
-                                         <span class="discount-product">@item.TaxPrecent%</span>
-                                    </div>
-                                    <div class="product-content">
-                                        <ul class="product-rating">
-                                          <li class="rating-on"><i class="fas fa-star"></i></li>
-                                            <li class="rating-on"><i class="fas fa-star"></i></li>
-                                            <li class="rating-on"><i class="fas fa-star"></i></li>
-                                            <li class="rating-on"><i class="fas fa-star"></i></li>
-                                            <li class="rating-on"><i class="fas fa-star"></i></li>
-                                        </ul>
-                                        <h4 class="product-title"><a href="single-product.html">@item.Name</a></h4>
-                                        <div class="product-price">
-                                            <span class="price-sale">€@item.Price</span>
-                                        </div>
-                                    </div>
-                                </div> <!-- single product -->
                             </div>
                                         }
                               
                            }
-                        </div> <!-- row -->
+                           </div> <!-- row -->
                     </div> <!-- product items -->
                 </div>
             </div> <!-- tab content -->
@@ -431,42 +476,28 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="special-products-gallery d-flex mt-50">
-                                <div class="products-gallery-thumb">
+                                @foreach (var item in Model.ProductImages)
+                               {
+                                 if(item.IsMain){
+                                  <div class="products-gallery-thumb">
                                     <ul class="products-thumb">
-                                        <li><img src="~/assets/images/special-products/special-products-1.jpg" alt="Products Thumb"></li>
-                                        <li><img src="~/assets/images/special-products/special-products-2.jpg" alt="Products Thumb"></li>
-                                        <li><img src="~/assets/images/special-products/special-products-3.jpg" alt="Products Thumb"></li>
-                                        <li><img src="~/assets/images/special-products/special-products-4.jpg" alt="Products Thumb"></li>
-                                        <li><img src="~/assets/images/special-products/special-products-5.jpg" alt="Products Thumb"></li>
+                                        <li><img src="~/assets/images/product/@item.ImageUrl" alt="Products Thumb"></li>                                     
                                     </ul>
                                 </div> <!-- products gallery thumb -->
-                                <div class="products-gallery-image">
+                                } 
+                               } 
+                                @foreach (var item in Model.ProductImages)
+                               {
+                                 if(item.IsMain){
+                                 <div class="products-gallery-image">
                                     <div class="single-products-image">
                                         <a href="#">
-                                            <img src="~/assets/images/special-products/special-products-1.jpg" alt="products">
+                                            <img src="~/assets/images/product/@item.ImageUrl" alt="products">
                                         </a>
-                                    </div>
-                                    <div class="single-products-image">
-                                        <a href="#">
-                                            <img src="~/assets/images/special-products/special-products-2.jpg" alt="products">
-                                        </a>
-                                    </div>
-                                    <div class="single-products-image">
-                                        <a href="#">
-                                            <img src="~/assets/images/special-products/special-products-3.jpg" alt="products">
-                                        </a>
-                                    </div>
-                                    <div class="single-products-image">
-                                        <a href="#">
-                                            <img src="~/assets/images/special-products/special-products-4.jpg" alt="products">
-                                        </a>
-                                    </div>
-                                    <div class="single-products-image">
-                                        <a href="#">
-                                            <img src="~/assets/images/special-products/special-products-5.jpg" alt="products">
-                                        </a>
-                                    </div>
+                                    </div>                                  
                                 </div> <!-- products gallery image -->
+                                 } 
+                               } 
                             </div> <!-- special products gallery -->
                         </div>
                         <div class="col-lg-6">
@@ -1296,55 +1327,18 @@
     <div class="brand-area pt-80">
         <div class="container-fluid custom-container">
             <div class="row brand-active">
-                <div class="col-lg-2">
+                @foreach (var item in Model.Brands)
+                {
+                     <div class="col-lg-2">
                     <div class="single-brand">
                         <a href="#">
-                            <img src="~/assets/images/brand/brand-1.jpg" alt="brand">
+                            <img src="~/assets/images/brand/@item.ImageUrl" alt="brand">
                         </a>
                     </div> <!-- single brand -->
                 </div>
-                <div class="col-lg-2">
-                    <div class="single-brand">
-                        <a href="#">
-                            <img src="~/assets/images/brand/brand-2.jpg" alt="brand">
-                        </a>
-                    </div> <!-- single brand -->
-                </div>
-                <div class="col-lg-2">
-                    <div class="single-brand">
-                        <a href="#">
-                            <img src="~/assets/images/brand/brand-3.jpg" alt="brand">
-                        </a>
-                    </div> <!-- single brand -->
-                </div>
-                <div class="col-lg-2">
-                    <div class="single-brand">
-                        <a href="#">
-                            <img src="~/assets/images/brand/brand-4.jpg" alt="brand">
-                        </a>
-                    </div> <!-- single brand -->
-                </div>
-                <div class="col-lg-2">
-                    <div class="single-brand">
-                        <a href="#">
-                            <img src="~/assets/images/brand/brand-5.jpg" alt="brand">
-                        </a>
-                    </div> <!-- single brand -->
-                </div>
-                <div class="col-lg-2">
-                    <div class="single-brand">
-                        <a href="#">
-                            <img src="~/assets/images/brand/brand-6.jpg" alt="brand">
-                        </a>
-                    </div> <!-- single brand -->
-                </div>
-                <div class="col-lg-2">
-                    <div class="single-brand">
-                        <a href="#">
-                            <img src="~/assets/images/brand/brand-4.jpg" alt="brand">
-                        </a>
-                    </div> <!-- single brand -->
-                </div>
+                }
+               
+               
             </div> <!-- row -->
         </div> <!-- container -->
     </div>

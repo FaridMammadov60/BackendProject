@@ -20,5 +20,6 @@ namespace BackEndProject.Models
         public Nullable<int> ParentId { get; set; }
         public Category Parent { get; set; }
         public List<Category> Children { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

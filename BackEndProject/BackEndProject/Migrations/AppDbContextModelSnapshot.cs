@@ -165,6 +165,12 @@ namespace BackEndProject.Migrations
                     b.Property<DateTime?>("DeleteAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -179,22 +185,51 @@ namespace BackEndProject.Migrations
                         new
                         {
                             Id = 1,
+                            ImageUrl = "brand-1.jpg",
+                            IsDeleted = false,
                             Name = "Apple"
                         },
                         new
                         {
                             Id = 2,
+                            ImageUrl = "brand-2.jpg",
+                            IsDeleted = false,
                             Name = "Samsung"
                         },
                         new
                         {
                             Id = 3,
+                            ImageUrl = "brand-3.jpg",
+                            IsDeleted = false,
                             Name = "Lenova"
                         },
                         new
                         {
                             Id = 4,
+                            ImageUrl = "brand-4.jpg",
+                            IsDeleted = false,
                             Name = "HP"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ImageUrl = "brand-5.jpg",
+                            IsDeleted = false,
+                            Name = "Nike"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ImageUrl = "brand-6.jpg",
+                            IsDeleted = false,
+                            Name = "Adidas"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ImageUrl = "brand-6.jpg",
+                            IsDeleted = false,
+                            Name = "Sirab"
                         });
                 });
 
@@ -213,6 +248,9 @@ namespace BackEndProject.Migrations
 
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -234,151 +272,162 @@ namespace BackEndProject.Migrations
                         {
                             Id = 1,
                             ImageUrl = "category-1.jpg",
+                            IsDeleted = false,
                             Name = "Computer"
                         },
                         new
                         {
                             Id = 2,
                             ImageUrl = "category-3.jpg",
+                            IsDeleted = false,
                             Name = "SmartPhone"
                         },
                         new
                         {
                             Id = 3,
                             ImageUrl = "category-4.jpg",
+                            IsDeleted = false,
                             Name = "Game Consoles"
                         },
                         new
                         {
                             Id = 4,
-                            ImageUrl = "category-2.jpg",
+                            ImageUrl = "category-12.jpg",
+                            IsDeleted = false,
                             Name = "Electronic"
                         },
                         new
                         {
                             Id = 5,
-                            ImageUrl = "category-7.jpg",
+                            ImageUrl = "category-2.jpg",
+                            IsDeleted = false,
+                            Name = "TV Audio"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ImageUrl = "category-11.jpg",
+                            IsDeleted = false,
+                            Name = "Accessories"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ImageUrl = "category-5.jpg",
+                            IsDeleted = false,
+                            Name = "Dress"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ImageUrl = "category-1.jpg",
+                            IsDeleted = false,
                             Name = "Laptop",
                             ParentId = 1
                         },
                         new
                         {
-                            Id = 6,
-                            ImageUrl = "category-8.jpg",
+                            Id = 9,
+                            ImageUrl = "category-1.jpg",
+                            IsDeleted = false,
                             Name = "DesktopCopmuter",
                             ParentId = 1
                         },
                         new
                         {
-                            Id = 7,
-                            ImageUrl = "category-9.jpg",
+                            Id = 10,
+                            ImageUrl = "category-3.jpg",
+                            IsDeleted = false,
                             Name = "Android",
                             ParentId = 2
                         },
                         new
                         {
-                            Id = 8,
-                            ImageUrl = "category-10.jpg",
+                            Id = 11,
+                            ImageUrl = "category-3.jpg",
+                            IsDeleted = false,
                             Name = "IOS",
                             ParentId = 2
                         },
                         new
                         {
-                            Id = 9,
-                            ImageUrl = "category-11.jpg",
+                            Id = 12,
+                            ImageUrl = "category-4.jpg",
+                            IsDeleted = false,
                             Name = "PS",
                             ParentId = 3
                         },
                         new
                         {
-                            Id = 10,
-                            ImageUrl = "category-12.jpg",
+                            Id = 13,
+                            ImageUrl = "category-4.jpg",
+                            IsDeleted = false,
                             Name = "XBOX",
                             ParentId = 3
                         },
                         new
                         {
-                            Id = 11,
-                            ImageUrl = "category-11.jpg",
-                            Name = "Camera",
+                            Id = 14,
+                            ImageUrl = "category-9.jpg",
+                            IsDeleted = false,
+                            Name = "Paltaryuyan",
                             ParentId = 4
                         },
                         new
                         {
-                            Id = 12,
+                            Id = 15,
                             ImageUrl = "category-12.jpg",
+                            IsDeleted = false,
                             Name = "Adabter",
                             ParentId = 4
                         },
                         new
                         {
-                            Id = 13,
-                            ImageUrl = "category-9.jpg",
+                            Id = 16,
+                            ImageUrl = "category-11.jpg",
+                            IsDeleted = false,
                             Name = "Air Drop",
                             ParentId = 4
                         },
                         new
                         {
-                            Id = 14,
-                            ImageUrl = "category-1.jpg",
-                            Name = "MacBook",
-                            ParentId = 5
-                        },
-                        new
-                        {
-                            Id = 15,
-                            ImageUrl = "category-1.jpg",
-                            Name = "Lenova",
-                            ParentId = 5
-                        },
-                        new
-                        {
-                            Id = 16,
-                            ImageUrl = "category-9.jpg",
-                            Name = "Samsung c-comp",
-                            ParentId = 5
-                        },
-                        new
-                        {
                             Id = 17,
-                            ImageUrl = "category-9.jpg",
-                            Name = "HP Desktop",
-                            ParentId = 6
+                            ImageUrl = "category-2.jpg",
+                            IsDeleted = false,
+                            Name = "Smart TV",
+                            ParentId = 5
                         },
                         new
                         {
                             Id = 18,
-                            ImageUrl = "category-9.jpg",
-                            Name = "Samsung-C",
-                            ParentId = 7
+                            ImageUrl = "category-10.jpg",
+                            IsDeleted = false,
+                            Name = "Camera",
+                            ParentId = 5
                         },
                         new
                         {
                             Id = 19,
-                            ImageUrl = "category-9.jpg",
-                            Name = "Apple-C",
-                            ParentId = 8
+                            ImageUrl = "category-11.jpg",
+                            IsDeleted = false,
+                            Name = "Air Drop",
+                            ParentId = 6
                         },
                         new
                         {
                             Id = 20,
-                            ImageUrl = "category-7.jpg",
-                            Name = "PS4-c",
-                            ParentId = 9
+                            ImageUrl = "category-11.jpg",
+                            IsDeleted = false,
+                            Name = "Kabro",
+                            ParentId = 6
                         },
                         new
                         {
                             Id = 21,
-                            ImageUrl = "category-7.jpg",
-                            Name = "XBOX-c",
-                            ParentId = 10
-                        },
-                        new
-                        {
-                            Id = 22,
-                            ImageUrl = "category-7.jpg",
-                            Name = "Adabter Samsung",
-                            ParentId = 12
+                            ImageUrl = "category-12.jpg",
+                            IsDeleted = false,
+                            Name = "Paltar",
+                            ParentId = 7
                         });
                 });
 
@@ -482,6 +531,9 @@ namespace BackEndProject.Migrations
                     b.Property<bool>("InStock")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsFeatured")
                         .HasColumnType("bit");
 
@@ -520,10 +572,11 @@ namespace BackEndProject.Migrations
                             Id = 1,
                             BestSeller = true,
                             BrandId = 1,
-                            CategoryId = 14,
+                            CategoryId = 8,
                             Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
                             DisCountPrice = 170.0,
                             InStock = true,
+                            IsDeleted = false,
                             IsFeatured = false,
                             Name = "MacBook Pro 6",
                             NewArrivle = true,
@@ -537,10 +590,11 @@ namespace BackEndProject.Migrations
                             Id = 2,
                             BestSeller = true,
                             BrandId = 2,
-                            CategoryId = 16,
+                            CategoryId = 8,
                             Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
                             DisCountPrice = 80.0,
                             InStock = true,
+                            IsDeleted = false,
                             IsFeatured = true,
                             Name = "Samsung COMP",
                             NewArrivle = true,
@@ -554,10 +608,11 @@ namespace BackEndProject.Migrations
                             Id = 3,
                             BestSeller = true,
                             BrandId = 3,
-                            CategoryId = 15,
+                            CategoryId = 8,
                             Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
                             DisCountPrice = 180.0,
                             InStock = true,
+                            IsDeleted = false,
                             IsFeatured = true,
                             Name = "Lenova Thinkpad",
                             NewArrivle = true,
@@ -571,10 +626,11 @@ namespace BackEndProject.Migrations
                             Id = 4,
                             BestSeller = false,
                             BrandId = 2,
-                            CategoryId = 18,
+                            CategoryId = 8,
                             Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
                             DisCountPrice = 180.0,
                             InStock = true,
+                            IsDeleted = false,
                             IsFeatured = true,
                             Name = "Samsung s22 ultra",
                             NewArrivle = true,
@@ -588,10 +644,11 @@ namespace BackEndProject.Migrations
                             Id = 5,
                             BestSeller = false,
                             BrandId = 1,
-                            CategoryId = 10,
+                            CategoryId = 11,
                             Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
                             DisCountPrice = 180.0,
                             InStock = true,
+                            IsDeleted = false,
                             IsFeatured = false,
                             Name = "Iphone 13 Pro",
                             NewArrivle = true,
@@ -605,10 +662,11 @@ namespace BackEndProject.Migrations
                             Id = 6,
                             BestSeller = false,
                             BrandId = 1,
-                            CategoryId = 19,
+                            CategoryId = 11,
                             Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
                             DisCountPrice = 180.0,
                             InStock = true,
+                            IsDeleted = false,
                             IsFeatured = true,
                             Name = "Iphone 12 Pro",
                             NewArrivle = true,
@@ -622,10 +680,11 @@ namespace BackEndProject.Migrations
                             Id = 7,
                             BestSeller = false,
                             BrandId = 1,
-                            CategoryId = 19,
+                            CategoryId = 11,
                             Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
                             DisCountPrice = 180.0,
                             InStock = true,
+                            IsDeleted = false,
                             IsFeatured = false,
                             Name = "Iphone 12",
                             NewArrivle = true,
@@ -639,10 +698,11 @@ namespace BackEndProject.Migrations
                             Id = 8,
                             BestSeller = false,
                             BrandId = 1,
-                            CategoryId = 19,
+                            CategoryId = 11,
                             Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
                             DisCountPrice = 180.0,
                             InStock = true,
+                            IsDeleted = false,
                             IsFeatured = false,
                             Name = "Iphone 11 Pro",
                             NewArrivle = true,
@@ -656,10 +716,11 @@ namespace BackEndProject.Migrations
                             Id = 9,
                             BestSeller = false,
                             BrandId = 1,
-                            CategoryId = 19,
+                            CategoryId = 11,
                             Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
                             DisCountPrice = 180.0,
                             InStock = true,
+                            IsDeleted = false,
                             IsFeatured = false,
                             Name = "Iphone 11 ProMax",
                             NewArrivle = true,
@@ -673,10 +734,11 @@ namespace BackEndProject.Migrations
                             Id = 10,
                             BestSeller = true,
                             BrandId = 1,
-                            CategoryId = 19,
+                            CategoryId = 11,
                             Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
                             DisCountPrice = 180.0,
                             InStock = true,
+                            IsDeleted = false,
                             IsFeatured = true,
                             Name = "Iphone 12 ProMax",
                             NewArrivle = true,
@@ -690,10 +752,11 @@ namespace BackEndProject.Migrations
                             Id = 11,
                             BestSeller = true,
                             BrandId = 3,
-                            CategoryId = 15,
+                            CategoryId = 8,
                             Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
                             DisCountPrice = 580.0,
                             InStock = true,
+                            IsDeleted = false,
                             IsFeatured = true,
                             Name = "Lenova THINKPAD x",
                             NewArrivle = false,
@@ -707,10 +770,11 @@ namespace BackEndProject.Migrations
                             Id = 12,
                             BestSeller = true,
                             BrandId = 3,
-                            CategoryId = 15,
+                            CategoryId = 8,
                             Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
                             DisCountPrice = 580.0,
                             InStock = true,
+                            IsDeleted = false,
                             IsFeatured = true,
                             Name = "Lenova IDPAD",
                             NewArrivle = false,
@@ -724,10 +788,11 @@ namespace BackEndProject.Migrations
                             Id = 13,
                             BestSeller = true,
                             BrandId = 3,
-                            CategoryId = 15,
+                            CategoryId = 8,
                             Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
                             DisCountPrice = 580.0,
                             InStock = true,
+                            IsDeleted = false,
                             IsFeatured = true,
                             Name = "Lenova YOGA",
                             NewArrivle = false,
@@ -741,10 +806,11 @@ namespace BackEndProject.Migrations
                             Id = 14,
                             BestSeller = true,
                             BrandId = 3,
-                            CategoryId = 15,
+                            CategoryId = 8,
                             Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
                             DisCountPrice = 580.0,
                             InStock = true,
+                            IsDeleted = false,
                             IsFeatured = true,
                             Name = "Lenova YOGA x",
                             NewArrivle = false,
@@ -758,10 +824,11 @@ namespace BackEndProject.Migrations
                             Id = 15,
                             BestSeller = true,
                             BrandId = 3,
-                            CategoryId = 15,
+                            CategoryId = 8,
                             Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
                             DisCountPrice = 580.0,
                             InStock = true,
+                            IsDeleted = false,
                             IsFeatured = true,
                             Name = "Lenova YOGA x",
                             NewArrivle = false,
@@ -913,6 +980,76 @@ namespace BackEndProject.Migrations
                             ImageUrl = "product-17.jpg",
                             IsMain = false,
                             ProductId = 15
+                        },
+                        new
+                        {
+                            Id = 18,
+                            ImageUrl = "product-10.jpg",
+                            IsMain = false,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 19,
+                            ImageUrl = "product-10.jpg",
+                            IsMain = false,
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 20,
+                            ImageUrl = "product-10.jpg",
+                            IsMain = false,
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            Id = 21,
+                            ImageUrl = "product-9.jpg",
+                            IsMain = false,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            Id = 22,
+                            ImageUrl = "product-12.jpg",
+                            IsMain = false,
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            Id = 23,
+                            ImageUrl = "product-9.jpg",
+                            IsMain = false,
+                            ProductId = 6
+                        },
+                        new
+                        {
+                            Id = 24,
+                            ImageUrl = "product-12.jpg",
+                            IsMain = false,
+                            ProductId = 7
+                        },
+                        new
+                        {
+                            Id = 25,
+                            ImageUrl = "product-12.jpg",
+                            IsMain = false,
+                            ProductId = 8
+                        },
+                        new
+                        {
+                            Id = 26,
+                            ImageUrl = "product-9.jpg",
+                            IsMain = false,
+                            ProductId = 9
+                        },
+                        new
+                        {
+                            Id = 27,
+                            ImageUrl = "product-12.jpg",
+                            IsMain = false,
+                            ProductId = 10
                         });
                 });
 
