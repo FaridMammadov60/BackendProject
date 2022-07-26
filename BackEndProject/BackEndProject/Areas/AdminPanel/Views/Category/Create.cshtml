@@ -20,22 +20,8 @@
                         <span  class="text-danger" asp-validation-for="Name"></span>
                       </div>
                     </div>
-                  </div>                      
+                  </div>               
     
-                  
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <!-- text input -->
-                      <div class="form-group">
-                        <label asp-for="Parent">Custom Select</label>
-                       
-                        <select id="select" asp-for="ParentId" asp-items="@ViewBag.CategoriesCreate" class="custom-select">
-                            <option selected>Open this select menu</option>
-                        </select>
-                        <span  class="text-danger" asp-validation-for="ParentId"></span>
-                      </div>
-                    </div>
-                  </div>
 
                    <div class="row">
                     <div class="col-sm-3">
@@ -50,6 +36,8 @@
                  <button type="submit" class="btn btn-success">Submit</button> 
                  <a asp-controller="brand" asp-action="index" class="btn btn-danger">Cancel</a>
                 </form>
+
+                 <a class="btn btn-dark" asp-action="index"> Go Back</a>
               </div>
               <!-- /.card-body -->
             </div>

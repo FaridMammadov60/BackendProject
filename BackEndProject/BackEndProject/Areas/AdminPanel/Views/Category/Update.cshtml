@@ -3,8 +3,8 @@
     ViewData["Title"] = "Update";
     Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
 }
-
-  <div class="card card-light">
+ 
+<div class="card card-light">
       <div asp-validation-summary="ModelOnly"></div>
               <div class="card-header">
                 <h3 class="card-title">Create New Category</h3>
@@ -37,9 +37,13 @@
                  <button id="sbmtBtn" type="submit" class="btn btn-success">Submit</button> 
                  <a asp-controller="brand" asp-action="index" class="btn btn-danger">Cancel</a>
                 </form>
+
+                 <a class="btn btn-dark" asp-action="index"> Go Back</a>
               </div>
               <!-- /.card-body -->
-            </div>
+   </div>
+
+
 <script src="~/admin/plugins/jquery/jquery.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
 <!-- Jquery Validation cdn -->
@@ -47,5 +51,3 @@
 <!-- Asp Jquery Validation cdn-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
 <script src="~/admin/dist/js/JavaScript.js"></script>
-
-

@@ -33,11 +33,71 @@
                 </div>
                  <div>
                    <a asp-controller="category" asp-action="create" class="btn btn-primary ml-4">Create Category</a>
+               </div> <br />
+                <div>
+                   <a asp-controller="category" asp-action="subcreate" class="btn btn-success ml-4">SubCreate Category</a>
                </div> 
               <!-- /.card-header -->
               <div class="card-body">
+
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
+                      <tr>
+                          <th style="background-color: greenyellow" colspan="4">Category Table</th>
+                      </tr>
+                  <tr>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Image</th>                   
+                    <th>Setting</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                      @foreach (var item in Model)
+                      {
+                          if (item.IsDeleted==false && item.ParentId==null)
+                          {
+                             no++;
+                               <tr>
+                              <td>@no</td>
+                              <td>@item.Name</td>
+                              <td><img width="200" height="150" src="~/assets/images/@item.ImageUrl" > </td>                              
+                              <td>
+                                  <a class="btn btn-secondary" asp-action="update" asp-route-id="@item.Id"> <box-icon name='edit-alt'></box-icon></a>
+                                   <a class="btn btn-primary" asp-action="detail" asp-route-id="@item.Id"> <box-icon name='message-rounded-edit'></box-icon></a>
+                                    <a class="btn btn-danger" asp-action="delete" asp-route-id="@item.Id"><box-icon name='message-alt-x'></box-icon></a>
+                              </td> 
+                             </tr>
+                          }
+                      }
+                  </tbody>               
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+
+     <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">            
+               
+              <!-- /.card-header -->
+              <div class="card-body">
+
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                      <tr>
+                          <th style="background-color: greenyellow" colspan="5">SubCategory Table</th>
+                      </tr>
                   <tr>
                     <th>No</th>
                     <th>Name</th>
@@ -49,7 +109,7 @@
                   <tbody>
                       @foreach (var item in Model)
                       {
-                          if (item.IsDeleted==false)
+                          if (item.IsDeleted==false & item.ParentId!=null)
                           {
                              no++;
                                <tr>
@@ -78,6 +138,9 @@
       </div>
       <!-- /.container-fluid -->
     </section>
+
+    
+
 
     <!-- Deleted Files -->
 

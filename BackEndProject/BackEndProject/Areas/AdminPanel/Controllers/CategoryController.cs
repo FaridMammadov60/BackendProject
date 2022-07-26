@@ -120,6 +120,72 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult SubCreate()
+        {
+            ViewBag.CategoriesCreate = new SelectList(_context.Categories.Where(p => p.ParentId == null).ToList(), "Id", "Name");
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SubCreate(Category category)
+        {
+            Category dbCategory = await _context.Categories.FindAsync(category.Id);
+            Category dbCategoryName = new Category();
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            if (category.Name == null)
+            {
+                ModelState.AddModelError("Name", "Category Name Cannot be Empty!");
+                return View();
+            }
+            else
+            {
+                dbCategoryName = await _context.Categories.FirstOrDefaultAsync(p => p.Name.Trim().ToLower() == category.Name.Trim().ToLower());
+            }
+            if (dbCategoryName != null)
+            {
+                if (dbCategoryName.Name.Trim().ToLower() == category.Name.Trim().ToLower())
+                {
+                    ModelState.AddModelError("Name", "This Name Is already Exist!");
+                    return View();
+                }
+            }
+
+            if (category.Image == null)
+            {
+                ModelState.AddModelError("Image", "Select Image");
+                return View();
+            }
+
+            if (!category.Image.IsImage())
+            {
+                ModelState.AddModelError("Image", "Only Image Files");
+                return View();
+            }
+
+            if (category.Image.ValidSize(1000))
+            {
+                ModelState.AddModelError("Image", "Size is higher max 1mb");
+                return View();
+            }
+
+            Category newCategory = new Category()
+            {
+                Name = category.Name,
+                ImageUrl = category.Image.SaveImage(_env, "assets/images"),
+                CreateAt = System.DateTime.Now,
+            };
+            await _context.Categories.AddAsync(newCategory);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
         public async Task<IActionResult> Update(int? id)
         {
             if (id == null) return NotFound();
@@ -183,7 +249,7 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
                 string oldImg = dbCategory.ImageUrl;
                 if (oldImg != null)
                 {
-                    path = Path.Combine(_env.WebRootPath, "assets/images/brand", oldImg);
+                    path = Path.Combine(_env.WebRootPath, "assets/images", oldImg);
                 }
                 if (path != null)
                 {
@@ -191,7 +257,7 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
                 }
                 else return NotFound();
 
-                dbCategory.ImageUrl = category.Image.SaveImage(_env, "assets/images/brand");
+                dbCategory.ImageUrl = category.Image.SaveImage(_env, "assets/images");
             }
 
 
