@@ -11,24 +11,24 @@ namespace BackEndProject.Extentions
         {
             return file.ContentType.Contains("image/");
         }
+
         public static bool ValidSize(this IFormFile file, int size)
         {
             return file.Length / 1024 > size;
         }
-        public static string SaveImage(this IFormFile file, IWebHostEnvironment env, params string[] folder)
-        {
-            string fileName = Guid.NewGuid().ToString() + file.FileName;
 
-            string path = Path.Combine(env.WebRootPath, "img", fileName);
-            //string str = product.Photo.FileName;
-            //string []arr = str.Split(".");
-            //string filename = arr[0] + $"({i})";
+
+        public static string SaveImage(this IFormFile file, IWebHostEnvironment env, string folder)
+        {
+            string filename = Guid.NewGuid().ToString() + file.FileName;
+
+            string path = Path.Combine(env.WebRootPath, folder, filename);
 
             using (FileStream stream = new FileStream(path, FileMode.Create))
             {
                 file.CopyTo(stream);
             };
-            return fileName;
+            return filename;
         }
     }
 }
