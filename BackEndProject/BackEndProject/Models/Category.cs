@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BackEndProject.Models
@@ -8,10 +9,12 @@ namespace BackEndProject.Models
     public class Category
     {
         public int Id { get; set; }
+        [Required, MaxLength(50), MinLength(1)]
         public string Name { get; set; }
-        public string ImageUrl { get; set; }
         [NotMapped]
-        public IFormFile Photo { get; set; }
+        public IFormFile Image { get; set; }
+
+        public string ImageUrl { get; set; }
         public Nullable<DateTime> CreateAt { get; set; }
         public Nullable<DateTime> DeleteAt { get; set; }
         public Nullable<DateTime> UpdateAt { get; set; }

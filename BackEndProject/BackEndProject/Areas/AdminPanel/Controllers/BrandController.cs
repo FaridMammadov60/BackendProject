@@ -79,7 +79,7 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
             }
             if (dbBrandName != null)
             {
-                if (dbBrandName.Name.Trim().ToLower() != dbBrand.Name.Trim().ToLower())
+                if (dbBrandName.Name.Trim().ToLower() == brand.Name.Trim().ToLower())
                 {
                     ModelState.AddModelError("Name", "This Name Is already Exist!");
                     return View();
@@ -188,7 +188,6 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
 
                 dbBrand.ImageUrl = brand.Image.SaveImage(_env, "assets/images/brand");
             }
-
 
 
             dbBrand.Name = brand.Name;
