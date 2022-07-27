@@ -3,11 +3,13 @@
     ViewData["Title"] = "Update";
     Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
 }
- 
-<div class="card card-light">
+
+@if (Model.ParentId==null)
+{
+  <div class="card card-light">
       <div asp-validation-summary="ModelOnly"></div>
               <div class="card-header">
-                <h3 class="card-title">Create New Category</h3>
+                <h3 class="card-title">Update Category</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -17,8 +19,36 @@
                       <!-- text input -->
                       <div class="form-group">
                         <label asp-for="@Model.Name"></label>
-                        <input asp-for="@Model.Name" class="form-control" placeholder="Name ...>
-                         <span asp-validation-for="Name"></span>
+                        <input asp-for="@Model.Name" class="form-control" placeholder="Name">                        
+                        <span class="text-danger" asp-validation-for="Name"></span>
+                      </div>
+                    </div>
+                  </div>                
+                
+                 <button id="sbmtBtn" type="submit" class="btn btn-success">Submit</button> 
+                 <a asp-controller="brand" asp-action="index" class="btn btn-danger">Cancel</a>
+                </form>
+                 <a class="btn btn-dark" asp-action="index"> Go Back</a>
+              </div>
+              <!-- /.card-body -->
+    </div>
+}
+else
+{
+    <div class="card card-light">
+      <div asp-validation-summary="ModelOnly"></div>
+              <div class="card-header">
+                <h3 class="card-title">Update Category</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label asp-for="@Model.Name"></label>
+                        <input asp-for="@Model.Name" class="form-control" placeholder="Name">                        
                         <span class="text-danger" asp-validation-for="Name"></span>
                       </div>
                     </div>
@@ -42,6 +72,9 @@
               </div>
               <!-- /.card-body -->
    </div>
+}
+
+
 
 
 <script src="~/admin/plugins/jquery/jquery.min.js"></script>

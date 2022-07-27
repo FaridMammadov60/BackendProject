@@ -1,6 +1,7 @@
 ﻿using BackEndProject.DAL;
 using BackEndProject.Extentions;
 using BackEndProject.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 namespace BackEndProject.Areas.AdminPanel.Controllers
 {
     [Area("adminpanel")]
+    [Authorize(Roles = "SuperAdmin")]
     public class BrandController : Controller
     {
         private readonly AppDbContext _context;

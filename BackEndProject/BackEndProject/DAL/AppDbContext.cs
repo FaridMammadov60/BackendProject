@@ -1,9 +1,10 @@
 ﻿using BackEndProject.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BackEndProject.DAL
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -252,7 +253,7 @@ namespace BackEndProject.DAL
                     BestSeller = true,
                     IsFeatured = false,
                     Title = "Lorem ipsum dolor sit amet",
-                    Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                    Desc = "Lorem ipsum dolor sit amet, consecte",
 
                 },
                 new Product
@@ -270,7 +271,7 @@ namespace BackEndProject.DAL
                     BestSeller = true,
                     IsFeatured = true,
                     Title = "Lorem ipsum dolor sit amet",
-                    Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                    Desc = "Lorem ipsum dolor sit amet, consecte",
 
                 },
                  new Product
@@ -288,7 +289,7 @@ namespace BackEndProject.DAL
                      BestSeller = true,
                      IsFeatured = true,
                      Title = "Lorem ipsum dolor sit amet",
-                     Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                     Desc = "Lorem ipsum dolor sit amet, consecte",
 
                  }
                  ,
@@ -307,7 +308,7 @@ namespace BackEndProject.DAL
                      BestSeller = false,
                      IsFeatured = true,
                      Title = "Lorem ipsum dolor sit amet",
-                     Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                     Desc = "Lorem ipsum dolor sit amet, consecte",
 
                  },
                  new Product
@@ -325,7 +326,7 @@ namespace BackEndProject.DAL
                      BestSeller = false,
                      IsFeatured = false,
                      Title = "Lorem ipsum dolor sit amet",
-                     Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                     Desc = "Lorem ipsum dolor sit amet, consecte",
 
                  },
                  new Product
@@ -343,7 +344,7 @@ namespace BackEndProject.DAL
                      BestSeller = false,
                      IsFeatured = true,
                      Title = "Lorem ipsum dolor sit amet",
-                     Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                     Desc = "Lorem ipsum dolor sit amet, consecte",
 
                  },
                   new Product
@@ -361,7 +362,7 @@ namespace BackEndProject.DAL
                       BestSeller = false,
                       IsFeatured = false,
                       Title = "Lorem ipsum dolor sit amet",
-                      Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                      Desc = "Lorem ipsum dolor sit amet, consecte",
 
                   },
                   new Product
@@ -379,7 +380,7 @@ namespace BackEndProject.DAL
                       BestSeller = false,
                       IsFeatured = false,
                       Title = "Lorem ipsum dolor sit amet",
-                      Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                      Desc = "Lorem ipsum dolor sit amet, consecte",
 
                   },
                   new Product
@@ -397,7 +398,7 @@ namespace BackEndProject.DAL
                       BestSeller = false,
                       IsFeatured = false,
                       Title = "Lorem ipsum dolor sit amet",
-                      Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                      Desc = "Lorem ipsum dolor sit amet, consecte",
 
                   },
                   new Product
@@ -415,7 +416,7 @@ namespace BackEndProject.DAL
                       BestSeller = true,
                       IsFeatured = true,
                       Title = "Lorem ipsum dolor sit amet",
-                      Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                      Desc = "Lorem ipsum dolor sit amet, consecte",
 
                   },
                   new Product
@@ -433,7 +434,7 @@ namespace BackEndProject.DAL
                       BestSeller = true,
                       IsFeatured = true,
                       Title = "Lorem ipsum dolor sit amet",
-                      Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                      Desc = "Lorem ipsum dolor sit amet, consecte",
 
                   },
                   new Product
@@ -451,7 +452,7 @@ namespace BackEndProject.DAL
                       BestSeller = true,
                       IsFeatured = true,
                       Title = "Lorem ipsum dolor sit amet",
-                      Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                      Desc = "Lorem ipsum dolor sit amet, consecte",
 
                   },
                   new Product
@@ -469,7 +470,7 @@ namespace BackEndProject.DAL
                       BestSeller = true,
                       IsFeatured = true,
                       Title = "Lorem ipsum dolor sit amet",
-                      Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                      Desc = "Lorem ipsum dolor sit amet, consecte",
 
                   },
                     new Product
@@ -487,7 +488,7 @@ namespace BackEndProject.DAL
                         BestSeller = true,
                         IsFeatured = true,
                         Title = "Lorem ipsum dolor sit amet",
-                        Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                        Desc = "Lorem ipsum dolor sit amet, consecte",
 
                     },
                      new Product
@@ -505,7 +506,7 @@ namespace BackEndProject.DAL
                          BestSeller = true,
                          IsFeatured = true,
                          Title = "Lorem ipsum dolor sit amet",
-                         Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+                         Desc = "Lorem ipsum dolor sit amet, consecte",
 
                      }
                 );
@@ -734,7 +735,7 @@ namespace BackEndProject.DAL
             //         DisCountPrice = 40.00,
             //         Availability = true,
             //         Title = "Lorem ipsum dolor sit amet",
-            //         Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+            //         Desc = "Lorem ipsum dolor sit amet, consecte",
 
             //     },
             //     new Product
@@ -748,7 +749,7 @@ namespace BackEndProject.DAL
             //         DisCountPrice = 70.00,
             //         Availability = true,
             //         Title = "Lorem ipsum dolor sit amet",
-            //         Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+            //         Desc = "Lorem ipsum dolor sit amet, consecte",
 
             //     },
             //      new Product
@@ -762,7 +763,7 @@ namespace BackEndProject.DAL
             //          DisCountPrice = 30.00,
             //          Availability = true,
             //          Title = "Lorem ipsum dolor sit amet",
-            //          Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+            //          Desc = "Lorem ipsum dolor sit amet, consecte",
 
             //      },
             //     new Product
@@ -776,7 +777,7 @@ namespace BackEndProject.DAL
             //         DisCountPrice = 80.00,
             //         Availability = true,
             //         Title = "Lorem ipsum dolor sit amet",
-            //         Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+            //         Desc = "Lorem ipsum dolor sit amet, consecte",
 
             //     },
             //     new Product
@@ -790,7 +791,7 @@ namespace BackEndProject.DAL
             //         DisCountPrice = 40.00,
             //         Availability = true,
             //         Title = "Lorem ipsum dolor sit amet",
-            //         Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+            //         Desc = "Lorem ipsum dolor sit amet, consecte",
 
             //     },
             //     new Product
@@ -804,7 +805,7 @@ namespace BackEndProject.DAL
             //         DisCountPrice = 70.00,
             //         Availability = true,
             //         Title = "Lorem ipsum dolor sit amet",
-            //         Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+            //         Desc = "Lorem ipsum dolor sit amet, consecte",
 
             //     },
             //      new Product
@@ -818,7 +819,7 @@ namespace BackEndProject.DAL
             //          DisCountPrice = 30.00,
             //          Availability = true,
             //          Title = "Lorem ipsum dolor sit amet",
-            //          Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+            //          Desc = "Lorem ipsum dolor sit amet, consecte",
 
             //      },
             //     new Product
@@ -832,7 +833,7 @@ namespace BackEndProject.DAL
             //         DisCountPrice = 80.00,
             //         Availability = true,
             //         Title = "Lorem ipsum dolor sit amet",
-            //         Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+            //         Desc = "Lorem ipsum dolor sit amet, consecte",
 
             //     },
             //     new Product
@@ -846,7 +847,7 @@ namespace BackEndProject.DAL
             //         DisCountPrice = 40.00,
             //         Availability = true,
             //         Title = "Lorem ipsum dolor sit amet",
-            //         Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+            //         Desc = "Lorem ipsum dolor sit amet, consecte",
 
             //     },
             //     new Product
@@ -860,7 +861,7 @@ namespace BackEndProject.DAL
             //         DisCountPrice = 70.00,
             //         Availability = true,
             //         Title = "Lorem ipsum dolor sit amet",
-            //         Desc = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incidid",
+            //         Desc = "Lorem ipsum dolor sit amet, consecte",
 
             //     }
             // );
