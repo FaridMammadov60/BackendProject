@@ -15,20 +15,18 @@
                     <div class="col-sm-3">
                       <!-- text input -->
                       <div class="form-group">
-                        <label asp-for="@Model.Name"></label>
-                        <input asp-for="@Model.Name" class="form-control" placeholder="Name ...">
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" class="form-control" placeholder="Name ...">
                         <span  class="text-danger" asp-validation-for="Name"></span>
                       </div>
                     </div>
-                  </div>               
-    
-
+                  </div>     
                    <div class="row">
                     <div class="col-sm-3">
                       <!-- text input -->
                       <div class="form-group">
-                        <label asp-for="@Model.IsFeatured"></label><br />
-                        <input  asp-for="@Model.IsFeatured">
+                        <label asp-for="IsFeatured"></label><br />
+                        <input  asp-for="IsFeatured">
                         <span  class="text-danger" asp-validation-for="IsFeatured"></span>
                       </div>
                     </div>
@@ -37,8 +35,8 @@
                     <div class="col-sm-3">
                       <!-- text input -->
                       <div class="form-group">
-                        <label asp-for="@Model.NewArrivle"></label><br />
-                        <input  asp-for="@Model.NewArrivle">
+                        <label asp-for="NewArrivle"></label><br />
+                        <input  asp-for="NewArrivle">
                         <span  class="text-danger" asp-validation-for="NewArrivle"></span>
                       </div>
                     </div>
@@ -47,8 +45,8 @@
                     <div class="col-sm-3">
                       <!-- text input -->
                       <div class="form-group">
-                        <label asp-for="@Model.BestSeller"></label><br />
-                        <input  asp-for="@Model.BestSeller">
+                        <label asp-for="BestSeller"></label><br />
+                        <input  asp-for="BestSeller">
                         <span  class="text-danger" asp-validation-for="BestSeller"></span>
                       </div>
                     </div>
@@ -57,8 +55,8 @@
                     <div class="col-sm-3">
                       <!-- text input -->
                       <div class="form-group">
-                        <label asp-for="@Model.StockCount"></label><br />
-                        <input  asp-for="@Model.StockCount">
+                        <label asp-for="StockCount"></label><br />
+                        <input  asp-for="StockCount">
                         <span  class="text-danger" asp-validation-for="StockCount"></span>
                       </div>
                     </div>
@@ -67,8 +65,8 @@
                     <div class="col-sm-3">
                       <!-- text input -->
                       <div class="form-group">
-                        <label asp-for="@Model.Price"></label><br />
-                        <input  asp-for="@Model.Price">
+                        <label asp-for="Price"></label><br />
+                        <input  asp-for="Price">
                         <span  class="text-danger" asp-validation-for="Price"></span>
                       </div>
                     </div>
@@ -77,8 +75,8 @@
                     <div class="col-sm-3">
                       <!-- text input -->
                       <div class="form-group">
-                        <label asp-for="@Model.DisCountPrice"></label><br />
-                        <input  asp-for="@Model.DisCountPrice">
+                        <label asp-for="DisCountPrice"></label><br />
+                        <input  asp-for="DisCountPrice">
                         <span  class="text-danger" asp-validation-for="DisCountPrice"></span>
                       </div>
                     </div>
@@ -87,8 +85,8 @@
                     <div class="col-sm-3">
                       <!-- text input -->
                       <div class="form-group">
-                        <label asp-for="@Model.TaxPrecent"></label><br />
-                        <input  asp-for="@Model.TaxPrecent">
+                        <label asp-for="TaxPrecent"></label><br />
+                        <input  asp-for="TaxPrecent">
                         <span  class="text-danger" asp-validation-for="TaxPrecent"></span>
                       </div>
                     </div>
@@ -97,8 +95,8 @@
                     <div class="col-sm-3">
                       <!-- text input -->
                       <div class="form-group">
-                        <label asp-for="@Model.Title"></label><br />
-                        <input  asp-for="@Model.Title">
+                        <label asp-for="Title"></label><br />
+                        <input  asp-for="Title">
                         <span  class="text-danger" asp-validation-for="Title"></span>
                       </div>
                     </div>
@@ -107,8 +105,8 @@
                     <div class="col-sm-3">
                       <!-- text input -->
                       <div class="form-group">
-                        <label asp-for="@Model.Desc"></label><br />
-                        <input  asp-for="@Model.Desc">
+                        <label asp-for="Desc"></label><br />
+                        <input  asp-for="Desc">
                         <span  class="text-danger" asp-validation-for="Desc"></span>
                       </div>
                     </div>
@@ -119,7 +117,7 @@
                       <div class="form-group">
                         <label asp-for="CategoryId">Category Select</label>
                        
-                        <select id="select" asp-for="CategoryId" asp-items="@ViewBag.Categories" class="custom-select">
+                        <select asp-for="CategoryId" asp-items="@ViewBag.Categories" class="custom-select">
                             <option selected>Open this category menu</option>
                         </select>
                         <span  class="text-danger" asp-validation-for="CategoryId"></span>
@@ -130,30 +128,44 @@
                     <div class="col-sm-3">
                       <!-- text input -->
                       <div class="form-group">
-                        <label asp-for="BrandId">Brand Select</label>
-                       
-                        <select id="select" asp-for="BrandId" asp-items="@ViewBag.Brands" class="custom-select">
+                        <label asp-for="BrandId">Brand Select</label>                       
+                        <select asp-for="BrandId" asp-items="@ViewBag.Brands" class="custom-select">
                             <option selected>Open this brand menu</option>
                         </select>
                         <span  class="text-danger" asp-validation-for="BrandId"></span>
                       </div>
                     </div>
-                  </div>                
+                  </div>                 
+                
                   <div class="row">
                     <div class="col-sm-3">
                       <!-- text input -->
                       <div class="form-group">
-                        <label asp-for="@Model.ProductImage"></label><br />
-                        <input  asp-for="@Model.ProductImage">
-                        <span  class="text-danger" asp-validation-for="ProductImage"></span>
+                        <label asp-for="TagId">Tag Select</label>                       
+                        <select multiple asp-for="TagId" asp-items="@ViewBag.Tag" class="custom-select">
+                            <option selected>Open this brand menu</option>
+                        </select>
+                        <span  class="text-danger" asp-validation-for="TagId"></span>
+                      </div>
+                    </div>
+                  </div>                 
+
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label asp-for="Image"></label><br />
+                        <input multiple asp-for="Image">
+                        <span class="text-danger" asp-validation-for="Image"></span>
                       </div>
                     </div>
                   </div>
                  <button type="submit" class="btn btn-success">Submit</button> 
-                 <a asp-controller="brand" asp-action="index" class="btn btn-danger">Cancel</a>
+                 <a asp-controller="product" asp-action="index" class="btn btn-danger">Cancel</a>
                 </form>
 
                  <a class="btn btn-dark" asp-action="index"> Go Back</a>
+                 <button type="submit">ok</button>
               </div>
               <!-- /.card-body -->
             </div>
@@ -178,6 +190,8 @@
        } );
  </script>
 }
+
+
 
 
 

@@ -6,7 +6,7 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
     [Authorize(Roles = "SuperAdmin")]
     [Area("AdminPanel")]
     public class DashboardController : Controller
-    {       
+    {
 
         public IActionResult Index()
         {

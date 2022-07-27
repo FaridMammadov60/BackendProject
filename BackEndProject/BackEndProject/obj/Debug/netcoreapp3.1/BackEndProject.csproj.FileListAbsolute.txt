@@ -268,4 +268,6 @@ C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\bin\D
 C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Views\Account\Registr.cshtml.g.cs
 C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Product\Index.cshtml.g.cs
+C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Product\Detail.cshtml.g.cs
+C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Product\Update.cshtml.g.cs
 C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Product\Create.cshtml.g.cs

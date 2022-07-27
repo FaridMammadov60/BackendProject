@@ -58,7 +58,7 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.CategoriesCreate = new SelectList(_context.Categories.Where(p=>p.ParentId==null).ToList(), "Id", "Name");
+            ViewBag.CategoriesCreate = new SelectList(_context.Categories.Where(p => p.ParentId == null).ToList(), "Id", "Name");
 
             return View();
         }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BackEndProject.Models
 {
@@ -31,5 +33,11 @@ namespace BackEndProject.Models
         public List<OrderItem> OrderItems { get; set; }
         public List<BasketItem> BasketItems { get; set; }
         public bool IsDeleted { get; set; }
+
+        [NotMapped]
+        public List<int> TagId { get; set; }
+
+        [NotMapped]
+        public IFormFile Image { get; set; }
     }
 }

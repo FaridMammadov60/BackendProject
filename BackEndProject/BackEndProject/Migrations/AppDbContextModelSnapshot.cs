@@ -1238,7 +1238,34 @@ namespace BackEndProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tag");
+                    b.ToTable("Tags");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Tag1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Tag2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Tag3"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Tag4"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Tag5"
+                        });
                 });
 
             modelBuilder.Entity("BackEndProject.Models.User", b =>

@@ -725,147 +725,33 @@ namespace BackEndProject.DAL
                   ProductId = 10
               }
              );
-            //     new Product
-            //     {
-            //         Id = 3,
-            //         ImageUrl = "product-3.jpg",
-            //         Name = "Rexpo Sports Premium Shoes",
-            //         CategoryId = 3,
-            //         Count = 35,
-            //         Price = 50.00,
-            //         DisCountPrice = 40.00,
-            //         Availability = true,
-            //         Title = "Lorem ipsum dolor sit amet",
-            //         Desc = "Lorem ipsum dolor sit amet, consecte",
-
-            //     },
-            //     new Product
-            //     {
-            //         Id = 4,
-            //         ImageUrl = "product-4.jpg",
-            //         Name = "Primitive Fabric Premium Shoes",
-            //         CategoryId = 4,
-            //         Count = 35,
-            //         Price = 75.00,
-            //         DisCountPrice = 70.00,
-            //         Availability = true,
-            //         Title = "Lorem ipsum dolor sit amet",
-            //         Desc = "Lorem ipsum dolor sit amet, consecte",
-
-            //     },
-            //      new Product
-            //      {
-            //          Id = 5,
-            //          ImageUrl = "product-5.jpg",
-            //          Name = "Primitive Leather slipper",
-            //          CategoryId = 5,
-            //          Count = 35,
-            //          Price = 40.00,
-            //          DisCountPrice = 30.00,
-            //          Availability = true,
-            //          Title = "Lorem ipsum dolor sit amet",
-            //          Desc = "Lorem ipsum dolor sit amet, consecte",
-
-            //      },
-            //     new Product
-            //     {
-            //         Id = 6,
-            //         ImageUrl = "product-6.jpg",
-            //         Name = "Primitive Mens Premium Shoes",
-            //         CategoryId = 1,
-            //         Count = 35,
-            //         Price = 90.00,
-            //         DisCountPrice = 80.00,
-            //         Availability = true,
-            //         Title = "Lorem ipsum dolor sit amet",
-            //         Desc = "Lorem ipsum dolor sit amet, consecte",
-
-            //     },
-            //     new Product
-            //     {
-            //         Id = 7,
-            //         ImageUrl = "product-7.jpg",
-            //         Name = "Primitive Womans Premium Shoes",
-            //         CategoryId = 2,
-            //         Count = 35,
-            //         Price = 50.00,
-            //         DisCountPrice = 40.00,
-            //         Availability = true,
-            //         Title = "Lorem ipsum dolor sit amet",
-            //         Desc = "Lorem ipsum dolor sit amet, consecte",
-
-            //     },
-            //     new Product
-            //     {
-            //         Id = 8,
-            //         ImageUrl = "product-8.jpg",
-            //         Name = "Primitive Sports Premium Shoes",
-            //         CategoryId = 3,
-            //         Count = 35,
-            //         Price = 75.00,
-            //         DisCountPrice = 70.00,
-            //         Availability = true,
-            //         Title = "Lorem ipsum dolor sit amet",
-            //         Desc = "Lorem ipsum dolor sit amet, consecte",
-
-            //     },
-            //      new Product
-            //      {
-            //          Id = 9,
-            //          ImageUrl = "product-9.jpg",
-            //          Name = "Primitive Fabric Premium Shoes",
-            //          CategoryId = 4,
-            //          Count = 35,
-            //          Price = 40.00,
-            //          DisCountPrice = 30.00,
-            //          Availability = true,
-            //          Title = "Lorem ipsum dolor sit amet",
-            //          Desc = "Lorem ipsum dolor sit amet, consecte",
-
-            //      },
-            //     new Product
-            //     {
-            //         Id = 10,
-            //         ImageUrl = "product-10.jpg",
-            //         Name = "Primitive Leather Premium Shoes",
-            //         CategoryId = 5,
-            //         Count = 35,
-            //         Price = 90.00,
-            //         DisCountPrice = 80.00,
-            //         Availability = true,
-            //         Title = "Lorem ipsum dolor sit amet",
-            //         Desc = "Lorem ipsum dolor sit amet, consecte",
-
-            //     },
-            //     new Product
-            //     {
-            //         Id = 11,
-            //         ImageUrl = "product-11.jpg",
-            //         Name = "Primitive Womans Premium Shoes",
-            //         CategoryId = 2,
-            //         Count = 35,
-            //         Price = 50.00,
-            //         DisCountPrice = 40.00,
-            //         Availability = true,
-            //         Title = "Lorem ipsum dolor sit amet",
-            //         Desc = "Lorem ipsum dolor sit amet, consecte",
-
-            //     },
-            //     new Product
-            //     {
-            //         Id = 12,
-            //         ImageUrl = "product-12.jpg",
-            //         Name = "Primitive Sports Premium Shoes",
-            //         CategoryId = 3,
-            //         Count = 35,
-            //         Price = 75.00,
-            //         DisCountPrice = 70.00,
-            //         Availability = true,
-            //         Title = "Lorem ipsum dolor sit amet",
-            //         Desc = "Lorem ipsum dolor sit amet, consecte",
-
-            //     }
-            // );
+            modelBuilder.Entity<Tag>().HasData(
+                new Tag
+                {
+                    Id = 1,
+                    Name = "Tag1"
+                },
+                new Tag
+                {
+                    Id = 2,
+                    Name = "Tag2"
+                },
+                new Tag
+                {
+                    Id = 3,
+                    Name = "Tag3"
+                },
+                new Tag
+                {
+                    Id = 4,
+                    Name = "Tag4"
+                },
+                new Tag
+                {
+                    Id = 5,
+                    Name = "Tag5"
+                }
+            );
 
         }
     }
