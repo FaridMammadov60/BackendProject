@@ -267,3 +267,5 @@ C:\Users\farid\Desktop\Lahiye\BackEndProject\BackEndProject\BackEndProject\obj\D
 C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Views\Account\Registr.cshtml.g.cs
 C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
+C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Product\Index.cshtml.g.cs
+C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Product\Create.cshtml.g.cs

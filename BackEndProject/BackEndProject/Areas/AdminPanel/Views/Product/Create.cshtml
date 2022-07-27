@@ -1,0 +1,185 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
+}
+
+  <div class="card card-light">
+              <div class="card-header">
+                <h3 class="card-title">Create New Product</h3>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label asp-for="@Model.Name"></label>
+                        <input asp-for="@Model.Name" class="form-control" placeholder="Name ...">
+                        <span  class="text-danger" asp-validation-for="Name"></span>
+                      </div>
+                    </div>
+                  </div>               
+    
+
+                   <div class="row">
+                    <div class="col-sm-3">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label asp-for="@Model.IsFeatured"></label><br />
+                        <input  asp-for="@Model.IsFeatured">
+                        <span  class="text-danger" asp-validation-for="IsFeatured"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label asp-for="@Model.NewArrivle"></label><br />
+                        <input  asp-for="@Model.NewArrivle">
+                        <span  class="text-danger" asp-validation-for="NewArrivle"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label asp-for="@Model.BestSeller"></label><br />
+                        <input  asp-for="@Model.BestSeller">
+                        <span  class="text-danger" asp-validation-for="BestSeller"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label asp-for="@Model.StockCount"></label><br />
+                        <input  asp-for="@Model.StockCount">
+                        <span  class="text-danger" asp-validation-for="StockCount"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label asp-for="@Model.Price"></label><br />
+                        <input  asp-for="@Model.Price">
+                        <span  class="text-danger" asp-validation-for="Price"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label asp-for="@Model.DisCountPrice"></label><br />
+                        <input  asp-for="@Model.DisCountPrice">
+                        <span  class="text-danger" asp-validation-for="DisCountPrice"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label asp-for="@Model.TaxPrecent"></label><br />
+                        <input  asp-for="@Model.TaxPrecent">
+                        <span  class="text-danger" asp-validation-for="TaxPrecent"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label asp-for="@Model.Title"></label><br />
+                        <input  asp-for="@Model.Title">
+                        <span  class="text-danger" asp-validation-for="Title"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label asp-for="@Model.Desc"></label><br />
+                        <input  asp-for="@Model.Desc">
+                        <span  class="text-danger" asp-validation-for="Desc"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label asp-for="CategoryId">Category Select</label>
+                       
+                        <select id="select" asp-for="CategoryId" asp-items="@ViewBag.Categories" class="custom-select">
+                            <option selected>Open this category menu</option>
+                        </select>
+                        <span  class="text-danger" asp-validation-for="CategoryId"></span>
+                      </div>
+                    </div>
+                  </div>
+                   <div class="row">
+                    <div class="col-sm-3">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label asp-for="BrandId">Brand Select</label>
+                       
+                        <select id="select" asp-for="BrandId" asp-items="@ViewBag.Brands" class="custom-select">
+                            <option selected>Open this brand menu</option>
+                        </select>
+                        <span  class="text-danger" asp-validation-for="BrandId"></span>
+                      </div>
+                    </div>
+                  </div>                
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label asp-for="@Model.ProductImage"></label><br />
+                        <input  asp-for="@Model.ProductImage">
+                        <span  class="text-danger" asp-validation-for="ProductImage"></span>
+                      </div>
+                    </div>
+                  </div>
+                 <button type="submit" class="btn btn-success">Submit</button> 
+                 <a asp-controller="brand" asp-action="index" class="btn btn-danger">Cancel</a>
+                </form>
+
+                 <a class="btn btn-dark" asp-action="index"> Go Back</a>
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+<script src="~/admin/plugins/jquery/jquery.min.js"></script>
+
+@section Scripts{
+<script src="~/admin/dist/js/main.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+<!-- Jquery Validation cdn -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+<!-- Asp Jquery Validation cdn-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+ <script>
+ ClassicEditor
+       .create( document.querySelector( '#Description' ) )
+       .then( editor => {
+       console.log( editor );
+       } )
+      .catch( error => {
+       console.error( error );
+       } );
+ </script>
+}
+
+
+
+
+

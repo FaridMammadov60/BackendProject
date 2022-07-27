@@ -18,6 +18,7 @@ namespace BackEndProject.DAL
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Bio> Bios { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<Tag> Tags { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
