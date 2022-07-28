@@ -115,8 +115,7 @@
                   <thead>
                   <tr>
                     <th>No</th>
-                    <th>Name</th>
-                    <th>Image</th>
+                    <th>Name</th>                   
                     <th>Setting</th>
                   </tr>
                   </thead>
@@ -129,28 +128,15 @@
                                <tr>
                               <td>@dno</td>
                               <td>@item.Name</td>
-                             @foreach (var shekil in item.ProductImage)
-                                 {
-                                  <td><img width="200" height="150" src="~/assets/images/product/@shekil.ImageUrl" > </td>
-                                    break;
-                                 }
-                              <td>
-                                  <a class="btn btn-secondary" asp-action="update" asp-route-id="@item.Id"> <box-icon name='edit-alt'></box-icon></a>
-                                   <a class="btn btn-primary" asp-action="detail" asp-route-id="@item.Id"> <box-icon name='message-rounded-edit'></box-icon></a>
+                            
+                              <td>                                 
                                     <a class="btn btn-danger" asp-action="restore" asp-route-id="@item.Id"><box-icon name='reset'></box-icon></a>
                               </td> 
                              </tr>
                           }
                       }
                   </tbody>
-                 @* <tfoot>
-                  <tr>
-                   <th>No</th>
-                    <th>Name</th>
-                    <th>Desc</th>
-                    <th>Setting</th>
-                  </tr>
-                  </tfoot>*@
+               
                 </table>
               </div>
               <!-- /.card-body -->

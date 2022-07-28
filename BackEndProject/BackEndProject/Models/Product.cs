@@ -38,6 +38,6 @@ namespace BackEndProject.Models
         public List<int> TagId { get; set; }
 
         [NotMapped]
-        public IFormFile Image { get; set; }
+        public List<IFormFile> Image { get; set; }
     }
 }

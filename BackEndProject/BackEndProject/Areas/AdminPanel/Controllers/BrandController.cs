@@ -49,6 +49,11 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
             if (id == null) return NotFound();
             Brand dbBrand = await _context.Brands.FirstOrDefaultAsync(b => b.Id == id);
             if (dbBrand == null) return NotFound();
+            Brand dbbrandName = await _context.Brands.Where(d => d.IsDeleted == false).FirstOrDefaultAsync(b => b.Name == dbBrand.Name);
+            if (dbbrandName != null)
+            {
+                dbbrandName.IsDeleted = true;
+            }
             dbBrand.IsDeleted = false;
             await _context.SaveChangesAsync();
             return RedirectToAction("index");

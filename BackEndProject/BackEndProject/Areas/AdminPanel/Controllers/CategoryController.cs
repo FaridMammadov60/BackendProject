@@ -51,6 +51,11 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
             if (id == null) return NotFound();
             Category dbCategory = await _context.Categories.FirstOrDefaultAsync(b => b.Id == id);
             if (dbCategory == null) return NotFound();
+            Category dbCategoryName = await _context.Categories.Where(d => d.IsDeleted == false).FirstOrDefaultAsync(b => b.Name == dbCategory.Name);
+            if (dbCategoryName != null)
+            {
+                dbCategoryName.IsDeleted = true;
+            }
             dbCategory.IsDeleted = false;
             await _context.SaveChangesAsync();
             return RedirectToAction("index");

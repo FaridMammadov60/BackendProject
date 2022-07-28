@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -42,47 +43,64 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Product product)
         {
-            Product dbProduct = await _context.Products.FindAsync(product.Id);
+           
             Product dbProductName = new Product();
             if (!ModelState.IsValid)
             {
                 return View();
             }
+
             if (product.Name == null)
             {
                 ModelState.AddModelError("Name", "Category Name Cannot be Empty!");
                 return View();
             }
-            else
+            bool existProductName = _context.Products.Where(c => c.IsDeleted != true).Any(c => c.Name.ToLower().Trim() == product.Name.ToLower().Trim());
+            if (existProductName)
             {
-                dbProductName = await _context.Products.FirstOrDefaultAsync(p => p.Name.Trim().ToLower() == product.Name.Trim().ToLower());
+                ModelState.AddModelError("Name", "The name of product is exist");
+                return View();
             }
-            if (dbProductName != null)
+
+
+            List<ProductImage> images = new List<ProductImage>();
+            if (product.Image == null) return BadRequest();
+            foreach (var item in product.Image)
             {
-                if (dbProductName.Name.Trim().ToLower() == product.Name.Trim().ToLower())
+                if (item == null)
                 {
-                    ModelState.AddModelError("Name", "This Name Is already Exist!");
+                    ModelState.AddModelError("Photo", "Don't be Empty");
                     return View();
                 }
-            }
+                if (!item.IsImage())
+                {
+                    ModelState.AddModelError("Photo", "Only Image Files");
+                    return View();
+                }
 
-            if (product.Image == null)
-            {
-                ModelState.AddModelError("Image", "Select Image");
-                return View();
-            }
+                if (item.ValidSize(2000))
+                {
+                    ModelState.AddModelError("Photo", "Size oversize");
+                    return View();
+                }
 
-            if (!product.Image.IsImage())
-            {
-                ModelState.AddModelError("Image", "Only Image Files");
-                return View();
-            }
+                ProductImage image = new ProductImage();
+                image.ImageUrl = item.SaveImage(_env, "assets/images/product");
 
-            if (product.Image.ValidSize(1000))
-            {
-                ModelState.AddModelError("Image", "Size is higher max 1mb");
-                return View();
-            }
+                if (product.Image.Count == 1)
+                {
+                    image.IsMain = true;
+                }
+                else
+                {
+                    for (int i = 0; i < images.Count; i++)
+                    {
+                        images[0].IsMain = true;
+                    }
+                }
+                images.Add(image);
+            }           
+
 
             Product newProduct = new Product()
             {
@@ -99,17 +117,8 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
                 BrandId = product.BrandId,
                 CreateAt = System.DateTime.Now,
                 InStock = true,
-                Image = product.Image
+                ProductImage = images
             };
-
-            List<ProductImage> newProductImages = new List<ProductImage>();
-            ProductImage newProductImage = new ProductImage()
-            {
-                ImageUrl = product.Image.SaveImage(_env, "assets/images/product"),
-                ProductId = newProduct.Id
-            };
-            newProductImages.Add(newProductImage);
-            newProduct.ProductImage = newProductImages;
 
             List<ProductTag> productTags = new List<ProductTag>();
             foreach (int item in product.TagId)
@@ -144,6 +153,12 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
             if (id == null) return NotFound();
             Product dbProduct = await _context.Products.FirstOrDefaultAsync(b => b.Id == id);
             if (dbProduct == null) return NotFound();
+            Product dbproductName = await _context.Products.Where(d=>d.IsDeleted==false).FirstOrDefaultAsync(b => b.Name == dbProduct.Name);
+            if (dbproductName != null)
+            {
+                dbproductName.IsDeleted = true;
+            }
+            
             dbProduct.IsDeleted = false;
             await _context.SaveChangesAsync();
             return RedirectToAction("index");
@@ -173,76 +188,136 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(Product product)
         {
-            Product dbProduct = await _context.Products.FindAsync(product.Id);
-            Product dbProductName = new Product();
-          
             if (!ModelState.IsValid)
             {
                 return View();
             }
-            if (product.Name == null)
-            {
-                ModelState.AddModelError("Name", "Brand Name Cannot be Empty!");
-                return View();
-            }
-            else
-            {
-                dbProductName = await _context.Products.FirstOrDefaultAsync(p => p.Name.Trim().ToLower() == product.Name.Trim().ToLower());
-            }
-            if (dbProductName != null)
-            {
-                if (dbProductName.Name.Trim().ToLower() != dbProduct.Name.Trim().ToLower())
-                {
-                    ModelState.AddModelError("Name", "This Name Is already Exist!");
-                    return View();
-                }
-            }
+            Product dbProduct = await _context.Products
+                .Include(p => p.ProductImage)
+                .Include(p => p.ProductTags)
+                .ThenInclude(t => t.Tag)
+                .Include(b => b.Brand)
+                .Include(c => c.Category)
+                .FirstOrDefaultAsync(b => b.Id == product.Id);
             if (dbProduct == null)
             {
                 return View();
             }
-            
-                             
-            
+            List<ProductImage> images = new List<ProductImage>();
+            Product dbProductName = _context.Products.FirstOrDefault(c => c.Name.ToLower().Trim() == product.Name.ToLower().Trim());
+            string path = "";
+            if (product.Image == null)
+            {
+                foreach (var item in dbProduct.ProductImage)
+                {
+                    item.ImageUrl = item.ImageUrl;
+                }
+            }
             else
             {
-                if (!product.Image.IsImage())
+                foreach (var item in product.Image)
                 {
-                    ModelState.AddModelError("Photo", "Only Image Files");
-                    return View();
+                    if (item == null)
+                    {
+                        ModelState.AddModelError("Photo", "Don't be Empty");
+                        return View();
+                    }
+                    if (!item.IsImage())
+                    {
+                        ModelState.AddModelError("Photo", "Only Image Files");
+                        return View();
+                    }
+
+                    if (item.ValidSize(2000))
+                    {
+                        ModelState.AddModelError("Photo", "Size oversize");
+                        return View();
+                    }
+                    ProductImage image = new ProductImage();
+                    image.ImageUrl = item.SaveImage(_env, "assets/images/product");
+
+                    if (product.Image.Count == 1)
+                    {
+                        image.IsMain = true;
+                    }
+                    else
+                    {
+                        for (int i = 0; i < images.Count; i++)
+                        {
+                            images[0].IsMain = true;
+                        }
+                    }
+                    images.Add(image);
                 }
 
-                if (product.Image.ValidSize(1000))
+                foreach (var item in product.Image)
                 {
-                    ModelState.AddModelError("Photo", "Size is higher max 1mb");
-                    return View();
-                }
-                //string oldImg = dbProduct.ImageUrl;
-                //if (oldImg != null)
-                //{
-                //    path = Path.Combine(_env.WebRootPath, "assets/images/product", oldImg);
-                //}
-               
-                else return NotFound();
+                    if (!item.IsImage())
+                    {
+                        ModelState.AddModelError("Photo", "Only Image Files");
+                        return View();
+                    }
 
-                //dbProduct.ImageUrl = product.Image.SaveImage(_env, "assets/images/product");
+                    if (item.ValidSize(1000))
+                    {
+                        ModelState.AddModelError("Photo", "Size is higher max 1mb");
+                        return View();
+                    }
+                }
             }
 
-            dbProduct.Name = product.Name;
-            dbProduct.IsFeatured = product.IsFeatured;
-            dbProduct.BestSeller = product.BestSeller;
-            dbProduct.NewArrivle = product.NewArrivle;
-            dbProduct.StockCount = product.StockCount;
-            dbProduct.Price = product.Price;
-            dbProduct.DisCountPrice = product.DisCountPrice;
-            dbProduct.Title = product.Title;
-            dbProduct.Desc = product.Desc;
-            dbProduct.CategoryId = product.CategoryId;
-            dbProduct.BrandId = product.BrandId;
-            dbProduct.InStock = product.InStock;
-            dbProduct.Image = product.Image;
-            dbProduct.UpdateAt = System.DateTime.Now;
+            foreach (var item in dbProduct.ProductImage)
+            {
+                if (item.ImageUrl != null)
+                {
+                    path = Path.Combine(_env.WebRootPath, "assets/images/product", item.ImageUrl);
+                }
+            }
+            if (path != null)
+            {
+                Helper.Helpers.DeleteImage(path);
+            }
+            else return NotFound();
 
+            if (dbProductName != null)
+            {
+                if (dbProduct.Name != dbProduct.Name)
+                {
+                    ModelState.AddModelError("Name", "This Name already was taken");
+                    return View();
+                }
+            }
+            if (product.TagId == null)
+            {
+                foreach (var item1 in dbProduct.ProductTags)
+                {
+                    item1.TagId = item1.TagId;
+                }
+            }
+            else
+            {
+                List<ProductTag> productTags = new List<ProductTag>();
+                foreach (int item in product.TagId)
+                {
+                    ProductTag productTag = new ProductTag();
+                    productTag.TagId = item;
+                    productTag.ProductId = dbProduct.Id;
+                    productTags.Add(productTag);
+                }
+                dbProduct.ProductTags = productTags;
+            }
+
+
+            dbProduct.Name = product.Name;
+            dbProduct.Price = product.Price;
+            dbProduct.ProductImage = images;
+            dbProduct.StockCount = product.StockCount;
+            dbProduct.IsDeleted = false;
+            dbProduct.BestSeller = true;
+            dbProduct.IsFeatured = false;
+            
+            dbProduct.Desc = product.Desc;
+           // dbProduct.UptadeAt = System.DateTime.Now;
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index");
