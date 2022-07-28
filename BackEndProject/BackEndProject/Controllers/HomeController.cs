@@ -22,12 +22,13 @@ namespace BackEndProject.Controllers
             homeVM.SliderContents = _context.SliderContents.Include(p => p.Slider).ToList();
             homeVM.Banners = _context.Banners.ToList();
             homeVM.Categories = _context.Categories.Include(p => p.Children).Include(p => p.Products).ToList();
-            homeVM.Products = _context.Products.Include(p => p.ProductImage).ToList();
+            homeVM.Products = _context.Products.Include(p => p.ProductImage).Include(p => p.Category).ToList();
             homeVM.ProductImages = _context.ProductImages.Include(p => p.Product).ToList();
             homeVM.Brands = _context.Brands.ToList();
             //homeVM.Bios = _context.Bios
             return View(homeVM);
         }
+
         public IActionResult SearchProduct(string search)
         {
             List<Product> products = _context.Products
@@ -37,7 +38,7 @@ namespace BackEndProject.Controllers
                 .Contains(search.ToLower()))
                 .Take(10)
                 .ToList();
-            return PartialView("_SearchPartial", products);
+            return PartialView("SearchPartial", products);
         }
 
     }

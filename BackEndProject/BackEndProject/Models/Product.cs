@@ -35,7 +35,7 @@ namespace BackEndProject.Models
         public bool IsDeleted { get; set; }
 
         [NotMapped]
-        public List<int> TagId { get; set; }
+        public List<int> TagPId { get; set; }
 
         [NotMapped]
         public List<IFormFile> Image { get; set; }

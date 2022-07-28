@@ -8,23 +8,8 @@ $(function () {
     $(window).on('load', function(event) {
         $('#preloader').delay(500).fadeOut(500);
     });
-    
-        //search
-    $(document).on("keyup", "#input-search", function () {
-        //alert("test");
-            let inputValue = $(this).val();
-            $("#searchList li").slice(1).remove();
-        $.ajax({
-                url: "home/searchProduct?search=" + inputValue,
-                method: "get",
-                success: function (res) {
-                    $("#searchList").append(res);
-                    alert("ok");
-                }
-            })
-       
-        })
-          
+      
+   
 
     //===== Sticky
     

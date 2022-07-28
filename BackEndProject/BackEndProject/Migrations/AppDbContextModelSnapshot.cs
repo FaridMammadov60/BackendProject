@@ -737,13 +737,13 @@ namespace BackEndProject.Migrations
                             Id = 6,
                             BestSeller = false,
                             BrandId = 1,
-                            CategoryId = 11,
+                            CategoryId = 1,
                             Desc = "Lorem ipsum dolor sit amet, consecte",
                             DisCountPrice = 180.0,
                             InStock = true,
                             IsDeleted = false,
                             IsFeatured = true,
-                            Name = "Iphone 12 Pro",
+                            Name = "Comp",
                             NewArrivle = true,
                             Price = 190.0,
                             StockCount = 35,
@@ -910,6 +910,24 @@ namespace BackEndProject.Migrations
                             Price = 690.0,
                             StockCount = 35,
                             TaxPrecent = 8.0,
+                            Title = "Lorem ipsum dolor sit amet"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            BestSeller = false,
+                            BrandId = 1,
+                            CategoryId = 11,
+                            Desc = "Lorem ipsum dolor sit amet, consecte",
+                            DisCountPrice = 180.0,
+                            InStock = true,
+                            IsDeleted = false,
+                            IsFeatured = true,
+                            Name = "Iphone 12 Pro",
+                            NewArrivle = true,
+                            Price = 190.0,
+                            StockCount = 35,
+                            TaxPrecent = 7.0,
                             Title = "Lorem ipsum dolor sit amet"
                         });
                 });

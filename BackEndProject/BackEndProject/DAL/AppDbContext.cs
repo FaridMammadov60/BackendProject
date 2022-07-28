@@ -333,8 +333,8 @@ namespace BackEndProject.DAL
                  new Product
                  {
                      Id = 6,
-                     Name = "Iphone 12 Pro",
-                     CategoryId = 11,
+                     Name = "Comp",
+                     CategoryId = 1,
                      BrandId = 1,
                      StockCount = 35,
                      Price = 190.00,
@@ -509,7 +509,25 @@ namespace BackEndProject.DAL
                          Title = "Lorem ipsum dolor sit amet",
                          Desc = "Lorem ipsum dolor sit amet, consecte",
 
-                     }
+                     },
+                         new Product
+                         {
+                             Id = 16,
+                             Name = "Iphone 12 Pro",
+                             CategoryId = 11,
+                             BrandId = 1,
+                             StockCount = 35,
+                             Price = 190.00,
+                             DisCountPrice = 180.00,
+                             TaxPrecent = 7.00,
+                             InStock = true,
+                             NewArrivle = true,
+                             BestSeller = false,
+                             IsFeatured = true,
+                             Title = "Lorem ipsum dolor sit amet",
+                             Desc = "Lorem ipsum dolor sit amet, consecte",
+
+                         }
                 );
             modelBuilder.Entity<Brand>().HasData(
               new Brand

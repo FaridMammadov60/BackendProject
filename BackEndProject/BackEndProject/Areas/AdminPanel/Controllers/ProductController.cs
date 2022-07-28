@@ -43,7 +43,7 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Product product)
         {
-           
+
             Product dbProductName = new Product();
             if (!ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
                     }
                 }
                 images.Add(image);
-            }           
+            }
 
 
             Product newProduct = new Product()
@@ -121,7 +121,7 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
             };
 
             List<ProductTag> productTags = new List<ProductTag>();
-            foreach (int item in product.TagId)
+            foreach (int item in product.TagPId)
             {
                 ProductTag productTag = new ProductTag();
                 productTag.TagId = item;
@@ -153,12 +153,12 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
             if (id == null) return NotFound();
             Product dbProduct = await _context.Products.FirstOrDefaultAsync(b => b.Id == id);
             if (dbProduct == null) return NotFound();
-            Product dbproductName = await _context.Products.Where(d=>d.IsDeleted==false).FirstOrDefaultAsync(b => b.Name == dbProduct.Name);
+            Product dbproductName = await _context.Products.Where(d => d.IsDeleted == false).FirstOrDefaultAsync(b => b.Name == dbProduct.Name);
             if (dbproductName != null)
             {
                 dbproductName.IsDeleted = true;
             }
-            
+
             dbProduct.IsDeleted = false;
             await _context.SaveChangesAsync();
             return RedirectToAction("index");
@@ -287,7 +287,7 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
                     return View();
                 }
             }
-            if (product.TagId == null)
+            if (product.TagPId == null)
             {
                 foreach (var item1 in dbProduct.ProductTags)
                 {
@@ -297,7 +297,7 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
             else
             {
                 List<ProductTag> productTags = new List<ProductTag>();
-                foreach (int item in product.TagId)
+                foreach (int item in product.TagPId)
                 {
                     ProductTag productTag = new ProductTag();
                     productTag.TagId = item;
@@ -315,9 +315,9 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
             dbProduct.IsDeleted = false;
             dbProduct.BestSeller = true;
             dbProduct.IsFeatured = false;
-            
+
             dbProduct.Desc = product.Desc;
-           // dbProduct.UptadeAt = System.DateTime.Now;
+            // dbProduct.UptadeAt = System.DateTime.Now;
             await _context.SaveChangesAsync();
 
             return RedirectToAction("Index");

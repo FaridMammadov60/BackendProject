@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Index";
     int ShekilCount = 0;
+    int ShekilSelect = 0;
 }
 
     <!--====== Slider Part Start ======-->
@@ -130,7 +131,7 @@
                                     <div class="product-image">                                      
                                         
                                         @foreach (var shekil in item.ProductImage)
-                                        {                                           
+                                        { 
                                            if (item.ProductImage.Count==1)
                                             {
                                              <a href="single-product.html">
@@ -155,7 +156,7 @@
                                                                                    
                                             }                                       
                                         <ul class="product-meta">
-                                            <li><a href="#"><i class="icon ion-bag"></i></a></li>
+                                            <li><a asp-controller="basket" asp-action="additem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
                                             <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
                                             <li><a href="#"><i class="icon ion-android-options"></i></a></li>
                                             <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
@@ -177,19 +178,18 @@
                                     </div>
                                 </div> <!-- single product -->
 
+                               
                                   <div class="single-product mt-30">
                                     <div class="product-image">                                      
                                         
-                                        @foreach (var shekil in item.ProductImage)
+                                        @foreach (var shekil in item.ProductImage.OrderBy(p=>p.IsMain))
                                         {
-                                            if (item.ProductImage.Count==1)
-                                            {
-                                             <a href="single-product.html">
+                                          <a href="single-product.html">
+                                            @if (item.ProductImage.Count==1)
+                                            {                                             
                                                 <img class="first-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
-                                                </a>
-                                                break;
-                                            }
-                                            <a href="single-product.html">
+                                                 break;
+                                            }                                            
                                                 @if (ShekilCount==0)
                                                 {
                                                     <img class="first-image" src="assets/images/product/@shekil.ImageUrl" alt="product">
@@ -205,7 +205,7 @@
                                             </a>                                          
                                         }                                       
                                         <ul class="product-meta">
-                                            <li><a href="#"><i class="icon ion-bag"></i></a></li>
+                                            <li><a asp-controller="basket" asp-action="additem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
                                             <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
                                             <li><a href="#"><i class="icon ion-android-options"></i></a></li>
                                             <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
@@ -269,7 +269,7 @@
                                             </a>                                          
                                         }                                       
                                         <ul class="product-meta">
-                                            <li><a href="#"><i class="icon ion-bag"></i></a></li>
+                                            <li><a asp-controller="basket" asp-action="additem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
                                             <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
                                             <li><a href="#"><i class="icon ion-android-options"></i></a></li>
                                             <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
@@ -319,7 +319,7 @@
                                             </a>                                          
                                         }                                       
                                         <ul class="product-meta">
-                                            <li><a href="#"><i class="icon ion-bag"></i></a></li>
+                                            <li><a asp-controller="basket" asp-action="additem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
                                             <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
                                             <li><a href="#"><i class="icon ion-android-options"></i></a></li>
                                             <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
@@ -383,7 +383,7 @@
                                             </a>                                          
                                         }                                       
                                         <ul class="product-meta">
-                                            <li><a href="#"><i class="icon ion-bag"></i></a></li>
+                                            <li><a asp-controller="basket" asp-action="additem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
                                             <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
                                             <li><a href="#"><i class="icon ion-android-options"></i></a></li>
                                             <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
@@ -433,7 +433,7 @@
                                             </a>                                          
                                         }                                       
                                         <ul class="product-meta">
-                                            <li><a href="#"><i class="icon ion-bag"></i></a></li>
+                                            <li><a asp-controller="basket" asp-action="additem" asp-route-id="@item.Id"><i class="icon ion-bag"></i></a></li>
                                             <li><a href="#"><i class="icon ion-android-favorite-outline"></i></a></li>
                                             <li><a href="#"><i class="icon ion-android-options"></i></a></li>
                                             <li><a data-toggle="modal" data-target="#productQuickModal" href="#"><i class="icon ion-android-open"></i></a></li>
@@ -478,17 +478,17 @@
                             <div class="special-products-gallery d-flex mt-50">
                                 @foreach (var item in Model.ProductImages)
                                {
-                                 if(item.IsMain){
+                                 
                                   <div class="products-gallery-thumb">
                                     <ul class="products-thumb">
                                         <li><img src="~/assets/images/product/@item.ImageUrl" alt="Products Thumb"></li>                                     
                                     </ul>
                                 </div> <!-- products gallery thumb -->
-                                } 
+                               
                                } 
                                 @foreach (var item in Model.ProductImages)
                                {
-                                 if(item.IsMain){
+                                
                                  <div class="products-gallery-image">
                                     <div class="single-products-image">
                                         <a href="#">
@@ -496,7 +496,7 @@
                                         </a>
                                     </div>                                  
                                 </div> <!-- products gallery image -->
-                                 } 
+                                  
                                } 
                             </div> <!-- special products gallery -->
                         </div>
