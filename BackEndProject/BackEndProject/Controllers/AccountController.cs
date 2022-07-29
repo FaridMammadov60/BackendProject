@@ -1,5 +1,6 @@
 ﻿using BackEndProject.Helper;
 using BackEndProject.Models;
+using BackEndProject.Service;
 using BackEndProject.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,13 +16,15 @@ namespace BackEndProject.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _rolemanager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly ICategory _icategory;
 
 
-        public AccountController(UserManager<AppUser> userManager, RoleManager<IdentityRole> rolemanager, SignInManager<AppUser> signInManager)
+        public AccountController(UserManager<AppUser> userManager, RoleManager<IdentityRole> rolemanager, SignInManager<AppUser> signInManager, ICategory icategory)
         {
             _userManager = userManager;
             _rolemanager = rolemanager;
             _signInManager = signInManager;
+            _icategory = icategory;
         }
         public IActionResult Index()
         {
@@ -30,6 +33,7 @@ namespace BackEndProject.Controllers
 
         public IActionResult Registr()
         {
+            ViewBag.CategoryD = _icategory.category();
             return View();
         }
 
@@ -63,6 +67,7 @@ namespace BackEndProject.Controllers
 
         public IActionResult Login()
         {
+            ViewBag.CategoryD = _icategory.category();
             return View();
         }
 

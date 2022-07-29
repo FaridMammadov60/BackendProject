@@ -5,6 +5,6 @@ namespace BackEndProject.Service
 {
     public interface ICategory
     {
-        List<Category> category(Category category);
+        List<Category> category();
     }
 }

@@ -28,8 +28,9 @@ namespace BackEndProject.Controllers
             homeVM.Products = _context.Products.Include(p => p.ProductImage).Include(p => p.Category).ToList();
             homeVM.ProductImages = _context.ProductImages.Include(p => p.Product).ToList();
             homeVM.Brands = _context.Brands.ToList();
-            ViewBag.CategoryD = _context.Categories.Include(p => p.Children).Include(p => p.Products).ToList();
-            //homeVM.Bios = _context.Bios
+            //ViewBag.CategoryD = _context.Categories.Include(p => p.Children).Include(p => p.Products).ToList();
+
+            ViewBag.CategoryD = _icategory.category();
             return View(homeVM);
         }
 

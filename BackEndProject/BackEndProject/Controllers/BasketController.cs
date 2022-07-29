@@ -1,5 +1,6 @@
 ﻿using BackEndProject.DAL;
 using BackEndProject.Models;
+using BackEndProject.Service;
 using BackEndProject.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -18,12 +19,14 @@ namespace BackEndProject.Controllers
     {
         private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
+        private readonly ICategory _icategory;
 
 
-        public BasketController(AppDbContext context, UserManager<AppUser> userManager)
+        public BasketController(AppDbContext context, UserManager<AppUser> userManager, ICategory icategory)
         {
             _context = context;
             _userManager = userManager;
+            _icategory = icategory;
 
         }
         string userName = "";
@@ -122,6 +125,7 @@ namespace BackEndProject.Controllers
             {
                 products = new List<BasketVM>();
             }
+            ViewBag.CategoryD = _icategory.category();
             return View(products);
         }
         public IActionResult min(int? id)

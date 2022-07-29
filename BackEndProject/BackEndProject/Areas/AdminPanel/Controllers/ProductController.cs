@@ -1,11 +1,13 @@
 ﻿using BackEndProject.DAL;
 using BackEndProject.Extentions;
 using BackEndProject.Models;
+using BackEndProject.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,11 +27,22 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
             _context = context;
             _env = env;
         }
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int take = 5)
         {
+            List<Product> products = _context.Products.Include(p => p.Category).Include(p => p.ProductImage)
+                .Skip((page - 1) * take).Take(take).ToList();
 
-            return View(_context.Products.Include(p => p.ProductImage).ToList());
+            PaginationVM<Product> paginationVM = new PaginationVM<Product>(products, PageCount(take), page);
+
+            return View(paginationVM);
         }
+
+        private int PageCount(int take)
+        {
+            List<Product> products = _context.Products.ToList();
+            return (int)Math.Ceiling((decimal)products.Count() / take);
+        }
+
         public IActionResult Create()
         {
             ViewBag.Categories = new SelectList(_context.Categories.Where(p => p.ParentId != null).ToList(), "Id", "Name");

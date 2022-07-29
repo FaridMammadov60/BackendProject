@@ -1,6 +1,8 @@
 ﻿using BackEndProject.DAL;
 using BackEndProject.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BackEndProject.Service
 {
@@ -13,9 +15,10 @@ namespace BackEndProject.Service
             _context = context;
         }
 
-        public List<Category> category(Category category)
+        public List<Category> category()
         {
-            throw new System.NotImplementedException();
+            List<Category> categories = _context.Categories.Include(p => p.Children).Include(p => p.Products).ToList();
+            return categories;
         }
     }
 }
