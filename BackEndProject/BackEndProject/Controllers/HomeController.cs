@@ -1,5 +1,6 @@
 ﻿using BackEndProject.DAL;
 using BackEndProject.Models;
+using BackEndProject.Service;
 using BackEndProject.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,9 +12,11 @@ namespace BackEndProject.Controllers
     public class HomeController : Controller
     {
         private readonly AppDbContext _context;
-        public HomeController(AppDbContext context)
+        private readonly ICategory _icategory;
+        public HomeController(AppDbContext context, ICategory icategory)
         {
             _context = context;
+            _icategory = icategory;
         }
         public IActionResult Index()
         {
@@ -25,6 +28,7 @@ namespace BackEndProject.Controllers
             homeVM.Products = _context.Products.Include(p => p.ProductImage).Include(p => p.Category).ToList();
             homeVM.ProductImages = _context.ProductImages.Include(p => p.Product).ToList();
             homeVM.Brands = _context.Brands.ToList();
+            ViewBag.CategoryD = _context.Categories.Include(p => p.Children).Include(p => p.Products).ToList();
             //homeVM.Bios = _context.Bios
             return View(homeVM);
         }

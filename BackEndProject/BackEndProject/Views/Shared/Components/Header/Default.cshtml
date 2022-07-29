@@ -1,4 +1,8 @@
-﻿@model Bio
+﻿@using BackEndProject.Models
+@model Bio
+@{
+    int count = 1;
+}
 
 
   <header class="header-area">
@@ -76,26 +80,20 @@
                                         <div class="search-category">
                                             <select>
                                                 <option value="0">All categories</option>
-                                                <option value="12">Laptop</option>
-                                                <option value="13">- - Hot Categories</option>
-                                                <option value="19">- - - - Dresses</option>
-                                                <option value="20">- - - - Jackets &amp; Coats</option>
-                                                <option value="21">- - - - Sweaters</option>
-                                                <option value="22">- - - - Jeans</option>
-                                                
-                                                <option value="49">Computer</option>
-                                                <option value="50">- - Bottoms</option>
-                                                <option value="53">- - - - Skirts</option>
-                                                <option value="54">- - - - Leggings</option>
-                                                <option value="55">- - - - Jeans</option>
-                                                <option value="56">- - - - Pants &amp; Capris</option>
-                                                <option value="57">- - - - Shorts</option>
-                                                <option value="51">- - Outerwear &amp; Jackets</option>
-                                                <option value="58">- - - - Trench</option>
-                                                <option value="59">- - - - Genuine Leather</option>
-                                               
-                                                <option value="68">Smartphone</option>
-                                              
+                                                @foreach (var item in ViewBag.CategoryD)
+                                               {
+                                                   if (item.ParentId==null)
+                                                {
+                                                     <option value="@count">@item.Name</option>
+                                                   @foreach (var child in item.Children)
+                                                  {
+                                                      
+                                                       <option value="@count">- - @child.Name</option>
+                                                  } 
+                                                }
+                                                                                                
+                                               }                                           
+                                                 
                                             </select>
                                         </div>                                        
                                         <ul class="list-unstyled"  id="searchList">
@@ -497,28 +495,22 @@
                     <form>
                         <div class="search-category">
                             <select>
-                                <option value="0">All categories</option>
-                                <option value="12">Laptop</option>
-                                <option value="13">- - Hot Categories</option>
-                                <option value="19">- - - - Dresses</option>
-                                <option value="20">- - - - Jackets &amp; Coats</option>
-                                <option value="21">- - - - Sweaters</option>
-                                <option value="22">- - - - Jeans</option>
-                                <option value="23">- - - - Blouses &amp; Shirts</option>
-                                <option value="14">- - Outerwear &amp; Jackets</option>                     
-                             
-                                <option value="49">Computer</option>
-                                <option value="50">- - Bottoms</option>
-                                <option value="53">- - - - Skirts</option>
-                                <option value="54">- - - - Leggings</option>
-                                <option value="55">- - - - Jeans</option>
-                                <option value="56">- - - - Pants &amp; Capris</option>
-                                <option value="57">- - - - Shorts</option>
-                                <option value="51">- - Outerwear &amp; Jackets</option>
-                                <option value="58">- - - - Trench</option>                              
-                                <option value="68">Smartphone</option>                              
-
-                            </select>
+                                                <option value="0">All categories</option>
+                                                @foreach (var item in ViewBag.CategoryD)
+                                               {
+                                                   if (item.ParentId==null)
+                                                {
+                                                     <option value="@count">@item.Name</option>
+                                                   @foreach (var child in item.Children)
+                                                  {
+                                                      
+                                                       <option value="@count">- - @child.Name</option>
+                                                  } 
+                                                }
+                                                                                                
+                                               }                                           
+                                                 
+                                            </select>
                         </div>                        
                                 <input  type="text" placeholder="Enter your search key ... ">
                                 <button><i class="icon ion-android-search" ></i></button>                                                    

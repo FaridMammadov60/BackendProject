@@ -1,5 +1,6 @@
 using BackEndProject.DAL;
 using BackEndProject.Models;
+using BackEndProject.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -24,6 +25,10 @@ namespace BackEndProject
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+
+            services.AddScoped<ICategory, CategoryService>();
+
             services.AddDbContext<AppDbContext>(option =>
             {
                 option.UseSqlServer(_config.GetConnectionString("DefaultConnection"));

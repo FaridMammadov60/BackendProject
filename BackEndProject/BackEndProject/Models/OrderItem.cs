@@ -3,7 +3,7 @@
     public class OrderItem
     {
         public int Id { get; set; }
-        public double Total { get; set; }
+        public double TotalPrice { get; set; }
         public int Count { get; set; }
 
         public int ProductId { get; set; }

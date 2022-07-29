@@ -4,6 +4,7 @@ using BackEndProject.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -17,71 +18,104 @@ namespace BackEndProject.Controllers
     {
         private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
+
+
         public BasketController(AppDbContext context, UserManager<AppUser> userManager)
         {
             _context = context;
             _userManager = userManager;
+
         }
+        string userName = "";
+        public IActionResult Index()
+        {
+            return View();
+        }
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> AddItem(int? id)
         {
-            //HttpContext.Session.SetString("name", "Farid");
-            //Response.Cookies.Append("GROUP", "P322", new CookieOptions { MaxAge=TimeSpan.FromDays(14)});
+            double price = 0;
+            double count = 0;
+            ViewBag.IsLogin = User.Identity.IsAuthenticated;
+
+            userName = User.Identity.Name;
             if (id == null) return NotFound();
+
             Product dbProduct = await _context.Products.FindAsync(id);
             if (dbProduct == null) return NotFound();
 
             List<BasketVM> products;
 
-            if (Request.Cookies["basket"] == null)
+            if (Request.Cookies[$"{userName}basket"] == null)
             {
                 products = new List<BasketVM>();
             }
             else
             {
-                products = JsonConvert.DeserializeObject<List<BasketVM>>(Request.Cookies["basket"]);
+                products = JsonConvert.DeserializeObject<List<BasketVM>>((Request.Cookies[$"{userName}basket"]));
             }
-            BasketVM existProduct = products.Find(x => x.Id == id);
+            BasketVM existProduct = products.Find(p => p.Id == id);
             if (existProduct == null)
             {
-                BasketVM basketVM = new BasketVM()
+                BasketVM basketVM = new BasketVM
                 {
                     Id = dbProduct.Id,
-                    Price = dbProduct.Price,
-
-                    ProductCount = 1
-
+                    ProductCount = 1,
+                    Price = dbProduct.Price
                 };
-                basketVM.ProductTotalPrice = basketVM.Price;
                 products.Add(basketVM);
             }
             else
             {
-               existProduct.ProductCount++;
-               existProduct.ProductTotalPrice= existProduct.Price * existProduct.ProductCount;
+                existProduct.ProductCount++;
             }
 
-            Response.Cookies.Append("basket", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromDays(14) });
+            Response.Cookies.Append($"{userName}basket", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromDays(5) });
 
+
+
+            foreach (var product in products)
+            {
+                price += product.Price * product.ProductCount;
+                count += product.ProductCount;
+            }
+            var obj = new
+            {
+                Price = price,
+                Count = count,
+            };
+
+            //return Ok(obj);
             return RedirectToAction("index", "home");
 
         }
 
         public IActionResult ShowItem()
         {
-            //string name= HttpContext.Session.GetString("name");
-            //string group=Request.Cookies["GROUP"];
-            string basket = Request.Cookies["basket"];
+            ViewBag.brand = _context.Brands.Where(b => b.IsDeleted != true).ToList();
+            if (User.Identity.IsAuthenticated)
+            {
+                userName = User.Identity.Name;
+            }
+            string basket = Request.Cookies[$"{userName}basket"];
             List<BasketVM> products;
             if (basket != null)
             {
                 products = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
                 foreach (var item in products)
                 {
-                    Product dbProduct = _context.Products.FirstOrDefault(p => p.Id == item.Id);
+                    Product dbProduct = _context.Products
+                    .Include(c => c.Category)
+                    .Include(i => i.ProductImage)
+                    .FirstOrDefault(p => p.Id == item.Id);
                     item.Price = dbProduct.Price;
-                    item.CategoryId = dbProduct.CategoryId;
-                    //item.ImageUrl = dbProduct.ImageUrl;
                     item.Name = dbProduct.Name;
+                    item.Category = dbProduct.Category.Name;
+                    item.Desc = dbProduct.Desc;
+                    foreach (var prod in dbProduct.ProductImage)
+                    {
+                        item.ImageUrl = prod.ImageUrl;
+                    }
                 }
             }
             else
@@ -90,105 +124,113 @@ namespace BackEndProject.Controllers
             }
             return View(products);
         }
-
-        [HttpPost]
-        [ActionName("ShowItem")]
-        public async Task<IActionResult> Sale()
+        public IActionResult min(int? id)
         {
             if (User.Identity.IsAuthenticated)
             {
+                userName = User.Identity.Name;
+            }
+            List<BasketVM> products;
+            string basket = Request.Cookies[$"{userName}basket"];
+            products = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
+            BasketVM existProduct = products.Find(p => p.Id == id);
+            if (existProduct.ProductCount > 1)
+            {
+                existProduct.ProductCount--;
+            }
+            else
+            {
+                products.Remove(existProduct);
+            }
+            Response.Cookies.Append($"{userName}basket", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromDays(5) });
+
+            return RedirectToAction("showitem", "basket");
+        }
+        public IActionResult plus(int? id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                userName = User.Identity.Name;
+            }
+            Product product = _context.Products.FirstOrDefault(p => p.Id == id);
+            List<BasketVM> products;
+            string basket = Request.Cookies[$"{userName}basket"];
+            products = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
+            BasketVM existProduct = products.Find(p => p.Id == id);
+            if (product.StockCount <= existProduct.ProductCount)
+            {
+                TempData["failCount"] = $"{product.Name}-dan bazada cemisi {product.StockCount} eded var";
+            }
+            else
+            {
+                existProduct.ProductCount++;
+            }
+            Response.Cookies.Append($"{userName}basket", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromDays(5) });
+            //return RedirectToAction("showitem", $"{userName}basket");
+            return RedirectToAction("showItem", "basket");
+        }
+        public IActionResult removeItem(int? id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                userName = User.Identity.Name;
+            }
+            List<BasketVM> products;
+            string basket = Request.Cookies[$"{userName}basket"];
+            products = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
+
+            BasketVM existProduct = products.Find(p => p.Id == id);
+            products.Remove(existProduct);
+            Response.Cookies.Append($"{userName}basket", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromDays(5) });
+            return RedirectToAction("showitem", "basket");
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Order()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                userName = User.Identity.Name;
                 AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
-                //Sale sale = new Sale();
-                //sale.SaleDate = DateTime.Now;
-                //sale.AppUserId = user.Id;
+                Order order = new Order();
+                order.SaledAt = DateTime.Now;
+                order.AppUserId = user.Id;
 
-                //List<BasketVM> basketProducts = JsonConvert.
-                //    DeserializeObject<List<BasketVM>>(Request.Cookies["basket"]);
-                //List<SalesProduct> saleProducts = new List<SalesProduct>();
-                //double total = 0;
-                //foreach (var basketProduct in basketProducts)
-                //{
-                //    Product dbProduct = await _context.Products.FindAsync(basketProduct.Id);
-                //    if (basketProduct.ProductCount > dbProduct.Count)
-                //    {
-                //        TempData["fail"] = "sale fail";
-                //        return RedirectToAction("ShowItem");
-                //    }
-                //    SalesProduct saleProduct = new SalesProduct();
-                //    saleProduct.ProductId = dbProduct.Id;
-                //    saleProduct.Count = basketProduct.ProductCount;
-                //    saleProduct.Price = dbProduct.Price;
-                //    saleProduct.Id = sale.Id;
-                //    saleProducts.Add(saleProduct);
-                //    total += basketProduct.ProductCount * dbProduct.Count;
-                //    dbProduct.Count = dbProduct.Count - saleProduct.Count;
+                List<BasketVM> basketProducts = JsonConvert.DeserializeObject<List<BasketVM>>(Request.Cookies[$"{userName}basket"]);
+                List<OrderItem> orderItems = new List<OrderItem>();
+                double total = 0;
+                foreach (var basketProduct in basketProducts)
+                {
+                    Product dbProduct = await _context.Products.FindAsync(basketProduct.Id);
+                    if (basketProduct.ProductCount > dbProduct.StockCount)
+                    {
+                        TempData["fail"] = "Satış uğursuzdur..";
+                        return RedirectToAction("ShowItem");
+                    }
+                    OrderItem orderItem = new OrderItem();
+                    orderItem.ProductId = dbProduct.Id;
+                    orderItem.Count = basketProduct.ProductCount;
+                    orderItem.OrderId = order.Id;
+                    orderItem.TotalPrice = dbProduct.Price;
+                    orderItems.Add(orderItem);
+                    total += basketProduct.ProductCount * dbProduct.Price;
 
-                //}
-                //sale.SalesProducts = saleProducts;
-                //await _context.AddAsync(sale);
-                //await _context.SaveChangesAsync();
-                //TempData["success"] = "sale success";
+                    dbProduct.StockCount = dbProduct.StockCount - basketProduct.ProductCount;
+                }
+                order.OrderItems = orderItems;
+                order.TotalPrice = total;
+
+                await _context.AddAsync(order);
+                await _context.SaveChangesAsync();
+                TempData["success"] = "Satış uğurla başa çatdı..";
                 return RedirectToAction("ShowItem");
-
             }
             else
             {
-                return View("login", "account");
+                return RedirectToAction("login", "account");
             }
-        }
-        public IActionResult Minus(int? id)
-        {
-            if (id == null) return NotFound();
 
-            string basket = Request.Cookies["basket"];
-            List<BasketVM> products;
-            products = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
-            BasketVM dbProduct = products.FirstOrDefault(p => p.Id == id);
-            if (dbProduct == null) return NotFound();
-            if (dbProduct.ProductCount > 1)
-            {
-                dbProduct.ProductCount--;
-            }
-            else
-            {
-                products.Remove(dbProduct);
-            }
-            Response.Cookies.Append("basket", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromDays(14) });
-
-            return RedirectToAction("showitem", "basket");
-        }
-        public IActionResult Plus(int? id)
-        {
-            if (id == null) return NotFound();
-
-            string basket = Request.Cookies["basket"];
-            List<BasketVM> products;
-            products = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
-            BasketVM dbProduct = products.FirstOrDefault(p => p.Id == id);
-            if (dbProduct == null) return NotFound();
-
-            dbProduct.ProductCount++;
-
-            Response.Cookies.Append("basket", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromDays(14) });
-
-            return RedirectToAction("showitem", "basket");
-        }
-        public IActionResult Remove(int? id)
-        {
-            if (id == null) return NotFound();
-
-
-            string basket = Request.Cookies["basket"];
-            List<BasketVM> products;
-            products = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
-            BasketVM dbProduct = products.FirstOrDefault(p => p.Id == id);
-            if (dbProduct == null) return NotFound();
-
-            products.Remove(dbProduct);
-
-            Response.Cookies.Append("basket", JsonConvert.SerializeObject(products), new CookieOptions { MaxAge = TimeSpan.FromDays(14) });
-
-            return RedirectToAction("showitem", "basket");
         }
     }
 }
