@@ -19,6 +19,9 @@ namespace BackEndProject.DAL
         public DbSet<Bio> Bios { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

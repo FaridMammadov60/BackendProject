@@ -21,7 +21,7 @@ namespace BackEndProject.ViewComponents
             if (User.Identity.IsAuthenticated)
             {
                 AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
-                ViewBag.User = user.UserName;
+                ViewBag.User = "Farid";
             }
 
             Bio bio = _context.Bios.FirstOrDefault();

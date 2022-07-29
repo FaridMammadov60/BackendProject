@@ -113,6 +113,7 @@ namespace BackEndProject.Controllers
                     .FirstOrDefault(p => p.Id == item.Id);
                     item.Price = dbProduct.Price;
                     item.Name = dbProduct.Name;
+                    item.TaxPrecent = dbProduct.TaxPrecent;
                     item.Category = dbProduct.Category.Name;
                     item.Desc = dbProduct.Desc;
                     foreach (var prod in dbProduct.ProductImage)
@@ -191,6 +192,7 @@ namespace BackEndProject.Controllers
 
 
         [HttpPost]
+        [ActionName("ShowItem")]
         public async Task<IActionResult> Order()
         {
             if (User.Identity.IsAuthenticated)
@@ -200,7 +202,11 @@ namespace BackEndProject.Controllers
                 Order order = new Order();
                 order.SaledAt = DateTime.Now;
                 order.AppUserId = user.Id;
-
+                var req = Request.Cookies[$"{userName}basket"];
+                if (req==null)
+                {
+                    return RedirectToAction("showitem", "account");
+                }
                 List<BasketVM> basketProducts = JsonConvert.DeserializeObject<List<BasketVM>>(Request.Cookies[$"{userName}basket"]);
                 List<OrderItem> orderItems = new List<OrderItem>();
                 double total = 0;
@@ -232,9 +238,19 @@ namespace BackEndProject.Controllers
             }
             else
             {
-                return RedirectToAction("login", "account");
+                return RedirectToAction("showitem", "account");
             }
 
         }
+
+
+        public async Task<IActionResult> CheckOut()
+        {
+            ViewBag.CategoryD = _icategory.category();
+
+            return View();
+        }
+
     }
+   
 }

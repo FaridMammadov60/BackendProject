@@ -516,35 +516,29 @@ namespace BackEndProject.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("CreateAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeleteAt")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OrderStatus")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("UpdateAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserId")
+                    b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId1")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("SaledAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("AppUserId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("BackEndProject.Models.OrderItem", b =>
@@ -563,7 +557,7 @@ namespace BackEndProject.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<double>("Total")
+                    b.Property<double>("TotalPrice")
                         .HasColumnType("float");
 
                     b.HasKey("Id");
@@ -572,7 +566,7 @@ namespace BackEndProject.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderItem");
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("BackEndProject.Models.Product", b =>
@@ -1452,9 +1446,9 @@ namespace BackEndProject.Migrations
 
             modelBuilder.Entity("BackEndProject.Models.Order", b =>
                 {
-                    b.HasOne("BackEndProject.Models.User", "User")
+                    b.HasOne("BackEndProject.Models.AppUser", "AppUser")
                         .WithMany()
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("AppUserId");
                 });
 
             modelBuilder.Entity("BackEndProject.Models.OrderItem", b =>
