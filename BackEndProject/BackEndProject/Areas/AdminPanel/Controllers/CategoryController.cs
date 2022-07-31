@@ -3,6 +3,7 @@ using BackEndProject.Extentions;
 using BackEndProject.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -18,25 +19,39 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _env;
+        private readonly UserManager<AppUser> _userManager;
 
-        public CategoryController(AppDbContext context, IWebHostEnvironment env)
+        public CategoryController(AppDbContext context, IWebHostEnvironment env, UserManager<AppUser> userManager)
         {
             _context = context;
             _env = env;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             return View(_context.Categories.ToList());
         }
 
         public IActionResult Detail(int? id)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             return View(_context.Categories.FirstOrDefault(b => b.Id == id));
         }
 
         public async Task<IActionResult> Delete(int? id)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             if (id == null) return NotFound();
             Category dbCategory = await _context.Categories.FirstOrDefaultAsync(b => b.Id == id);
             if (dbCategory == null) return NotFound();
@@ -48,6 +63,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
 
         public async Task<IActionResult> Restore(int? id)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             if (id == null) return NotFound();
             Category dbCategory = await _context.Categories.FirstOrDefaultAsync(b => b.Id == id);
             if (dbCategory == null) return NotFound();
@@ -63,6 +82,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
 
         public IActionResult Create()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             ViewBag.CategoriesCreate = new SelectList(_context.Categories.Where(p => p.ParentId == null).ToList(), "Id", "Name");
 
             return View();
@@ -72,6 +95,12 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Category category)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
+            ViewBag.CategoriesCreate = new SelectList(_context.Categories.Where(p => p.ParentId == null).ToList(), "Id", "Name");
+
             Category dbCategory = await _context.Categories.FindAsync(category.Id);
             Category dbCategoryName = new Category();
             if (!ModelState.IsValid)
@@ -129,6 +158,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
 
         public IActionResult SubCreate()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             ViewBag.CategoriesCreate = new SelectList(_context.Categories.Where(p => p.ParentId == null).ToList(), "Id", "Name");
 
             return View();
@@ -138,6 +171,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SubCreate(Category category)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             Category dbCategory = await _context.Categories.FindAsync(category.Id);
             Category dbCategoryName = new Category();
             if (!ModelState.IsValid)
@@ -195,6 +232,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
 
         public async Task<IActionResult> Update(int? id)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             if (id == null) return NotFound();
             Category dbCategory = await _context.Categories.FindAsync(id);
             if (dbCategory == null) return NotFound();
@@ -206,6 +247,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(Category category)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             Category dbCategory = await _context.Categories.FindAsync(category.Id);
             Category dbCategoryName = new Category();
 

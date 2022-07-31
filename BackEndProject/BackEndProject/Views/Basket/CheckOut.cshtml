@@ -1,7 +1,26 @@
-﻿@model List<BasketVM>
+﻿@model Order
 @{
     ViewData["Title"] = "CheckOut";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+     double total = 0;
+    double shippingPrice = 0;
+    double finalPrice = 0;
+    double tax = 0;
+    foreach (var item in ViewBag.Products)
+    {
+        total += item.ProductCount * item.Price;
+        if (total / 100 < 3)
+        {
+            shippingPrice = 3;
+        }
+        else
+        {
+            shippingPrice = total / 100;
+        }
+        tax = total / 20;
+        finalPrice = total + shippingPrice + tax;
+    }
 }
 
  <!--====== Breadcrumb Part Start ======-->
@@ -29,6 +48,103 @@
                         <form method="post">
                             <div class="billing-address mt-30">
                                 <h4 class="allup-title">Billing Address</h4>
+                                <div class="row">
+                                  <div class="col-md-6">
+                                        <div class="single-form">
+                                            <label asp-for="FirstName">First Name*</label>
+                                            <input asp-for="FirstName" placeholder="First Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="single-form">
+                                            <label asp-for="LastName">Last  Name*</label>
+                                            <input asp-for="LastName" placeholder="Last Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="single-form">
+                                            <label asp-for="Email">Email Address*</label>
+                                            <input asp-for="Email" placeholder="Email Address">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="single-form">
+                                            <label asp-for="Phone">Phone no*</label>
+                                            <input asp-for="Phone" placeholder="Phone no">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="single-form">
+                                            <label asp-for="Company">Company Name</label>
+                                            <input asp-for="Company" placeholder="Company Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="single-form">
+                                            <label asp-for="Address">Address</label>
+                                            <input asp-for="Address" placeholder="Address Line 1">                                           
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="single-form">
+                                            <label asp-for="Country">Country</label>
+                                            <select asp-for="Country">                                             
+                                                <option value="">Azerbaijan</option>
+                                                <option value="">Turkiye</option>
+                                                <option value="">Israil</option>
+                                                <option value="">Pakistan</option>
+                                                <option value="">Rusiya</option>
+                                                <option value="">ABS</option>
+                                                <option value="">Norvec</option>
+                                            </select>
+                                          @*  <select>
+                                                <option value="">Ordubad</option>
+                                                <option value="">Naxcivan</option>
+                                                <option value="">Baki</option>
+                                                <option value="">Sumqayit</option>
+                                                <option value="">Salyan</option>
+                                                <option value="">Kurdemir</option>
+                                                <option value="">Gedebey</option>
+                                                <option value="">Gence</option>
+                                                <option value="">Quba</option>
+                                                <option value="">Lenkeran</option>
+                                            </select>*@
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="single-form">
+                                            <label asp-for="City">Town/City*</label>
+                                            <input asp-for="City" placeholder="Town/City">
+                                        </div>
+                                    </div>                                   
+                                     <div class="col-md-6">
+                                        <div class="single-form">
+                                            <label asp-for="ZipCode">Zip Code*</label>
+                                            <input asp-for="ZipCode" placeholder="Zip Code">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkout-checkbox">
+                                <ul>
+                                    <li>
+                                        <div class="custom-checkbox">
+                                            <input type="checkbox" id="account">
+                                            <label for="account"></label>
+                                            <p>Create an Account? </p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="custom-checkbox">
+                                            <input type="checkbox" id="address" data-shipping>
+                                            <label for="address"></label>
+                                            <p>Ship to Different Address </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div id="shipping-address" class="shipping-address mt-30">
+                                <h4 class="allup-title">Shipping Address</h4>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="single-form">
@@ -63,23 +179,21 @@
                                     <div class="col-md-12">
                                         <div class="single-form">
                                             <label>Address</label>
-                                            <input type="text" placeholder="Address Line 1">                                          
+                                            <input type="text" placeholder="Address Line 1">
+                                            <input type="text" placeholder="Address Line 2">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="single-form">
                                             <label>Country</label>
                                             <select>
-                                                <option value="">Ordubad</option>
-                                                <option value="">Naxcivan</option>
-                                                <option value="">Baki</option>
-                                                <option value="">Sumqayit</option>
-                                                <option value="">Salyan</option>
-                                                <option value="">Kurdemir</option>
-                                                <option value="">Gedebey</option>
-                                                <option value="">Gence</option>
-                                                <option value="">Quba</option>
-                                                <option value="">Lenkeran</option>
+                                               <option value="">Azerbaijan</option>
+                                                <option value="">Turkiye</option>
+                                                <option value="">Israil</option>
+                                                <option value="">Pakistan</option>
+                                                <option value="">Rusiya</option>
+                                                <option value="">ABS</option>
+                                                <option value="">Norvec</option>
                                             </select>
                                         </div>
                                     </div>
@@ -103,24 +217,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="checkout-checkbox">
-                                <ul>
-                                    <li>
-                                        <div class="custom-checkbox">
-                                            <input type="checkbox" id="account">
-                                            <label for="account"></label>
-                                            <p>Create an Account? </p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-checkbox">
-                                            <input type="checkbox" id="address" data-shipping>
-                                            <label for="address"></label>
-                                            <p>Ship to Different Address </p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>                      
+                              <div class="checkout-btn">
+                             <button asp-action="order"style="right: 200px; position: absolute" type="submit" class="btn btn-success">Place Order</button>
+                             </div>
                         </form>
                     </div>
                 </div>
@@ -130,32 +229,25 @@
                         <div class="checkout-total mt-30">
                             <h4 class="title">Product  <span>Total</span></h4>
                             <ul>
+                               @foreach (var prod in ViewBag.Products)
+                               {
                                 <li>
-                                    <p class="total-value">Cillum dolore tortor nisl X 01</p>
-                                    <p class="total-amount">€25.00</p>
+                                    <p class="total-value">@prod.Name X @prod.ProductCount</p>
+                                    <p class="total-amount">€@(prod.ProductCount*prod.Price)</p>
                                 </li>
-                                <li>
-                                    <p class="total-value">Auctor gravida pellentesque X 02</p>
-                                    <p class="total-amount">€50.00</p>
-                                </li>
-                                <li>
-                                    <p class="total-value">Condimentum posuere consectetur X 01</p>
-                                    <p class="total-amount">€29.00</p>
-                                </li>
-                                <li>
-                                    <p class="total-value">Habitasse dictumst elementum X 01</p>
-                                    <p class="total-amount">€10.00</p>
-                                </li>
+                              }
                             </ul>
                             <div class="checkout-total-sub">
                                 <p class="total-value">Sub Total</p>
-                                <p class="total-amount">€104.00</p>
+                                <p class="total-amount">€@total</p>
                             </div>
                             <div class="checkout-total-sub">
                                 <p class="total-value">Shipping Fee </p>
-                                <p class="total-amount">€00.00</p>
+                                <p  class="total-amount">€<span id="shippingFee">@shippingPrice</span></p>
                             </div>
-                            <h4 class="title mt-15">Product  <span>€104.00</span></h4>
+                            <h4 class="title mt-15">Product
+                                <span>€@finalPrice</span>
+                             </h4>
                         </div>
                     </div>
 
@@ -232,11 +324,8 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
-
-                    <div class="checkout-btn">
-                        <a class="main-btn main-btn-2" href="#">Place Order</a>
-                    </div>
+                    </div>                    
+                  
                 </div>
             </div>
         </div>

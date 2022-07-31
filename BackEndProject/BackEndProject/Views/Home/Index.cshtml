@@ -476,28 +476,25 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="special-products-gallery d-flex mt-50">
-                                @foreach (var item in Model.ProductImages)
-                               {
-                                 
-                                  <div class="products-gallery-thumb">
+                                 <div class="products-gallery-thumb">
                                     <ul class="products-thumb">
-                                        <li><img src="~/assets/images/product/@item.ImageUrl" alt="Products Thumb"></li>                                     
-                                    </ul>
-                                </div> <!-- products gallery thumb -->
-                               
-                               } 
                                 @foreach (var item in Model.ProductImages)
                                {
-                                
-                                 <div class="products-gallery-image">
-                                    <div class="single-products-image">
-                                        <a href="#">
-                                            <img src="~/assets/images/product/@item.ImageUrl" alt="products">
-                                        </a>
-                                    </div>                                  
-                                </div> <!-- products gallery image -->
+                                        <li><img src="~/assets/images/product/@item.ImageUrl" alt="Products Thumb"></li>                                     
                                   
                                } 
+                                 </ul>
+                                </div> <!-- products gallery thumb -->
+                                <div class="products-gallery-image">
+                                    <div class="single-products-image">
+                                @foreach (var item in Model.ProductImages)
+                               {                                
+                                        <a href="#">
+                                            <img src="~/assets/images/product/@item.ImageUrl" alt="products">
+                                        </a>  
+                               } 
+                               </div>                                  
+                                </div> <!-- products gallery image -->
                             </div> <!-- special products gallery -->
                         </div>
                         <div class="col-lg-6">

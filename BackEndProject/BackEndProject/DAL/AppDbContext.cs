@@ -19,8 +19,10 @@ namespace BackEndProject.DAL
         public DbSet<Bio> Bios { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<ProductTag> ProductTags { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
 
 
 
@@ -771,8 +773,66 @@ namespace BackEndProject.DAL
                 {
                     Id = 5,
                     Name = "Tag5"
+                },
+                 new Tag
+                 {
+                     Id = 6,
+                     Name = "Tag6"
+                 },
+                new Tag
+                {
+                    Id = 7,
+                    Name = "Tag7"
+                },
+                new Tag
+                {
+                    Id = 8,
+                    Name = "Tag8"
+                },
+                new Tag
+                {
+                    Id = 9,
+                    Name = "Tag9"
                 }
             );
+            modelBuilder.Entity<ProductTag>().HasData(
+               new ProductTag
+               {
+                   Id = 1,
+                   ProductId = 1,
+                   TagId = 1,
+               },
+               new ProductTag
+               {
+                   Id = 2,
+                   ProductId = 1,
+                   TagId = 2,
+               },
+               new ProductTag
+               {
+                   Id = 3,
+                   ProductId = 2,
+                   TagId = 3,
+               },
+               new ProductTag
+               {
+                   Id = 4,
+                   ProductId = 3,
+                   TagId = 4,
+               },
+               new ProductTag
+               {
+                   Id = 5,
+                   ProductId = 4,
+                   TagId = 5,
+               },
+                new ProductTag
+                {
+                    Id = 6,
+                    ProductId = 5,
+                    TagId = 5,
+                }
+           );
 
         }
     }

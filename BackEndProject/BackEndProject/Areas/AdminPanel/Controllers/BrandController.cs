@@ -3,6 +3,7 @@ using BackEndProject.Extentions;
 using BackEndProject.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
@@ -17,24 +18,38 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _env;
+        private readonly UserManager<AppUser> _userManager;
 
-        public BrandController(AppDbContext context, IWebHostEnvironment env)
+        public BrandController(AppDbContext context, IWebHostEnvironment env, UserManager<AppUser> userManager)
         {
             _context = context;
             _env = env;
+            _userManager = userManager;
         }
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             return View(_context.Brands.ToList());
         }
 
         public IActionResult Detail(int? id)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             return View(_context.Brands.FirstOrDefault(b => b.Id == id));
         }
 
         public async Task<IActionResult> Delete(int? id)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             if (id == null) return NotFound();
             Brand dbBrand = await _context.Brands.FirstOrDefaultAsync(b => b.Id == id);
             if (dbBrand == null) return NotFound();
@@ -46,6 +61,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
 
         public async Task<IActionResult> Restore(int? id)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             if (id == null) return NotFound();
             Brand dbBrand = await _context.Brands.FirstOrDefaultAsync(b => b.Id == id);
             if (dbBrand == null) return NotFound();
@@ -61,6 +80,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
 
         public IActionResult Create()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             return View();
         }
 
@@ -68,7 +91,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Brand brand)
         {
-
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             Brand dbBrand = await _context.Brands.FindAsync(brand.Id);
             Brand dbBrandName = new Brand();
             if (!ModelState.IsValid)
@@ -125,6 +151,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
         }
         public async Task<IActionResult> Update(int? id)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             if (id == null) return NotFound();
             Brand dbBrand = await _context.Brands.FindAsync(id);
             if (dbBrand == null) return NotFound();
@@ -136,6 +166,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(Brand brand)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             Brand dbBrand = await _context.Brands.FindAsync(brand.Id);
             Brand dbBrandName = new Brand();
             if (!ModelState.IsValid)

@@ -7,5 +7,7 @@ namespace BackEndProject.ViewModels
     {
         public List<AppUser> Users { get; set; }
         public IList<string> userRoles { get; set; }
+        public string UserId { get; set; }
+
     }
 }

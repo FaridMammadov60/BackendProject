@@ -31,6 +31,9 @@ namespace BackEndProject.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("ConfirmMailTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
@@ -73,9 +76,18 @@ namespace BackEndProject.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("UserCreateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("UserDeletedTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
+
+                    b.Property<DateTime?>("UserUpdateTime")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -124,6 +136,9 @@ namespace BackEndProject.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("ProductId")
                         .HasColumnType("nvarchar(max)");
 
@@ -138,11 +153,13 @@ namespace BackEndProject.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AppUserId");
+
                     b.HasIndex("ProductId1");
 
                     b.HasIndex("UserId1");
 
-                    b.ToTable("BasketItem");
+                    b.ToTable("BasketItems");
                 });
 
             modelBuilder.Entity("BackEndProject.Models.Bio", b =>
@@ -519,7 +536,22 @@ namespace BackEndProject.Migrations
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Company")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("OrderStatus")
@@ -533,6 +565,9 @@ namespace BackEndProject.Migrations
 
                     b.Property<double>("TotalPrice")
                         .HasColumnType("float");
+
+                    b.Property<string>("ZipCode")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -1159,7 +1194,45 @@ namespace BackEndProject.Migrations
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("ProductTag");
+                    b.ToTable("ProductTags");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ProductId = 1,
+                            TagId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ProductId = 1,
+                            TagId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ProductId = 2,
+                            TagId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ProductId = 3,
+                            TagId = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ProductId = 4,
+                            TagId = 5
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ProductId = 5,
+                            TagId = 5
+                        });
                 });
 
             modelBuilder.Entity("BackEndProject.Models.Slider", b =>
@@ -1277,6 +1350,26 @@ namespace BackEndProject.Migrations
                         {
                             Id = 5,
                             Name = "Tag5"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Tag6"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Tag7"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Tag8"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Tag9"
                         });
                 });
 
@@ -1428,6 +1521,10 @@ namespace BackEndProject.Migrations
 
             modelBuilder.Entity("BackEndProject.Models.BasketItem", b =>
                 {
+                    b.HasOne("BackEndProject.Models.AppUser", null)
+                        .WithMany("BasketItems")
+                        .HasForeignKey("AppUserId");
+
                     b.HasOne("BackEndProject.Models.Product", "Product")
                         .WithMany("BasketItems")
                         .HasForeignKey("ProductId1");
@@ -1447,7 +1544,7 @@ namespace BackEndProject.Migrations
             modelBuilder.Entity("BackEndProject.Models.Order", b =>
                 {
                     b.HasOne("BackEndProject.Models.AppUser", "AppUser")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("AppUserId");
                 });
 

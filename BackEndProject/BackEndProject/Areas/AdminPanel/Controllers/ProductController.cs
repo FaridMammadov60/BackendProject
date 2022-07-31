@@ -4,9 +4,11 @@ using BackEndProject.Models;
 using BackEndProject.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,15 +22,23 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
     public class ProductController : Controller
     {
         private readonly AppDbContext _context;
-        private readonly IWebHostEnvironment _env;
+        private readonly UserManager<AppUser> _userManager;
+        private IWebHostEnvironment _env;
+        private readonly IConfiguration _config;
 
-        public ProductController(AppDbContext context, IWebHostEnvironment env)
+        public ProductController(AppDbContext context, IWebHostEnvironment env, UserManager<AppUser> userManager, IConfiguration config)
         {
             _context = context;
             _env = env;
+            _userManager = userManager;
+            _config = config;
         }
         public IActionResult Index(int page = 1, int take = 5)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             List<Product> products = _context.Products.Include(p => p.Category).Include(p => p.ProductImage)
                 .Skip((page - 1) * take).Take(take).ToList();
 
@@ -39,12 +49,20 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
 
         private int PageCount(int take)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             List<Product> products = _context.Products.ToList();
             return (int)Math.Ceiling((decimal)products.Count() / take);
         }
 
         public IActionResult Create()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             ViewBag.Categories = new SelectList(_context.Categories.Where(p => p.ParentId != null).ToList(), "Id", "Name");
             ViewBag.Brands = new SelectList(_context.Brands.ToList(), "Id", "Name");
             ViewBag.Tag = new SelectList(_context.Tags.ToList(), "Id", "Name");
@@ -56,6 +74,13 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Product product)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
+            ViewBag.Categories = new SelectList(_context.Categories.Where(p => p.ParentId != null).ToList(), "Id", "Name");
+            ViewBag.Brands = new SelectList(_context.Brands.ToList(), "Id", "Name");
+            ViewBag.Tag = new SelectList(_context.Tags.ToList(), "Id", "Name");
 
             Product dbProductName = new Product();
             if (!ModelState.IsValid)
@@ -152,6 +177,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
 
         public async Task<IActionResult> Delete(int? id)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             if (id == null) return NotFound();
             Product dbProduct = await _context.Products.FirstOrDefaultAsync(b => b.Id == id);
             if (dbProduct == null) return NotFound();
@@ -163,6 +192,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
 
         public async Task<IActionResult> Restore(int? id)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             if (id == null) return NotFound();
             Product dbProduct = await _context.Products.FirstOrDefaultAsync(b => b.Id == id);
             if (dbProduct == null) return NotFound();
@@ -179,12 +212,20 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
 
         public IActionResult Detail(int? id)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             ViewBag.ProductImage = _context.ProductImages.Where(p => p.ProductId == id).ToList();
             return View(_context.Products.FirstOrDefault(b => b.Id == id));
         }
 
         public async Task<IActionResult> Update(int? id)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             if (id == null) return NotFound();
             Product dbProduct = await _context.Products.FindAsync(id);
             if (dbProduct == null) return NotFound();
@@ -201,6 +242,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(Product product)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             if (!ModelState.IsValid)
             {
                 return View();

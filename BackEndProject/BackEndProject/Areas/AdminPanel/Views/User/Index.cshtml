@@ -1,4 +1,4 @@
-﻿@model List<AppUser>
+﻿@model UserVM
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/AdminPanel/Views/Shared/_AdminLayout.cshtml";
@@ -36,7 +36,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model)
+                            @foreach (var item in Model.Users)
                             {
                                 count++;
                                 <tr>
@@ -59,8 +59,7 @@
                                  </a>
                              </td>
                           </tr>
-                           }
-                          
+                           }                         
                                                  
                         </tbody>
                       </table>

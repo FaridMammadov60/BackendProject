@@ -34,7 +34,9 @@ namespace BackEndProject.Controllers
         {
             return View();
         }
+
         //[ValidateAntiForgeryToken]
+        [HttpGet]
         public async Task<IActionResult> AddItem(int? id)
         {
             double price = 0;
@@ -129,6 +131,71 @@ namespace BackEndProject.Controllers
             ViewBag.CategoryD = _icategory.category();
             return View(products);
         }
+
+        [HttpPost]
+        // [ActionName("showitem")]
+        public async Task<IActionResult> Order(Order newOrder)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                userName = User.Identity.Name;
+                AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
+                Order order = new Order();
+
+                order.SaledAt = DateTime.Now;
+                order.AppUserId = user.Id;
+                order.OrderStatus = OrderStatus.Pending;
+                order.FirstName = newOrder.FirstName;
+                order.LastName = newOrder.LastName;
+                order.City = newOrder.City;
+                order.Country = newOrder.Country;
+                order.Email = newOrder.Email;
+                order.Phone = newOrder.Phone;
+                order.ZipCode = newOrder.ZipCode;
+                order.Address = newOrder.Address;
+
+
+                var bask = Request.Cookies[$"{userName}basket"];
+                if (bask == null)
+                {
+                    return NotFound();
+                }
+                List<BasketVM> basketProducts = JsonConvert.DeserializeObject<List<BasketVM>>(Request.Cookies[$"{userName}basket"]);
+                List<OrderItem> orderItems = new List<OrderItem>();
+                double total = 0;
+                ViewBag.Products = basketProducts;
+                foreach (var basketProduct in basketProducts)
+                {
+                    Product dbProduct = await _context.Products.FindAsync(basketProduct.Id);
+                    if (basketProduct.ProductCount > dbProduct.StockCount)
+                    {
+                        TempData["fail"] = "Satış uğursuzdur..";
+                        return RedirectToAction("ShowItem");
+                    }
+                    OrderItem orderItem = new OrderItem();
+                    orderItem.ProductId = dbProduct.Id;
+                    orderItem.Count = basketProduct.ProductCount;
+                    orderItem.OrderId = order.Id;
+                    orderItem.TotalPrice = dbProduct.Price;
+                    orderItems.Add(orderItem);
+                    total += basketProduct.ProductCount * dbProduct.Price;
+
+                    dbProduct.StockCount = dbProduct.StockCount - basketProduct.ProductCount;
+                }
+                order.OrderItems = orderItems;
+                order.TotalPrice = total;
+
+                await _context.AddAsync(order);
+                await _context.SaveChangesAsync();
+                TempData["success"] = "Satış uğurla başa çatdı..";
+                return RedirectToAction("ShowItem");
+            }
+            else
+            {
+                return RedirectToAction("login", "account");
+            }
+
+        }
         public IActionResult min(int? id)
         {
             if (User.Identity.IsAuthenticated)
@@ -191,66 +258,38 @@ namespace BackEndProject.Controllers
         }
 
 
-        [HttpPost]
-        [ActionName("ShowItem")]
-        public async Task<IActionResult> Order()
+
+        public async Task<IActionResult> CheckOut()
         {
             if (User.Identity.IsAuthenticated)
             {
                 userName = User.Identity.Name;
-                AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
-                Order order = new Order();
-                order.SaledAt = DateTime.Now;
-                order.AppUserId = user.Id;
-                var req = Request.Cookies[$"{userName}basket"];
-                if (req==null)
-                {
-                    return RedirectToAction("showitem", "account");
-                }
-                List<BasketVM> basketProducts = JsonConvert.DeserializeObject<List<BasketVM>>(Request.Cookies[$"{userName}basket"]);
-                List<OrderItem> orderItems = new List<OrderItem>();
-                double total = 0;
-                foreach (var basketProduct in basketProducts)
-                {
-                    Product dbProduct = await _context.Products.FindAsync(basketProduct.Id);
-                    if (basketProduct.ProductCount > dbProduct.StockCount)
-                    {
-                        TempData["fail"] = "Satış uğursuzdur..";
-                        return RedirectToAction("ShowItem");
-                    }
-                    OrderItem orderItem = new OrderItem();
-                    orderItem.ProductId = dbProduct.Id;
-                    orderItem.Count = basketProduct.ProductCount;
-                    orderItem.OrderId = order.Id;
-                    orderItem.TotalPrice = dbProduct.Price;
-                    orderItems.Add(orderItem);
-                    total += basketProduct.ProductCount * dbProduct.Price;
+            }
 
-                    dbProduct.StockCount = dbProduct.StockCount - basketProduct.ProductCount;
-                }
-                order.OrderItems = orderItems;
-                order.TotalPrice = total;
+            string basket = Request.Cookies[$"{userName}basket"];
+            List<BasketVM> products;
+            if (basket != null)
+            {
+                products = JsonConvert.DeserializeObject<List<BasketVM>>(basket);
+                ViewBag.Products = products;
 
-                await _context.AddAsync(order);
-                await _context.SaveChangesAsync();
-                TempData["success"] = "Satış uğurla başa çatdı..";
-                return RedirectToAction("ShowItem");
+                foreach (var item in products)
+                {
+                    Product dbProduct = _context.Products
+                    .FirstOrDefault(p => p.Id == item.Id);
+                    item.Price = dbProduct.Price;
+
+                    item.Name = dbProduct.Name;
+                }
             }
             else
             {
-                return RedirectToAction("showitem", "account");
+                products = new List<BasketVM>();
             }
-
-        }
-
-
-        public async Task<IActionResult> CheckOut()
-        {
-            ViewBag.CategoryD = _icategory.category();
 
             return View();
         }
 
     }
-   
+
 }
