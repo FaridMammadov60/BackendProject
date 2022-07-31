@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 0;
 }
 
  <div class="breadcrumb-area">
@@ -97,15 +98,18 @@
                         <div class="product-size-color-quantity">
                             <div class="product-quantity mt-25">
                                 <h5 class="title">Quantity</h5>
-                                <div class="quantity mt-15 d-flex">
-                                    <button type="button" class="sub"><i class="fal fa-minus"></i></button>
-                                    <input type="text" value="1" />
-                                    <button type="button" class="add"><i class="fal fa-plus"></i></button>
+                                <div class="quantity mt-15 d-flex">                                    
+                                  <a asp-controller="basket" asp-route-id="@Model.Id" asp-action="min" type="button" class="sub btn btn-default"><i class="fal fa-minus"></i></a>
+                                  <input type="text" value="@count" />
+                                  <a asp-controller="basket" asp-route-id="@Model.Id" asp-action="plus" type="button" class="add btn btn-default"><i class="fal fa-plus"></i></a>                                   
                                 </div>
                             </div>
                         </div>
                         <div class="addcart">
-                            <button><i class="icon ion-bag"></i> Add to cart</button>
+                            <a asp-controller="basket" asp-action="additem" asp-route-id="@Model.Id">
+                                <i class="icon ion-bag"></i> Add to cart
+                            </a>                              
+                                
                         </div>
                         <div class="product-wishlist-compare">
                             <ul class="d-flex flex-wrap">
