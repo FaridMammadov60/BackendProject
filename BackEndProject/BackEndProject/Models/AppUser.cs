@@ -9,6 +9,8 @@ namespace BackEndProject.Models
 
         public string FirstName { get; set; }
 
+        public string ConnectId { get; set; }
+
         public string LastName { get; set; }
 
         public List<Order> Orders { get; set; }

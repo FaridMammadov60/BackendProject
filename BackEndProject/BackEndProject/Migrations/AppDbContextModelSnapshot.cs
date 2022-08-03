@@ -34,6 +34,9 @@ namespace BackEndProject.Migrations
                     b.Property<DateTime>("ConfirmMailTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("ConnectId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);

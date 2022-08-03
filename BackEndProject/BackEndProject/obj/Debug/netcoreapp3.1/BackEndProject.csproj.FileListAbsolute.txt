@@ -281,3 +281,8 @@ C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\D
 C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Areas\AdminPanel\Views\Order\Index.cshtml.g.cs
 C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Views\Shop\Detail.cshtml.g.cs
 C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\HeaderBasketModal\Default.cshtml.g.cs
+C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Views\Chat\Index.cshtml.g.cs
+C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\bin\Debug\netcoreapp3.1\libman.json
+C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\obj\Debug\netcoreapp3.1\Razor\Views\Chat\Group.cshtml.g.cs
+C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\bin\Debug\netcoreapp3.1\Antlr3.Runtime.dll
+C:\Users\farid\Desktop\Lahiye\BackendProject\BackEndProject\BackEndProject\bin\Debug\netcoreapp3.1\WebGrease.dll

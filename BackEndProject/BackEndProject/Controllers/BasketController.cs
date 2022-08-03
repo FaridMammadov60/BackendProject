@@ -19,19 +19,16 @@ namespace BackEndProject.Controllers
     {
         private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
-        private readonly ICategory _icategory;
-
-
-        public BasketController(AppDbContext context, UserManager<AppUser> userManager, ICategory icategory)
+       
+        public BasketController(AppDbContext context, UserManager<AppUser> userManager)
         {
             _context = context;
-            _userManager = userManager;
-            _icategory = icategory;
+            _userManager = userManager;          
 
         }
         string userName = "";
         public IActionResult Index()
-        {
+        {            
             return View();
         }
 
@@ -127,8 +124,7 @@ namespace BackEndProject.Controllers
             else
             {
                 products = new List<BasketVM>();
-            }
-            ViewBag.CategoryD = _icategory.category();
+            }           
             return View(products);
         }
 
@@ -136,6 +132,7 @@ namespace BackEndProject.Controllers
         // [ActionName("showitem")]
         public async Task<IActionResult> Order(Order newOrder)
         {
+           
             if (User.Identity.IsAuthenticated)
             {
                 userName = User.Identity.Name;
@@ -260,7 +257,7 @@ namespace BackEndProject.Controllers
 
 
         public async Task<IActionResult> CheckOut()
-        {
+        {           
             if (User.Identity.IsAuthenticated)
             {
                 userName = User.Identity.Name;

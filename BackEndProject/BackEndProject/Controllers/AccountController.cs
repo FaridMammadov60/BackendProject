@@ -5,6 +5,7 @@ using BackEndProject.Service;
 using BackEndProject.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Threading.Tasks;
@@ -20,30 +21,27 @@ namespace BackEndProject.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IConfiguration _config;
         private readonly AppDbContext _context;
-        private readonly ICategory _icategory;
-
-
-        public AccountController(UserManager<AppUser> userManager, RoleManager<IdentityRole> rolemanager, SignInManager<AppUser> signInManager, IConfiguration config, AppDbContext context, ICategory icategory)
+       
+        public AccountController(UserManager<AppUser> userManager, RoleManager<IdentityRole> rolemanager, SignInManager<AppUser> signInManager, IConfiguration config, AppDbContext context)
         {
             _userManager = userManager;
             _rolemanager = rolemanager;
             _signInManager = signInManager;
             _config = config;
             _context = context;
-            _icategory = icategory;
         }
         public IActionResult Index()
-        {
+        {           
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("register", "account");
             }
+
             return View();
         }
 
         public IActionResult Registr()
         {
-            ViewBag.CategoryD = _icategory.category();
             return View();
         }
 
@@ -65,6 +63,7 @@ namespace BackEndProject.Controllers
                 Email = registrVM.Email,
                 UserCreateTime = now,
                 ConfirmMailTime = confirm,
+                
             };
             IdentityResult result = await _userManager.CreateAsync(user, registrVM.Password);
 
@@ -98,7 +97,6 @@ namespace BackEndProject.Controllers
 
         public IActionResult Login()
         {
-            ViewBag.CategoryD = _icategory.category();
             return View();
         }
 

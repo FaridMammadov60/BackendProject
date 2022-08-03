@@ -14,13 +14,11 @@ namespace BackEndProject.Controllers
 {
     public class ShopController : Controller
     {
-        private readonly AppDbContext _context;
-        private readonly ICategory _icategory;
+        private readonly AppDbContext _context;        
         private readonly UserManager<AppUser> _userManager;
-        public ShopController(AppDbContext context, ICategory icategory, UserManager<AppUser> userManager)
+        public ShopController(AppDbContext context, UserManager<AppUser> userManager)
         {
-            _context = context;
-            _icategory = icategory;
+            _context = context;           
             _userManager = userManager;
         }
         public async Task<IActionResult> Index(int page = 1, int take = 8)
@@ -34,7 +32,7 @@ namespace BackEndProject.Controllers
             List<Product> products = _context.Products.Include(p => p.ProductImage)
                  .Skip((page - 1) * take).Take(take).ToList();
             PaginationVM<Product> paginationVM = new PaginationVM<Product>(products, PageCount(take), page);
-
+        
             return View(await Task.FromResult(paginationVM));
         }
         private int PageCount(int take)

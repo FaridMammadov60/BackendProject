@@ -79,19 +79,20 @@
                                         <div class="search-category">
                                             <select>
                                                 <option value="0">All categories</option>
-                                             @*   @foreach (var item in ViewBag.CategoryD)
+                                              @foreach (var item in ViewBag.CategoryD)
                                                {
                                                    if (item.ParentId==null)
                                                 {
                                                      <option value="@count">@item.Name</option>
                                                    @foreach (var child in item.Children)
-                                                  {
-                                                      
-                                                       <option value="@count">- - @child.Name</option>
+                                                    {
+                                                        if (child.IsDeleted != true)
+                                                        {
+                                                            <option value="@count">- - @child.Name</option>
+                                                        }                                                        
                                                   } 
-                                                }
-                                                                                                
-                                               }  *@                                         
+                                                }                                                                                                
+                                               }                                           
                                                  
                                             </select>
                                         </div>                                        
@@ -132,26 +133,34 @@
                                 </h4>
                                 <ul class="menu-content menu-expand">
 
-                                 @*   @foreach (var item in ViewBag.CategoryD)
+                                    @foreach (var item in ViewBag.CategoryD)
                                    {
                                        @if (item.ParentId==null)
                                     {
                                        <li class="menu-item">
-                                        <a href="#">@item.Name <i class="fal fa-chevron-right"></i></a>  
+                                        
+                                        <a href="#">
+                                            <img width="50px" height="50" src="~/assets/images/@item.ImageUrl" alt="">
+                                            @item.Name
+                                            <i class="fal fa-chevron-right"></i>
+                                        </a>  
                                         <ul class="sub-menu flex-wrap">
                                             @foreach (var child in item.Children)
                                            {
-                                            
+                                            if (child.IsDeleted != true)
+                                                    {
                                             <li>
                                                 <a href="#"><span>@child.Name</span></a>   
-                                                <img src="~/assets/images/@child.ImageUrl" alt="">
-                                            </li>                                   
+                                                <img width="100px" height="100" src="~/assets/images/@child.ImageUrl" alt="">
+                                            </li>   
+                                                    }
+                                                                          
                                            }
                                           </ul> <!-- sub menu -->
                                        </li>   
                                     }
                                        
-                                   }         *@                                                            
+                                   }                                                                    
                                    
                                 </ul> <!-- menu content -->
                             </div> <!-- header menu vertical -->

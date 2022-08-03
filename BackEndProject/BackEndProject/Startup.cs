@@ -26,7 +26,7 @@ namespace BackEndProject
         {
             services.AddControllersWithViews();
 
-
+            services.AddSignalR();
             services.AddScoped<ICategory, CategoryService>();
 
             services.AddDbContext<AppDbContext>(option =>
@@ -77,6 +77,9 @@ namespace BackEndProject
                     "default",
                     "{controller=home}/{action=index}/{id?}"
                     );
+
+                endpoints.MapHub<Chat>("/chatHub");
+
             });
         }
     }

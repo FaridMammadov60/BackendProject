@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BackEndProject.Migrations
 {
@@ -41,6 +41,7 @@ namespace BackEndProject.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
+                    ConnectId = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     UserCreateTime = table.Column<DateTime>(nullable: true),
                     UserDeletedTime = table.Column<DateTime>(nullable: true),

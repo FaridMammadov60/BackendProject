@@ -17,7 +17,8 @@ namespace BackEndProject.Service
 
         public List<Category> category()
         {
-            List<Category> categories = _context.Categories.Include(p => p.Children).Include(p => p.Products).ToList();
+            List<Category> categories = _context.Categories.Include(p => p.Children)
+                .Include(p => p.Products).Where(p=>p.IsDeleted!=true).ToList();
             return categories;
         }
     }

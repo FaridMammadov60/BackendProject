@@ -2,6 +2,7 @@
 using BackEndProject.Helper;
 using BackEndProject.Models;
 using BackEndProject.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace BackEndProject.Areas.AdminPanel.Controllers
 {
+    [Authorize(Roles = "SuperAdmin")]
     [Area("AdminPanel")]
     public class UserController : Controller
     {
@@ -29,6 +31,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
         }
         public async Task<IActionResult> Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             var users = _userManager.Users.ToList();
             UserVM userVM = new UserVM();
 
@@ -48,6 +54,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
 
         public async Task<IActionResult> Update(string id)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             AppUser user = await _userManager.FindByIdAsync(id);
             var userRoles = await _userManager.GetRolesAsync(user);
             var roles = _rolemanager.Roles.ToList();
@@ -65,6 +75,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(List<string> roles, string id)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             AppUser user = await _userManager.FindByIdAsync(id);
             var userRoles = await _userManager.GetRolesAsync(user);
 
@@ -81,6 +95,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
         }
         public IActionResult Create()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             return View();
         }
 
@@ -88,6 +106,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RegistrVM registerVM)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             if (!ModelState.IsValid) return View();
             DateTime now = DateTime.Now;
             DateTime confirm = now.AddMinutes(1);
@@ -132,6 +154,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
         }
         public async Task<IActionResult> UserDetail(string id)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             AppUser dbUser = await _userManager.FindByIdAsync(id);
             List<Order> orders = await _context.Orders.Where(o => o.AppUserId == dbUser.Id).Include(i => i.OrderItems).Where(p => p.OrderStatus == OrderStatus.Pending).ToListAsync();
 
@@ -145,6 +171,10 @@ namespace BackEndProject.Areas.AdminPanel.Controllers
         }
         public async Task<IActionResult> OrderDetail(int id)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.AdminUser = User.Identity.Name;
+            }
             Order order = await _context.Orders.Include(o => o.AppUser).FirstOrDefaultAsync(p => p.Id == id);
             List<OrderItem> orderItems = await _context.OrderItems.Include(p => p.Product).Where(i => i.OrderId == order.Id).ToListAsync();
             return View(orderItems);

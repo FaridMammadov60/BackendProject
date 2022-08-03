@@ -1,5 +1,6 @@
 ﻿using BackEndProject.DAL;
 using BackEndProject.Models;
+using BackEndProject.Service;
 using BackEndProject.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +15,12 @@ namespace BackEndProject.ViewComponents
     {
         private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
-        public HeaderViewComponent(AppDbContext context, UserManager<AppUser> userManager)
+        private readonly ICategory _icategory;
+        public HeaderViewComponent(AppDbContext context, UserManager<AppUser> userManager, ICategory icategory)
         {
             _context = context;
             _userManager = userManager;
+            _icategory = icategory;
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
@@ -59,6 +62,7 @@ namespace BackEndProject.ViewComponents
             ViewBag.BasketCount = totalCount;
             ViewBag.TotalPrice = totalPrice;
             Bio bio = _context.Bios.FirstOrDefault();
+            ViewBag.CategoryD = _icategory.category();
             return View(await Task.FromResult(bio));
         }
     }

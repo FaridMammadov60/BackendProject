@@ -1,5 +1,6 @@
 ﻿using BackEndProject.DAL;
 using BackEndProject.Models;
+using BackEndProject.Service;
 using BackEndProject.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,10 +13,11 @@ namespace BackEndProject.ViewComponents
     public class HeaderBasketModalViewComponent : ViewComponent
     {
         private readonly AppDbContext _context;
+        
 
         public HeaderBasketModalViewComponent(AppDbContext context)
         {
-            _context = context;
+            _context = context;         
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
@@ -48,7 +50,7 @@ namespace BackEndProject.ViewComponents
             else
             {
                 products = new List<BasketVM>();
-            }
+            }           
             return View(await Task.FromResult(products));
         }
     }
